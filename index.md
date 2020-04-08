@@ -139,7 +139,7 @@ The **_mm_load_ps** function is loading from memory the values contained in the 
 The  **_mm_mul_ps** function is multiplying 4 *floats* with 4 other *floats*.
 
 ### _mm_add_ps()
-The **_mm_add_ps** function is adding two values together.
+The **_mm_add_ps** function is adding 4 *floats* with 4 other *floats*.
 
 ### _mm_store_ps()
 The **_mm_store_ps** function is storing from the value *x1* to the memory.
