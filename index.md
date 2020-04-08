@@ -152,7 +152,7 @@ I created a test that calculates the **Dot product** of *n* Quaternions using th
 <!--- Show a graphic of the code --->
 ![](ResultQuatIntrinsicsGraph.png)
 
-As you can see, the **BM_Dot_Intrinsics** is between 3 and 4 times faster than the **BM_Dot** which is a huge performance optimization.
+As you can see, the FourQuaternion Dot Produt is between 3 and 4 times faster than the Quaternion Dot Product which is a huge performance optimization.
 
 I've looked on Godbolt what was the main difference between the two functions in assembly code.
 
