@@ -163,7 +163,7 @@ The FourQuaternion **Dot** function had no jump. Where the Quaternion **Dot** ha
 ## Lessons Learned
 It was the first time for me to do that kind of exercise to optimize the most I could the code I implemented.
 
-It was the first time I worked with AoSoAs and with the Intel Intrinsics functions. It was really interesting to know what was going with the compiler and what it was doing to try to optimize the code I was writing, and knowing that he couldn't guess everything.
+It was the first time I worked with AoSoAs and with the Intel Intrinsics functions. It was really interesting to know what was going on with the compiler and what it was doing to try to optimize the code I was writing, and knowing that he couldn't guess everything.
 
 I hope you had fun reading my Blogpost and that you learned something out of it :)
 
