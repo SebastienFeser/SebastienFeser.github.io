@@ -174,11 +174,11 @@ I hope you had fun reading my Blogpost and that you learned something out of it 
 
 
 ```cpp
-inline std::array<float, 4> AddFourFloat(const std::array<float, 4> dividend, const std::array<float, 4> divisor) const
+inline std::array<float, 4> AddFourFloat(const std::array<float, 4> valueA, const std::array<float, 4> valueB) const
 	{
 		alignas(4 * sizeof(float)) std::array<float, 4> result;
-		auto x1 = _mm_load_ps(dividend.data());
-		auto x2 = _mm_load_ps(divisor.data());
+		auto x1 = _mm_load_ps(valueA.data());
+		auto x2 = _mm_load_ps(valueB.data());
 
 		x1 = _mm_add_ps(x1, x2);
 
