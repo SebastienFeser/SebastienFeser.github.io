@@ -41,7 +41,7 @@ For the optimization I implemented, I decided to take the **Dot** function that 
 
 So here’s how the **Dot** function of my *Quaternion* struct looks like:
 ```cpp
-static float Dot(Quaternion a, Quaternion b)
+static float Dot(const Quaternion& a, const Quaternion& b)
 {
   return  a.x * b.x +
           a.y * b.y +
@@ -101,7 +101,7 @@ To do the functions with these arrays, I’ll have to use the Intel Intrinsic in
 
 Since I decided to use the **Dot** function as a test, let’s look at how it looks like in the *FourQuaternion* Struct:
 ```cpp
-static inline std::array<float, 4> Dot(FourQuaternion q1, FourQuaternion q2)
+static inline std::array<float, 4> Dot(const FourQuaternion& q1, const FourQuaternion& q2)
 	{
 		alignas(4 * sizeof(float)) std::array<float, 4> result;
 		auto x1 = _mm_load_ps(q1.x.data());
@@ -172,19 +172,5 @@ I hope you had fun reading my Blogpost and that you learned something out of it 
 
 **Quaternion and FourQuaternion on Godbolt:** https://godbolt.org/z/SHBEmn 
 
-
-```cpp
-inline std::array<float, 4> AddFourFloat(const std::array<float, 4> valueA, const std::array<float, 4> valueB) const
-	{
-		alignas(4 * sizeof(float)) std::array<float, 4> result;
-		auto x1 = _mm_load_ps(valueA.data());
-		auto x2 = _mm_load_ps(valueB.data());
-
-		x1 = _mm_add_ps(x1, x2);
-
-		_mm_store_ps(result.data(), x1);
-		return result;
-	}
-```
 
 <!--- Conclusion --->
