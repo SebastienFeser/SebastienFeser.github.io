@@ -173,4 +173,18 @@ I hope you had fun reading my Blogpost and that you learned something out of it 
 **Quaternion and FourQuaternion on Godbolt:** https://godbolt.org/z/SHBEmn 
 
 
+```cpp
+inline std::array<float, 4> AddFourFloat(const std::array<float, 4> dividend, const std::array<float, 4> divisor) const
+	{
+		alignas(4 * sizeof(float)) std::array<float, 4> result;
+		auto x1 = _mm_load_ps(dividend.data());
+		auto x2 = _mm_load_ps(divisor.data());
+
+		x1 = _mm_add_ps(x1, x2);
+
+		_mm_store_ps(result.data(), x1);
+		return result;
+	}
+```
+
 <!--- Conclusion --->
