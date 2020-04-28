@@ -64,7 +64,7 @@ Why 4 floats then? Because 4 floats use 4 bytes each and an xmm register can con
 The *FourQuaternion* structure looks like this:
 
 ```cpp
-struct FourQuaternion
+struct alignas(4 * sizeof(float)) FourQuaternion
 {
   std::array<float, 4> x;       //16 bytes
   std::array<float, 4> y;       //16 bytes
