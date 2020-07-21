@@ -64,9 +64,18 @@ I created zones structures containing their biome and terrain, their neighbours 
 
 With the algorithm I used, I was able to have a map with a lot of different zones that will be useful to spawn the different kind of biomes and terrain.
 
-### Terrain
+### Terrain and Biomes
+Having a lot of different zones, I decided to implement 3 types of terrains:
 
-### Biomes Types
+* Mountains
+* Hills
+* Plains
+
+I also decided to implement 3 types of biomes:
+
+* Snow
+* Desert
+* Green
 
 ## Perlin Noise
 
