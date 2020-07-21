@@ -20,16 +20,16 @@ I had to return a 3d array of ints, because they represent the blocks ids for ou
 #### Voronoi Diagram
 ![](https://upload.wikimedia.org/wikipedia/commons/d/d9/Voronoi_growth_euclidean.gif)
 
-My first idea was to implement a Voronoi Diagram algorithm. My idea was to generate random dots on the entire map to generate every zones, and then to link every dots with their neighbors to get every zones neighbors. Every zones needed to know the neighbors so it will be simplier later to generate each kind of biomes.
+My first idea was to implement a Voronoi Diagram algorithm. My idea was to generate random dots on the entire map to generate every zone, and then to link every dot with their neighbors to get every zone neighbors. Each zones needed to know the neighbors so it will be simpler later to generate each kind of biomes.
 
 The problem was that I couldn't link the biomes dots with their neighbors and I couldn't easily find the zones neighbors blocks to then lerp them with their neighbors. So I decided to abort this technique.
-#### Binary Space Partitionning Without Rectangles
-I then decided to work with binary space partitionning with convex shapes. 
+#### Binary Space Partitioning Without Rectangles
+I then decided to work with binary space partitioning with convex shapes. 
 
-I decided first to create a **stuct Zone**:
+I decided first to create a **struct Zone**:
 
 ```Cpp
-stuct Zone
+struct Zone
 {
     Zone(Vector2Int[] b1, Vector2Int[] b2, Vector2Int[] b3, Vector2Int[] b4)
         {
@@ -52,14 +52,14 @@ Here are the zones creation steps:
 * Step 1: Chose two random points of the edges borders to cut
 * Step 2: Create children zones
 * Step 3: Generate the uncut borders for each children zone
-* Step 4: Calculate the unknown borders of each chlidren zone
-* Step 5: Use the generate zone function for each children zone
+* Step 4: Calculate the unknown borders of each children zone
+* Step 5: Use the GenerateZone function for each children zone
 
 I decided to abord this technique because I still couldn't find the zones neighbors and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
 #### Binary Space Partitionning With Rectangles
-I decided finally to implement a binary space partitionning algorithm with rectangles.
+I decided finally to implement a binary space partitioning algorithm with rectangles.
 
-I created zones structures containing their biome and terrain, their neighbors and the blocks they're containing and then I decided to cut each zones like you can see on the picture below:
+I created zones structures containing their biome and terrain, their neighbors and the blocks they contains and then I decided to cut each zones like you can see on the picture below:
 ![](BSP.png)
 
 With the algorithm I used, I was able to have a map with a lot of different zones that will be useful to spawn the different kind of biomes and terrain.
