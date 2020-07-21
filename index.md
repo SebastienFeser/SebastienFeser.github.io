@@ -24,7 +24,25 @@ The problem was that I couldn't link the biomes dots with their neighbours and I
 #### Binary Space Partitionning Without Rectangles
 I then decided to work with binary space partitionning with convex shapes. 
 
-I decided first to create a **stuct Zone**
+I decided first to create a **stuct Zone**:
+
+```Cpp
+stuct Zone
+{
+    Zone(Vector2Int[] b1, Vector2Int[] b2, Vector2Int[] b3, Vector2Int[] b4)
+        {
+            border1 = b1;
+            border2 = b2;
+            border3 = b3;
+            border4 = b4;
+        }
+        public Vector2Int[] border1;
+        public Vector2Int[] border2;
+        public Vector2Int[] border3;
+        public Vector2Int[] border4;
+
+}
+```
 
 Here are the zones creation steps:
 
