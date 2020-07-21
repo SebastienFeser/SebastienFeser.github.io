@@ -43,12 +43,20 @@ stuct Zone
 
 }
 ```
+Then I decided to create a function GenerateZones that takes as an argument
 
 Here are the zones creation steps:
 
 * Step 1: Chose two random points of the edges borders to cut
-* Step 2: Create 
+* Step 2: Create children zones
+* Step 3: Generate the uncut borders for each children zone
+* Step 4: Calculate the unknown borders of each chlidren zone
+* Step 5: Use the generate zone function for each children zone
+
+I decided to abord this technique because I still couldn't find the zones neighbours and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
 #### Binary Space Partitionning With Rectangles
+I decided finally to implement a binary space partitionning algorithm with rectangles.
+
 
 ### Terrain
 
