@@ -77,6 +77,9 @@ I also decided to implement 3 types of biomes:
 * Desert
 * Green
 
+This is how I decided to implement the different kind of terrains and biomes:
+
+![](Biomes.png)
 ## Perlin Noise
 
 ### Linking Biomes together
