@@ -18,7 +18,7 @@ I had to return a 3d array of ints, because they represent the blocks ids for ou
 ### Shape
 
 #### Voronoi Diagram
-![](https://upload.wikimedia.org/wikipedia/commons/d/d9/Voronoi_growth_euclidean.gif =30x)
+![](https://upload.wikimedia.org/wikipedia/commons/d/d9/Voronoi_growth_euclidean.gif)
 
 My first idea was to implement a Voronoi Diagram algorithm. My idea was to generate random dots on the entire map to generate every zones, and then to link every dots with their neighbors to get every zones neighbours. Every zones needed to know the neighbours so it will be simplier later to generate each kind of biomes.
 
@@ -60,7 +60,7 @@ I decided to abord this technique because I still couldn't find the zones neighb
 I decided finally to implement a binary space partitionning algorithm with rectangles.
 
 I created zones structures containing their biome and terrain, their neighbours and the blocks they're containing and then I decided to cut each zones like you can see on the picture below:
-![](BSP.png)
+![](BSP.png = 50x)
 
 With the algorithm I used, I was able to have a map with a lot of different zones that will be useful to spawn the different kind of biomes and terrain.
 
