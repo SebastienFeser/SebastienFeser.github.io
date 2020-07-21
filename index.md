@@ -20,9 +20,16 @@ I had to return a 3d array of ints, because they represent the blocks ids for ou
 #### Voronoi Diagram
 My first idea was to implement a Voronoi Diagram algorithm. My idea was to generate random dots on the entire map to generate every zones, and then to link every dots with their neighbors to get every zones neighbours. Every zones needed to know the neighbours so it will be simplier later to generate each kind of biomes.
 
-The problem was that I couldn't link the biomes dots with their neighbours and I couldn't easily find the zones neighbours blocks to lerp every blocks. So I decided to 
+The problem was that I couldn't link the biomes dots with their neighbours and I couldn't easily find the zones neighbours blocks to then lerp them with their neighbours. So I decided to abort this technique.
 #### Binary Space Partitionning Without Rectangles
+I then decided to work with binary space partitionning with convex shapes. 
 
+I decided first to create a **stuct Zone**
+
+Here are the zones creation steps:
+
+* Step 1: Chose two random points of the edges borders to cut
+* Step 2: Create 
 #### Binary Space Partitionning With Rectangles
 
 ### Terrain
