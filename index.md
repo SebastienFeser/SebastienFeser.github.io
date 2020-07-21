@@ -58,7 +58,11 @@ Here are the zones creation steps:
 I decided to abord this technique because I still couldn't find the zones neighbours and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
 #### Binary Space Partitionning With Rectangles
 I decided finally to implement a binary space partitionning algorithm with rectangles.
+
+I created zones structures containing their biome and terrain, their neighbours and the blocks they're containing and then I decided to cut each zones like you can see on the picture below:
 ![](BSP.png)
+
+With the algorithm I used, I was able to have a map with a lot of different zones that will be useful to spawn the different kind of biomes and terrain.
 
 ### Terrain
 
