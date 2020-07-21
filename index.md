@@ -1,15 +1,24 @@
 # Minecraft-like Procedural Generation
 
-## Context
+## Introduction
+### Context
+I'm currently a student at the SAE Institute of Geneva in the Games Programming section. For the current module of Computer Graphics, we had to create a Minecraft-like game with our own custom Graphics Engine. My task in this project was to create the procedural generation of the game 
+### Constraints
+I had a lot of different constraints when creating the map:
+* No water
+* Map composed of blocks
+* Return a 3d array of ints
 
-## Constraints
+The map couldn't have any water because it was too complicated for the Engine team to render the water.
+I had to return a 3d array of ints, because they represent the blocks ids for our map.
+
 
 ## Biomes
 
 ### Shape
 
 #### Voronoi Diagram
-
+I started by working on the map by creating first
 #### Binary Space Partitionning Without Rectangles
 
 #### Binary Space Partitionning With Rectangles
