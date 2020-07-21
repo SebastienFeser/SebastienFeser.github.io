@@ -18,7 +18,9 @@ I had to return a 3d array of ints, because they represent the blocks ids for ou
 ### Shape
 
 #### Voronoi Diagram
-I started by working on the map by creating first
+My first idea was to implement a Voronoi Diagram algorithm. My idea was to generate random dots on the entire map to generate every zones, and then to link every dots with their neighbors to get every zones neighbours. Every zones needed to know the neighbours so it will be simplier later to generate each kind of biomes.
+
+The problem was that I couldn't link the biomes dots with their neighbours and I couldn't easily find the zones neighbours blocks to lerp every blocks. So I decided to 
 #### Binary Space Partitionning Without Rectangles
 
 #### Binary Space Partitionning With Rectangles
