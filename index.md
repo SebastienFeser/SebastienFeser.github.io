@@ -58,7 +58,7 @@ Here are the zones creation steps:
 I decided to abord this technique because I still couldn't find the zones neighbours and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
 #### Binary Space Partitionning With Rectangles
 I decided finally to implement a binary space partitionning algorithm with rectangles.
-
+![](BSP.png)
 
 ### Terrain
 
