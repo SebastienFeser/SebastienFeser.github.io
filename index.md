@@ -81,5 +81,6 @@ This is how I decided to implement the different kind of terrains and biomes:
 
 ![](Biomes.png)
 ## Perlin Noise
-
+To generate my biomes I've used Perlin Noise. 
 ### Linking Biomes together
+To link the biomes together I've lerped every blocks around the zone borders.
