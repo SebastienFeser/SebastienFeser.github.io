@@ -93,3 +93,14 @@ To link the biomes together I've developed two functions:
 These functions are used first by the mountain Zone and then by the hills Zones.
 ## Generate underground blocks
 
+To generate the underground blocks, I'm generating them blocks by blocks:
+* The top block is the biome block (snow, grass or sand)
+* The three blovks under are dirt or sand (depending of the biome)
+* Every blocks under are stone
+
+## Conclusion
+The procedural generation of this Minecraft-like had more iterations than I thought. It was really interesting to look at how the terrain could be generated, the techniques that were used. That was the first time I used Perlin Noise for one of my projects.
+
+I wasn't able to finish implementing all the steps I talked about in this blogpost. I've put the code on the project but I wasn't able to test it on time. I'm pretty sure that with only one day more, I'd be able to finish this project. I'll probably come back on this project to implement everything I wanted to implement.
+
+
