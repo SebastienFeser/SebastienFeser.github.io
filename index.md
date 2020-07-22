@@ -47,7 +47,7 @@ struct Zone
 ```
 Then I decided to create a function GenerateZones that takes as an argument
 
-Here are the zones creation steps:
+Here are the zones' creation steps:
 
 * Step 1: Chose two random points of the edges borders to cut
 * Step 2: Create children zones
@@ -55,8 +55,8 @@ Here are the zones creation steps:
 * Step 4: Calculate the unknown borders of each children zone
 * Step 5: Use the GenerateZone function for each children zone
 
-I decided to abord this technique because I still couldn't find the zones neighbors and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
-#### Binary Space Partitionning With Rectangles
+I decided to abort this technique because I still couldn't find the zones neighbors and I couldn't find an efficient way to calculate the map after that and I had no more time to answer to these questions.
+#### Binary Space Partitioning With Rectangles
 I decided finally to implement a binary space partitioning algorithm with rectangles.
 
 I created zones structures containing their biome and terrain, their neighbors and the blocks they contains and then I decided to cut each zones like you can see on the picture below:
@@ -95,11 +95,11 @@ These functions are used first by the mountain Zone and then by the hills Zones.
 
 To generate the underground blocks, I'm generating them blocks by blocks:
 * The top block is the biome block (snow, grass or sand)
-* The three blovks under are dirt or sand (depending of the biome)
+* The three blocks under are dirt or sand (depending on the biome)
 * Every blocks under are stone
 
 ## Conclusion
-The procedural generation of this Minecraft-like had more iterations than I thought. It was really interesting to look at how the terrain could be generated, the techniques that were used. That was the first time I used Perlin Noise for one of my projects.
+The procedural generation of this Minecraft-like had more iterations than I thought. It was interesting to look at how the terrain could be generated, the techniques that were used. That was the first time I used Perlin Noise for one of my projects.
 
 I wasn't able to finish implementing all the steps I talked about in this blogpost. I've put the code on the project but I wasn't able to test it on time. I'm pretty sure that with only one day more, I'd be able to finish this project. I'll probably come back on this project to implement everything I wanted to implement.
 
