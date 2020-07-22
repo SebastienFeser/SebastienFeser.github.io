@@ -86,4 +86,10 @@ To generate my biomes I've used Perlin Noise which helps the terrain to look mor
 * The frequency
 * The height multiplier
 ### Linking Biomes together
-To link the biomes together I've developed a 
+To link the biomes together I've developed two functions:
+* **LerpZone():** Uses the LerpBlock function to lerp every blocks around the Zone
+* **LerpBlock():** Check in the given directions if there's a to high difference of height between the blocks, and then lerps the blocks if it's the case.
+
+These functions are used first by the mountain Zone and then by the hills Zones.
+## Generate underground blocks
+
