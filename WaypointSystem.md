@@ -14,6 +14,8 @@ An important feature in a multiplayer racing game is to know the positioning of 
 ## The Waypoint System
 The waypoint system I’ve imagined uses a waypoint map in which the player’s position is calculated between the waypoints the player is in. The waypoint manager keeps a target waypoint to calculate the player’s position and update the target waypoint, by calculating the dot product between the vector Player-Waypoint and the vector Waypoint-NextWaypoint.
 
+![](waypointsys.png)
+
 ## Waypoint
 The waypoint I decided to created contains a lot of different data:
 * **Position**: Position of the waypoint
@@ -25,6 +27,7 @@ The waypoint I decided to created contains a lot of different data:
 
 ## PlayerPositionData
 
+![](PlayerPosData.png)
 
 I decided to store every piece of information about the player’s positions in a structure called “PlayerPositionData”. All information about the ship’s position of each player are stored here:
 * **std::array<RacePlacement, 4> racePlacement**: keeps the players placement in race
@@ -35,6 +38,8 @@ I decided to store every piece of information about the player’s positions in 
 The PlayerPositionData are stored in an array of size 4 which corresponds to the maximum number of players the game can have.
 
 ## Waypoint Manager
+
+![](WaypointManager.png)
 
 To manage our waypoint, I’ve created a waypoint manager that stores the waypoints and updates the positions of the players in the race. Let me explain some of the functions implemented:
 * **void AddWaypointFromJson(Entity entity, const json& jsonComponent)**: Called when loading the scene, to get each waypoint elements in the scene JSON,
