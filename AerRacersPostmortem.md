@@ -41,16 +41,15 @@ As the Lead Designer on the project AerRacers, I had to decide about the concept
 The first task that we were assigned to do was to look at the references for our game. We looked at a bunch of different racing games. In the end, we selected 3 main game references.
 
 **Mario Kart 8**:
-
-
+![](MK8Givree-min.gif)
 We were inspired by Mario Kart 8 mainly for the simple UI the game had and for the level design of the races in the game.
 
 **Start Wars Episode I Racers**:
-
+![](SWE1R-min.gif)
 This game is our main reference. We got inspired by the speed of the ship in the game and also about the open levels.
 
 **Wipeout HD**:
-
+![](Wipeout.gif)
 We got inspired by the smooth camera of this game and the reaction it has with the vehicle.
 
 ### References Arts
