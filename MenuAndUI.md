@@ -14,6 +14,8 @@ The menu manager is used to display the menu UI, to update the menu status, and 
 
 ### Menu Structure
 
+![](menuhierarchy.png)
+
 The menu has several sections:
 * **The Main Menu**: Where the player can look at the credits or start the game
 * **The Credits**: Where the credits of each member from the team are displayed
@@ -21,7 +23,7 @@ The menu has several sections:
 
 ### Selection Screen
 
-
+![](Selection.png)
 
 The Selection Screen was an important part of the program because there’s a bunch of spaceship models & textures that were created by the Game Art Team for this project. It’s also there that the Game Manager gets the information of which ship model to load next, and of how many players will play.
 
@@ -31,18 +33,25 @@ To update the state of the menu, I’ve created a bunch of enum classes:
 
 * **MenuStatus**: Used to know in which parts of the menu the player is.
 
+![](MenuStatus.png)
+
 * **MainMenuPointer**: Used to know which button from the menu is highlighted
+
+![](MainMenuP.png)
 
 * **CreditsStatus**: Used to know which page of the credits the player is looking at
 
-
+![](CreditsS.png)
 
 
 
 * **SelectionStatus**: Used to know in which part of the selection every player are
 
+![](SelectionP.png)
+
 * **SelectedModel**: Used to know which model the player has selected.
 
+![](SelectionM.png)
 
 ### Loading the models and textures
 In our game, we decided to load every texture and model at the start of the game using the other threads of the Nintendo Switch. We could do so because we only have one level in our entire game. So while the player is in the main menu, the level scene loads in the other threads.
@@ -59,7 +68,6 @@ Every iteration is called when the previous one is finished, except for the thir
 The game manager is used to manage the entire game. It updates the status of the current game, updates the UI in-game for each player, and checks which player has finished the game.
 
 ### Game Manager Status
-
 
 The Game Manager uses an enum class called GameState to know what’s the state of the game. There are 3 different states:
 * **Waiting**: Countdown before the start of the game
