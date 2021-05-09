@@ -1,5 +1,6 @@
 
 # Menu & Game management for AerRacers
+
 ## Context
 We’ve worked on a video game project during our third year of Bachelor at the SAE Institute of Geneva in Games Programming. Our objective was to create a racing game for the Nintendo Switch, using a custom Game Engine in C++ that was developed by our teacher and by us. 
 
@@ -64,7 +65,9 @@ There are three textures and models loading iterations in our game:
 3. Spaceships and InGame UI Loading
 
 Every iteration is called when the previous one is finished, except for the third iteration that only loads if the game starts.
+
 ## Game Manager
+
 The game manager is used to manage the entire game. It updates the status of the current game, updates the UI in-game for each player, and checks which player has finished the game.
 
 ### Game Manager Status
@@ -75,8 +78,11 @@ The Game Manager uses an enum class called GameState to know what’s the state 
 * **End**: Displays the end score and then load the main menu
 
 To know if each player has finished the race, the Game Manager gets the information from the Waypoint Manager, which checks if the players have reached the end of the game. 
+
 ## Problems encountered
+
 ### Keeping lazy work for later
+
 A problem I met during the project was the fact that I wanted to get a working system the fastest possible and then switch to another system instead of using it to do the lazy work. For example, when I was implementing the menus, the fun part for me was to create a working system the fastest possible and let the lazy work behind, like code polishing and writing lazy texts like the credits.
 
 With this behavior, some problems occurred:
@@ -85,7 +91,9 @@ With this behavior, some problems occurred:
 3. Accumulating an unclean code + a lot of missing tasks creates a lot of organizational problems for the team and me
 
 In the future, I’ll have to be careful about these mistakes I made during this project because they can cause a lot of trouble to me, and eventually the other team members
+
 ## What I learned
+
 The development of the Menu and the Game Management wasn’t something really hard to implement. When you have a precise idea of what you’d like to do and how it’s not very hard to implement a working system if the system is working correctly.
 
 I learned that the harder part of programming is knowing what you do and organizing your code well, otherwise, you could get easily lost and in the end, lose more time than if you solved the problems when they were fresh in your head.
