@@ -21,6 +21,7 @@ We also had some gameplay constraints:
 * Develop a racing game
 * Develop a local multiplayer game
 ## Project
+
 ![](AerRacersVideo.mp4)
 
 Our project is called “AerRacers” and it’s a multiplayer pod racing game where the player can go very fast but has to be careful about the obstacles on his road. The player has to manage his speed, that’s why the ship’s movements are directly controlled by the joycons joysticks, each stick moving a rotor from the spaceship.
@@ -41,15 +42,21 @@ As the Lead Designer on the project AerRacers, I had to decide about the concept
 The first task that we were assigned to do was to look at the references for our game. We looked at a bunch of different racing games. In the end, we selected 3 main game references.
 
 **Mario Kart 8**:
+
 ![](MK8Givree-min.gif)
+
 We were inspired by Mario Kart 8 mainly for the simple UI the game had and for the level design of the races in the game.
 
 **Start Wars Episode I Racers**:
+
 ![](SWE1R-min.gif)
+
 This game is our main reference. We got inspired by the speed of the ship in the game and also about the open levels.
 
 **Wipeout HD**:
+
 ![](Wipeout.gif)
+
 We got inspired by the smooth camera of this game and the reaction it has with the vehicle.
 
 ### References Arts
@@ -57,6 +64,7 @@ For the game artistic direction, we found several main references:
 
 **The Legend of Zelda: Breath of the Wild**:
 
+![](zelda.png)
 
 We got inspired mainly by the green look of the world and the look very open of the environments.
 
@@ -68,10 +76,13 @@ We got inspired mainly by the green look of the world and the look very open of 
 
 **Porco Rosso**:
 
+![](porco.png)
 
 We got inspired by the Porco Rosso ships, which is inspired by the look of the spaceships from the 30s. 
 
 **Rime**:
+
+![](rime.png)
 
 This game inspired us for the low poly look of the world and the colorful environments.
 
@@ -97,6 +108,8 @@ We also thought about a bunch of different mechanics for our game:
 But the only mechanic we kept at the end was the local multiplier because we had a lot of delay in the development of the 3Cs
 
 ### Level Design
+
+![](leveldesign.png)
 
 We worked on the level design using the Unity Engine. We used two different scenes:
 * Playground: Scene to test the 3C and the movements of the ships
@@ -138,7 +151,9 @@ We decided to split the tasks like this:
 
 ### Camera Development
 To make a fun camera for our game, I had the idea to make the camera behave like the driver of the car. If the ship accelerates, the camera would be a bit behind its basic position, and if the ship collides with a wall, the camera would be pushed forward before going back to its basic position.
-                          
+
+![](car.png)
+![](RessortVoiture.png)
 
 To do so, I’ve imagined a spring system for Unity, imagining a spring link between the ship and the camera, that pulls or pushes the camera when the ship is moving.
 
@@ -162,11 +177,15 @@ Stephen worked on the implementation of our Unity code in the Neko Engine and on
 
 ### Waypoint System
 
+![](waypointsys.png)
+
 To know the placement of the players in the race, I’ve developed a waypoint system. The waypoint system I’ve imagined uses a waypoint map in which the player’s position is calculated between the waypoints the player is in. The waypoint manager keeps a target waypoint to calculate the player’s position and update the target waypoint, by calculating the dot product between the vector Player-Waypoint and the vector Waypoint-NextWaypoint. 
 
 I recommend you to read my blogpost “Waypoint System to get the placer’s placement in a racing game” for more details.
 
 ### Menu & Game Management
+
+![](menuhierarchy.png)
 
 For the Menu and Game Management, I’ve used a lot of enum classes to know the status of the menu and in the game. 
 
