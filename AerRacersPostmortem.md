@@ -21,7 +21,7 @@ We also had some gameplay constraints:
 * Develop a racing game
 * Develop a local multiplayer game
 ## Project
-![](XAL02100180941-20210507-0015_(1).mp4)
+![](AerRacersVideo.mp4)
 
 Our project is called “AerRacers” and it’s a multiplayer pod racing game where the player can go very fast but has to be careful about the obstacles on his road. The player has to manage his speed, that’s why the ship’s movements are directly controlled by the joycons joysticks, each stick moving a rotor from the spaceship.
 ## Organization
