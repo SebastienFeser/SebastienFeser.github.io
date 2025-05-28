@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main>
+          <h3>Blogposts</h3>
+          <div class="blogposts-list">
+            <div class="blogpost-item" onclick="
+              window.location.href = 'AerRacersPostMortem.html'
+            ">
+              <h4>Post Mortem</h4>
+            </div>
+            <div class="blogpost-item" onclick="
+              window.location.href = 'AerRacersMenuAndUI.html'
+            ">
+              <h4>Menu and UI</h4>
+            </div>
+            <div class="blogpost-item" onclick="
+              window.location.href = 'AerRacersWaypointSystem.html'
+            ">
+              <h4>Waypoint System</h4>
+            </div>
+          </div>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>

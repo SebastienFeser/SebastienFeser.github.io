@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main class="blogpost-article">
+          <h1>Waypoint System to get the placer’s placement in a racing game</h1>
+          <h2>Context</h2>
+          <p>
+              We’ve worked on a video game project during our third year of Bachelor at the SAE Institute of Geneva 
+              in Games Programming. Our objective was to create a racing game for the Nintendo Switch, using a custom 
+              Game Engine in C++ that was developed by our teacher and by us. personal Our game named “AerRacers” is a 
+              multiplayer pod racing game, where the player can go very fast, but has to control his speed to avoid crashing 
+              into walls which will cost him a lot of time. The particularity of that video game is that the player can control 
+              each Rotor of the spaceship with the joystick, and by doing this, he’ll control the speed of the Ship.
+              <br>
+              <br>
+              For this project, I was assigned as the Lead Project, the Lead Gameplay Programmer, and the Lead Game Designer. 
+              We had 5 months to create a game, we started on September 17th 2020 and the project ended on May 07th 2021.
+          </p>
+          <h2>Player’s positions in a race</h2>
+          <p>
+              An important feature in a multiplayer racing game is to know the positioning of the players. There are several ways to get it, 
+              you could’ve imagined a system using triggers or chunks, but I decided to use a waypoint system for these reasons:
+          </p>
+          <ul>
+              <li>Uses simple maths (Dot product)</li>
+              <li>Easier to implement in our engine</li>
+          </ul>
+          <h2>The Waypoint System</h2>
+          <p>
+              The waypoint system I’ve imagined uses a waypoint map in which the player’s position is calculated between the waypoints the player is in. 
+              The waypoint manager keeps a target waypoint to calculate the player’s position and update the target waypoint, by calculating the dot product 
+              between the vector Player-Waypoint and the vector Waypoint-NextWaypoint.
+          </p>
+          <div class="game_title"><img src="images/waypointsys.png" width="800"/></div>
+          <h2>Waypoint</h2>
+          <p>
+              The waypoint I decided to created contains a lot of different data:
+          </p>
+          <ul>
+              <li>Position: Position of the waypoint</li>
+              <li>Index: Index of the waypoint</li>
+              <li>Next Waypoint Index: Index of the next Waypoint</li>
+              <li>Previous Waypoint Index: Index of the previous waypoint</li>
+              <li>Length: Length between this waypoint and the next waypoint</li>
+              <li>Normalized Next Vector: Normalized vector between this waypoint and the next waypoint</li>
+          </ul>
+          <h2>PlayerPositionData</h2>
+          <br>
+          <div class="game_title"><img src="images/PlayerPosData.png" width="600"/></div>
+          <p>
+              I decided to store every piece of information about the player’s positions in a structure called “PlayerPositionData”. All information about the ship’s position of each player are stored here:
+          </p>
+          <ul>
+              <li>std::array&lt;RacePlacement, 4&gt; racePlacement: keeps the players placement in race</li>
+              <li>std::array&lt;float, 4&gt; positionInWaypoint: keeps the dot product between the vector between the player and the current waypoint and the current waypoint normalized index</li>
+              <li>std::array&lt;WaypointIndex, 4&gt; waypoints: keeps the current waypoint used to update the player position in the race</li>
+              <li>std::array&lt;WaypointsCount, 4&gt; waypointsCount: keeps the count of the waypoints</li>
+              
+          </ul>
+          <p>
+              The PlayerPositionData are stored in an array of size 4 which corresponds to the maximum number of players the game can have.
+          </p>
+          <h2>Waypoint Manager</h2>
+          <div class="game_title"><img src="images/WaypointManager.png" width="600"/></div>
+          <p>
+              To manage our waypoint, I’ve created a waypoint manager that stores the waypoints and updates the positions of the players in the race. Let me explain some of the functions implemented:
+          </p>
+          <ul>
+              <li>void AddWaypointFromJson(Entity entity, const json& jsonComponent): Called when loading the scene, to get each waypoint elements in the scene JSON</li>
+              <li>CalculatePlayerPosition(Vec3f playerPosition, PlayerId playerId): Calculates every waypoints position elements</li>
+              <li>void CalculatePlayerPlacement(): Calculates the players placement in the race using the data calculated by the CalculatePlayerPosition function.</li>
+              <li>void StartDetection(): Used to start the waypoint detection and to get the player’s data.</li>
+              <li>void RestartWaypointManager(): Used to restart the waypoint manager when going back to the main menu.</li>
+          </ul>
+          <h2>Create the waypoints</h2>
+          <p>
+              Before updating the player’s position in the Waypoint Manager, I had to create our waypoints and store them in the Waypoint Manager. To do so, we went through these iterations:
+          </p>
+          <ol>
+              <li>Place the Waypoints on the Unity map</li>
+              <li>Export the Waypoints with our Unity Scene Exporter tool</li>
+              <li>Import the Waypoints with our Neko Scene Importer tool</li>
+              <li>Place the waypoints in the Waypoint Manager array</li>
+              <li>Updating the waypoint system</li>
+          </ol>
+          <h2>Updating PlayerPositionData</h2>
+          <p>
+              To update the player’s positions’ data, we are going through different steps
+          </p>
+          <ol>
+              <li>Calculate the vector between the ship position and the waypoint of each ship</li>
+              <li>Calculate the dot product between this vector and the waypoint normalized next vector of each ship</li>
+              <li>Check the dot product value of each ship</li>
+              <li>When every value is updated, store the value in the PlayerPositionData of the Waypoint Manager</li>
+              <li>CalculatePlayerPlacement 1.Check if every player have won 1. If true, tell the gameManager to end the game 2. If false, continue 2. Compare the values of every ship, by counting the waypoints 
+                  and comparing the positionInWaypoint if two players have the same waypoint count, to create the placement</li>
+          </ol>
+          <h2>Special situations</h2>
+          <p>
+              There are some situations in which the waypoint system I imagined had to be adapted.
+          </p>
+          <h3>Checking if the dot is negative</h3>
+          <p>
+              At first, when the dot product of the shipping vector and the normalized next waypoint were negative, I set the player target waypoint to the previous one. The problem was that in some situations, 
+              the dot could be at the same time negative and the dot of the previous waypoint higher than the previous length which changed the waypoint at each frame because the player was between them.
+              <br>
+              <br>
+              To solve this, I simply added a check if the value was negative, checking if the dot product was higher than the previous waypoint length or not.
+          </p>
+          <h3>Multiple paths</h3>
+          <p>
+              Another situation we had at first, was when the game had multiple paths which changed the amount of next or previous waypoints a waypoint could have.
+              <br>
+              <br>
+              To solve this, I created a boolean that checked if the player had multiple waypoints next, and then checked for both waypoints if the player had to change waypoints or not. I also added a check to see 
+              from which waypoint the player was the nearest to calculate the waypoint’s value with the correct waypoint.
+              <br>
+              <br>
+              In the end, we decided not to implement a multiple path waypoint system, because it wasn’t really necessary for the map we created, even if I solved this problem with this system.
+          </p>
+          <h2>Problems encountered</h2>
+          <h3>Scene Exportation</h3>
+          <p>
+              One of the main problems I encountered during the development of the waypoint system, was the fact that it was the first time I worked on the Neko Engine. The most complicated part was to export the waypoints 
+              from Unity and to load them in the Neko Engine correctly. I had to look at the code my colleagues had written which could’ve been easier if I was more curious about what they were doing during the development 
+              of the project.
+              <br>
+              <br>
+              For example, a problem I encountered when exporting the Waypoints from the Unity Scene was the fact that the x-axis was inverted in the Neko Engine. I thought first that the problem went from the logic behind 
+              the implementation of the Waypoint System, but in fact, I lost a bunch of time trying to solve my system.
+              <br>
+              <br>
+              In the end, I’ve solved this problem by asking a lot of precise questions about the problems I met while loading the scene.
+              <h2>What I learned</h2>
+              <h3>Personal Skills</h3>
+              <p>
+                  I learned a lot of different things about my personnal skills.
+                  <br>
+                  <br>
+                  I was at first sure that it would be much harder for me to code in C++, but in the end, it wasn’t very hard to switch between C# and C++.
+                  <br>
+                  <br>
+                  I learned that I liked creating systems more than programming gameplay features because it’s easier to know what you're doing when you don’t depend too much on other people’s code.
+              </p>
+          </p>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>

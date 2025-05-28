@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main>
+          <h3>Program Details</h3>
+          <div class="blogposts-list">
+            <div class="blogpost-item" onclick="
+              window.location.href = 'SAEInstituteDetails.html'
+              ">
+              <h4>Details</h4>
+            </div>
+          </div>
+          <h3>Website of the SAE Institute of Geneva</h3>
+          <div class="blogposts-list">
+            <div class="blogpost-item" onclick="
+              window.open(`https:\/\/www.sae.edu/ch-ge/`, '_blank')
+              ">
+              <h4>Website (fr)</h4>
+            </div>
+          </div>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>

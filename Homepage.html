@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main>
+          <div id="hp-intro-text">Loading...</div>
+          <div id="hp-games">Loading...</div>
+          <div id="hp-projects">Loading...</div>
+          <div id="hp-other-experiences">Loading...</div>
+          <div id="hp-work-in-progress">Loading...</div>
+          <div id="hp-educations">Loading...</div>
+          <div id="hp-technical-skills">Loading...</div>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadIntroText() {
+          const container = document.getElementById("hp-intro-text");
+          const response = await fetch("content/homepage/hp-intro-text.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadGames() {
+          const container = document.getElementById("hp-games");
+          const response = await fetch("content/homepage/hp-games.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadProjects() {
+          const container = document.getElementById("hp-projects");
+          const response = await fetch("content/homepage/hp-projects.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadOtherExperiences() {
+          const container = document.getElementById("hp-other-experiences");
+          const response = await fetch("content/homepage/hp-other-experiences.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadWorkInProgress() {
+          const container = document.getElementById("hp-work-in-progress");
+          const response = await fetch("content/homepage/hp-work-in-progress.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadEducations() {
+          const container = document.getElementById("hp-educations");
+          const response = await fetch("content/homepage/hp-educations.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        async function loadSkills() {
+          const container = document.getElementById("hp-technical-skills");
+          const response = await fetch("content/homepage/hp-technical-skills.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+        loadIntroText();
+        loadGames();
+        loadProjects();
+        loadOtherExperiences();
+        loadWorkInProgress();
+        loadEducations();
+        loadSkills();
+      </script>
+    </body>
+  </head>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main>
+          <h3>1st Year</h3>
+          <div class="education-details">
+            <div class="education-details-content">GPR4100 - Introduction to Games Programming</div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">CMN4200 - Information, Communucation and Professional Media Practice</div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">GPA4300 - Foundations of Game Design and Game Production</div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">GPR4400 - Applied Mathematics and Environment Programming </div>
+          </div>
+          <h3>2nd Year</h3>
+          <div class="education-details">
+            <div class="education-details-content">GPR5100 - Network Programming and Tool Development </div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">GPR5204 - Game Optimization, Analysis and Interfacing </div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">GPR5300 - Graphics and Shader Programming for Games </div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">CMN5400 - Marketing, Business Planning and Law </div>
+          </div>
+          <h3>3rd Year</h3>
+          <div class="education-details">
+            <div class="education-details-content">CMN6100 - Research Practice and Society </div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">CMN6204 - Advanced Specialised Project </div>
+            <div class="education-details-line"></div>
+            <div class="education-details-content">CMN6302 - Major Project (BSc) </div>
+          </div>
+          
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>

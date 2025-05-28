@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main class="blogpost-article">
+          <h1>Menu & Game management for AerRacers</h1>
+          <h2>Context</h2>
+          <p>
+              We’ve worked on a video game project during our third year of bachelor at the SAE Institute
+              of Geneva in Games Programming. Our objective was to create a racing game for the
+              Nintendo switch, using a custom Game Engine in C++ that was developed by our teacher
+              and by us.
+              <br>
+              <br>
+              Our game named “AerRacers” is a multiplayer pod racing game, where the player can go
+              really fast, but has to control his speed to avoid crashing into walls which will cost him a lot
+              of time. The particularity of that video game is that the player can control each Rotor of the
+              spaceship with the joystick, and by doing this, he’ll control the speed of the Ship.
+              <br>
+              <br>
+              For this project, I was assigned as the Lead Project, the Lead Gameplay Programmer and
+              the Lead Game Designer. We had 5 months to create a game, we started on september
+              17th 2020 and the project ended on may 07th 2021.
+
+          </p>
+          <h2>Problem</h2>
+          <p>
+              In video games, it’s very important to manage your game status. That’s why video games
+              have menus and often a game manager that manages it. In our game “AerRacers”, we have
+              2 different ship models each having a different texture. It was important for us to let the
+              players choose their ship and to let them join the game before starting the game. It was also
+              important to load the models selected by the player and to manage the game status to let
+              the player win and then go back to the menu. To do so, I created a Menu Manager and a
+              Game Manager
+          </p>
+          <h3>Menu Structure</h3>
+          <br>
+          <div class="game_title"><img src="images/menuhierarchy.png" width="800"/></div>
+          <p>
+              The menu has several sections:
+          </p>
+          <ul>
+              <li>The Main Menu: Where the player can look at the credits or start the game</li>
+              <li>The Credits: Where the credits of each member from the team are displayed</li>
+              <li>The Selection Screen: Where the players can join the game and select the skin of their spaceship</li>
+          </ul>
+          <h3>Selection Screen</h3>
+          <br>
+          <div class="game_title"><img src="images/Selection.png" width="600"/></div>
+          <p>
+              The Selection Screen was an important part of the program because there’s a bunch of spaceship models & textures 
+              that were created by the Game Art Team for this project. It’s also there that the Game Manager gets the information 
+              of which ship model to load next, and of how many players will play.
+          </p>
+          <h3>Enum Classes</h3>
+          <p>
+              To update the state of the menu, I’ve created a bunch of enum classes:
+
+              
+
+          </p>
+          <ul>
+              <li>MenuStatus: Used to know in which parts of the menu the player is. <br> <div><img src="images/MenuStatus.png" width="300"/></div></li>
+              <li>MainMenuPointer: Used to know which button from the menu is highlighted. <br> <div><img src="images/MainMenuP.png" width="300"/></div></li>
+              <li>CreditsStatus: Used to know which page of the credits the player is looking at. <br> <div><img src="images/CreditsS.png" width="300"/></div></li>
+              <li>SelectionStatus: Used to know in which part of the selection every player are. <br> <div><img src="images/SelectionP.png" width="300"/></div></li>
+              <li>SelectedModel: Used to know which model the player has selected.<br> <div><img src="images/SelectionM.png" width="300"/></div></li>
+          </ul>
+          <h3>Loading the models and textures</h3>
+          <p>
+              In our game, we decided to load every texture and model at the start of the game using the other threads of the Nintendo Switch. We could do so because 
+              we only have one level in our entire game. So while the player is in the main menu, the level scene loads in the other threads.
+              <br>
+              <br>
+              The thing is that by doing that, a problem occurred. Our level loaded faster than the main menu screen, and some chunks of the level were displayed before 
+              the game manager, which could seem strange for the player. So we decided to reorganize our loading system loading them in a precise order.
+              <br>
+              <br>
+              There are three textures and models loading iterations in our game:
+          </p>
+          <ul>
+              <li>Menu UI Loading</li>
+              <li>Scene Models and Textures Loading</li>
+              <li>Spaceships and InGame UI Loading</li>
+          </ul>
+          <p>
+              Every iteration is called when the previous one is finished, except for the third iteration that only loads if the game starts.
+          </p>
+          <h2>Game Manager</h2>
+          <p>
+              The game manager is used to manage the entire game. It updates the status of the current game, updates the UI in-game for each player, 
+              and checks which player has finished the game.
+          </p>
+          <h3>Game Manager Status</h3>
+          <p>
+              The Game Manager uses an enum class called GameState to know what’s the state of the game. There are 3 different states:
+          </p>
+          <ul>
+              <li>Waiting: Countdown before the start of the game</li>
+              <li>Racing: When the players are racing in our game</li>
+              <li>End: Displays the end score and then load the main menu</li>
+          </ul>
+          <p>
+              To know if each player has finished the race, the Game Manager gets the information from the Waypoint Manager, which checks if the players have reached the end of the game.
+          </p>
+          <h2>Problems encountered</h2>
+          <h3>Keeping lazy work for later</h3>
+          <p>
+              A problem I met during the project was the fact that I wanted to get a working system the fastest possible and then switch to another system instead of using it to do the lazy work. 
+              For example, when I was implementing the menus, the fun part for me was to create a working system the fastest possible and let the lazy work behind, like code polishing and writing 
+              lazy texts like the credits.
+              <br>
+              <br>
+              With this behavior, some problems occurred:
+          </p>
+          <ul>
+              <li>The code I wrote is working but isn’t clean</li>
+              <li>The accumulation of missing lazy tasks cost me at the end more time to solve than if I did that work earlier</li>
+              <li>Accumulating an unclean code + a lot of missing tasks creates a lot of organizational problems for the team and me</li>
+          </ul>
+          <p>
+              In the future, I’ll have to be careful about these mistakes I made during this project because they can cause a lot of trouble to me, and eventually the other team members.
+          </p>
+          <h2>What I learned</h2>
+          <p>
+              The development of the Menu and the Game Management wasn’t something really hard to implement. When you have a precise idea of what you’d like to do and how it’s not very hard to implement 
+              a working system if the system is working correctly.
+              <br>
+              <br>
+              I learned that the harder part of programming is knowing what you do and organizing your code well, otherwise, you could get easily lost and in the end, lose more time than if you solved the 
+              problems when they were fresh in your head.
+          </p>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>

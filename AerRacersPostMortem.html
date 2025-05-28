@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main class="blogpost-article">
+          <h1>AerRacers Postmortem</h1>
+          <h2>Context</h2>
+          <p>
+              Today, I’m going to present the project I’ve worked on at the SAE Institute 
+              of Geneva during my third year of bachelor in Games Programming. The objectives 
+              of this project were to create a game on a custom Game engine in C++ with the other 
+              students in my class that would run on the Nintendo Switch.
+          </p>
+          <h2>Team</h2>
+          <p>
+              For the project, we are 4 main members, that worked on the project from start to end:
+          </p>
+          <ul>
+              <li><b><u>Sébastien Feser</u></b>: Lead Project, Lead Gameplay Programmer, Lead Designer</li>
+              <li><b><u>Luca Floreau</u></b>: Producer, Lead Programmer, Gameplay Programmer</li>
+              <li><b><u>Simon Canas</u></b>: Lead Engine Programmer, Lead Tool Programmer</li>
+              <li><b><u>Stephen Grosjean</u></b>: DevOps, Gameplay Programmer, Game Designer</li>
+          </ul>
+          <p>
+              The entire team counted 25 people working on the project:
+          </p>
+
+          <ul>
+              <li>10 Game Arts</li>
+              <li>2 Audios</li>
+              <li>13 Programmers</li>
+          </ul>
+          <h2>Constraints</h2>
+          <p>For this project, we had some technical constraint that our teacher Elias Fahran gave us:</p>
+          <ul>
+              <li>Use the Neko engine (A custom game engine developed by our teacher and ourselves)</li>
+              <li>Develop a game for the Nintendo Switch</li>
+          </ul>
+          <p>We also had some gameplay constraints:</p>
+          <ul>
+              <li>Develop a racing game</li>
+              <li>Develop a local multiplayer game</li>
+          </ul>
+          <h2>Project</h2>
+          <p>
+              Our project is called “AerRacers” and it’s a multiplayer pod racing game where the player can go 
+              very fast but has to be careful about the obstacles on his road. The player has to manage his 
+              speed, that’s why the ship’s movements are directly controlled by the joycons joysticks, each 
+              stick moving a rotor from the spaceship.
+          </p>
+          <h2>Organization</h2>
+          <p> had 5 months to develop this project. We started it on September 17th 2020 and ended on May 07th 2021.<br> <br>
+          Every week, we were doing weekly meetings to get information about everyone’s progression on the project:
+          </p>
+          <ul>
+              <li>Wednesday: Meeting with the 4 main team members</li>
+              <li>Thursday: Meeting with our teacher Elias Fahran</li>
+          </ul>
+          <h2>Lead Project</h2>
+          <p>
+              On this project, I was the Lead Project. I had to communicate with every team member and manage the 
+              leads. I also was responsible for the communication with external members that helped us with the 
+              project.
+              <br> <br>
+              At the beginning of the project, we quickly started the weekly meetings which helped a lot of the 
+              members to know what everyone was doing and to be sure we weren’t having any delay. Unfortunately, 
+              at first, we weren’t organized well enough, so we accumulated a lot of delays for the entire 
+              project because every member met a lot of problems doing their tasks. To catch up, we have 
+              reorganized our planning in December and cut some features. After that, we managed to meet the 
+              deadlines we planned.
+
+          </p>
+          <h2>Lead Designer</h2>
+          <p>
+              As the Lead Designer on the project AerRacers, I had to decide about the concept of the game and think about every feature to implement in our game for it to be fun.
+          </p>
+          <h3>Gameplay References</h3>
+          <div class="game-title"><img src="images/Mario_Kart_8.png" width="300"/></div>
+          <div class="game-title"><img src="images/MK8Gif.gif" width="600"/></div>
+          <p>
+              We were inspired by Mario Kart 8 mainly for the simple UI the game had and for the level design of the races in the game.
+          </p>
+          <div class="game-title"><img src="images/SE1RLogo.png" width="300"/></div>
+          <div class="game-title"><img src="images/SWE1R-min.gif" width="600"/></div>
+          <p>
+              This game is our main reference. We got inspired by the speed of the ship in the game and also about the open levels.
+          </p>
+          <div class="game-title"><img src="images/WipeoutLogo.png" width="300"/></div>
+          <div class="game-title"><img src="images/Wipeout.gif" width="600"/></div>
+          <p>
+              We got inspired by the smooth camera of this game and the reaction it has with the vehicle.
+
+          </p>
+          <h3>References Arts</h3>
+          <p>
+              For the game artistic direction, we found several main references:
+          </p>
+          <div class="game-title"><img src="images/PorcoRosso.png" width="300"/></div>
+          <div class="game-title"><img src="images/porco.png" width="600"/></div>
+          <p>
+              We got inspired by the Porco Rosso ships, which is inspired by the look of the spaceships from the 30s.
+          </p>
+          <div class="game-title"><img src="images/RimeLogo.svg" width="300"/></div>
+          <div class="game-title"><img src="images/rime.png" width="600"/></div>
+          <p>
+              This game inspired us for the low poly look of the world and the colorful environments.
+          </p>
+          <h3>Concept</h3>
+          <p>
+              After looking after the reference, we decided with the different constraints we had for this project 
+              to develop our game around these basic rules:
+          </p>
+          <ul>
+              <li>Prod racing multiplayer game</li>
+              <li>Ships move fast</li>
+              <li>Movements with the joycon’s sticks</li>
+          </ul>
+          <p>
+              We also thought about a bunch of different mechanics for our game:
+          </p>
+          <ul>
+              <li>Local multiplier</li>
+              <li>Destructible ships</li>
+              <li>Boosts</li>
+              <li>Ship explosion</li>
+              <li>Ship health bar</li>
+          </ul>
+          <p>
+              But the only mechanic we kept at the end was the local multiplier because we had a 
+              lot of delay in the development of the 3Cs
+          </p>
+          <h3>Level Design</h3>
+          <div><img src="images/leveldesign.png" width="600"/></div>
+          <p>
+              We worked on the level design using the Unity Engine. We used two different scenes:
+          </p>
+          <ul>
+              <li>Playground: Scene to test the 3C and the movements of the ships</li>
+              <li>Level Design: Scene to create the final level design of the game.</li>
+          </ul>
+          <h3>Problems Encountered</h3>
+          <p>
+              During the development of the Game Design, we encountered a bunch of problems.
+              <br>
+              <br>
+              The first one was that we didn’t explain well enough what was the project and 
+              what was the concept of the game. The members of the team had a different 
+              vision of what the game was which caused problems, especially with our concept 
+              artist. To solve this problem, we’ve taken our time to describe the most 
+              detailed way the entire game features in a reference file and it helped a lot 
+              of the members to know what the concept of the game was.
+              <br>
+              <br>
+              Another problem we met was the fact that we weren’t clear about who was 
+              designing the game. At first, the constraints of the project were defined 
+              by our teacher, but after that, a lot of different gameplay and artist 
+              constraints were defined or proposed by our teacher and the concept artist. 
+              At the beginning of the project, we were a bit lost about this, but in the 
+              end, we understood that we were making the decisions for the project.
+          </p>
+          <h3>What I learned</h3>
+          <p>
+              With this project, I learned some different game design things.
+          <br>
+          <br>
+          I first learned that the game design and concept have to be defined the fastest 
+          possible, especially the MVP, because a lot of members of the team depend on it, 
+          in our case, the Concept Artist, the Producer, and the Gameplay Programmers.
+          <br>
+          <br>
+          I also learned that it was very important to iterate the gameplay a lot to make our 
+          game fun. I learned that it was very important to create tests frequently.
+          <br>
+          <br>
+          Designing the game was a harder task than I thought at first. Because it’s not hard 
+          to create game mechanics, but the harder part is to create a “fun” game.
+          </p>
+          <h2>Lead Gameplay Programmer</h2>
+          <p>
+              As the Lead Gameplay Programmer, I had to manage the implementation of the Camera, 
+              Character, and Controls (3C), design the level, and manage the implementation of every 
+              game’s features in the final game.
+              <br>
+              <br>
+              The gameplay development was split into 2 parts:
+
+          </p>
+          <ul>
+              <li>3C and Level Design using Unity</li>
+              <li>Games feature & exportation of Unity code and scene on the Neko Engine</li>
+          </ul>
+          <p>
+              We decided to split the development into two parts, because the Neko Engine wasn’t 
+              ready for us to test the 3C and to design a level, and it would’ve been more complicated 
+              to do so because Unity allowed us to test the 3C faster.
+          </p>
+          <h3>3C</h3>
+          <p>
+              At the start of the project, I have created basic movements and a camera for our ship. 
+              But after that, we realized that to make the game “fun”, we had to work harder on every 
+              part of the three C. That’s why Stephen Grosjean joined me during the development of the 3Cs.
+              <br>
+              <br>
+              We decided to split the tasks like this:
+          </p>
+          <ul>
+              <li>Stephen Grosjean: Character and Controls</li>
+              <li>Sébastien Feser (me): Camera</li>
+          </ul>
+          <h3>Camera Development</h3>
+          <p>
+              To make a fun camera for our game, I had the idea to make the camera behave like the driver of the 
+              car. If the ship accelerates, the camera would be a bit behind its basic position, and if the ship 
+              collides with a wall, the camera would be pushed forward before going back to its basic position.
+          </p>
+          <table>
+              <tbody>
+                  <tr>
+                      <td>
+                          <p>
+                              To do so, I’ve imagined a spring system for Unity, imagining a spring link between the ship 
+                              and the camera, that pulls or pushes the camera when the ship is moving.
+                              <br>
+                              <br>
+                              In the end, I didn’t manage to implement such a system in the final game, because we had a glitch 
+                              with the camera. In some frames, the camera was glitching, going too far behind or forward and that 
+                              was a real problem for our game. The development of this system cost me more than 2 months during the 
+                              development of the project.
+                              <br>
+                              <br>
+                              We decided then to implement an easier system using the “SmoothDamp” function, but we had the same kind 
+                              of glitch. In the end, we decided to keep that glitch on the Unity Prototype, because we didn’t understand 
+                              where it could come from and when we implemented the movements and the camera on the Neko Engine, the glitch 
+                              had disappeared.
+                          </p>
+                      </td>
+                      <td>
+                          <div><img src="images/car.png" width="300"/></div>
+                          <div><img src="images/RessortVoiture.png" width="300"/></div>
+                      </td>
+                  </tr>
+                      
+                          
+              </tbody>
+          </table>
+          <h3>Lessons Learned on Unity</h3>
+          <p>
+              I’ve learned a lot of lessons about the Unity development of the game.
+              <br>
+              <br>
+              First, that it’s really important not to stay too long working on one task. 
+              At that moment I should have given up and tried something less hard, or asked 
+              for more help, even if I already did it.
+              <br>
+              <br>
+              Second, I’ve learned that I maybe could’ve solved this problem if I was better 
+              at debugging. I used DebugModes on Unity but I wasn’t able to guess the problem by 
+              doing that. I still have a lack of experience in debugging and I’ll have to work 
+              on it because it’s a very important skill for a game programmer.
+          </p>
+          <h3>Development in Neko</h3>
+          <p>
+              After the development of Unity, I had to work on the Neko Engine to implement the missing features of the game.
+              <br>
+              <br>
+              Stephen worked on the implementation of our Unity code in the Neko Engine and on the implementation of the Audio, 
+              and I worked on the menu and game management and the waypoint system.
+          </p>
+          
+          <h3>Waypoint System</h3>
+          <div class="game-title"><img src="images/waypointsys.png" width="700"/></div>
+          <p>
+              To know the placement of the players in the race, I’ve developed a waypoint 
+              system. The waypoint system I’ve imagined uses a waypoint map in which the 
+              player’s position is calculated between the waypoints the player is in. The 
+              waypoint manager keeps a target waypoint to calculate the player’s position 
+              and update the target waypoint, by calculating the dot product between the 
+              vector Player-Waypoint and the vector Waypoint-NextWaypoint.
+              <br>
+              <br>
+              I recommend you to read my blogpost “Waypoint System to get the placer’s 
+              placement in a racing game” for more details.
+          </p>
+          <h3>Menu & Game Management</h3>
+          <br>
+          <div class="game-title"><img src="images/menuhierarchy.png" width="700"/></div>
+          <p>
+              For the Menu and Game Management, I’ve used a lot of enum classes to know the status 
+              of the menu and in the game.
+              <br>
+              <br>
+              The menu has several sections:
+          </p>
+          <ul>
+              <li>The Main Menu: Where the player can look at the credits or start the game</li>
+              <li>The Credits: Where the credits of each member from the team are displayed</li>
+              <li>The Selection Screen: Where the players can join the game and select the skin of their spaceship</li>
+          </ul>
+          <p>
+              I recommend you to read my “Menu & Game management for AerRacers” blogpost for more details.
+          </p>
+          <h3>Lessons Learned on Neko</h3>
+          <p>
+              During the development of the Neko Engine, I’ve learned that it was very important to be more curious about 
+              the code that our colleagues implemented. When you know what your colleagues do, it’s then easier for you to 
+              use their code and understand it.
+              <br>
+              <br>
+              I learned that it was also very important to ask a lot of questions to the team members when you are blocked 
+              with their code. A glitch that could give you 3 days to solve, could be solved in 10 minutes by another team member.
+          </p>
+          <h2>Conclusion</h2>
+          <h3>Soft Skills Learned</h3>
+          <p>
+              During this project, I’ve learned a lot about myself. I’ve learned about my strengths and my weaknesses.
+              <br>
+              <br>
+              I’ve learned during the project that I have strong logic skills. It’s not hard for me to create a working code when I know what 
+              I’m doing. I can also easily find the source of a glitch if I understand the system I’m working on and the code I’m working with.
+              <br>
+              <br>
+              I also learned that I preferred to work on systems instead of programming the gameplay part of a game.
+              <br>
+              <br>
+              One of the main problems I had during the project is the regularity of my work, and the lack of motivation to work on the project. 
+              I think that the quarantine due to the Covid-19 had a huge impact on my motivation and my working efficiency. I know now, that if I 
+              would like to be more efficient, it’d be better for me to work directly in an office and not directly in my room.
+          </p>
+          <h3>Work Skills</h3>
+          <p>
+              A skill that I missed during this project is a lack of knowledge in maths and other knowledge that could help me to solve simple problems. 
+              I’ve learned that I still have a lot of work to do to be a better Programmer.
+              <br>
+              <br>
+              It’s also very important for me to organize very well my code and to be more curious about the other’s code.
+          </p>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>
