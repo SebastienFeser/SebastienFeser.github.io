@@ -280,6 +280,9 @@ h4 {
   #menu {
     display: block;
   }
+  main{
+    margin-top: 190px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -296,5 +299,9 @@ h4 {
 
   .right {
     margin-top: 10px; /* espace entre left et right */
+  }
+
+  main{
+    margin-top: 210px;
   }
 }
