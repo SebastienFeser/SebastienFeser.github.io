@@ -11,30 +11,140 @@
           <h3>1st Year</h3>
           <div class="education-details">
             <div class="education-details-content">GPR4100 - Introduction to Games Programming</div>
+
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A C++ debug exam</li>
+                  <li>A game project with Unity</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">CMN4200 - Information, Communucation and Professional Media Practice</div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A cover letter</li>
+                  <li>An analysis about the industry</li>
+                  <li>A portfolio website</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">GPA4300 - Foundations of Game Design and Game Production</div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A game with a good game design and level design</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">GPR4400 - Applied Mathematics and Environment Programming </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A game with procedural generation and AI</li>
+                  <li>An exam of maths and physics</li>
+                  <li>A custom physics game engine</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <h3>2nd Year</h3>
           <div class="education-details">
             <div class="education-details-content">GPR5100 - Network Programming and Tool Development </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>An exam about computer networks</li>
+                  <li>An online game</li>
+                  <li>A tool for the game project of the 3rd year students</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">GPR5204 - Game Optimization, Analysis and Interfacing </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>Optimizations on the Neko engine</li>
+                  <li>An exam about C++ optimizations, analysis and interfacing</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">GPR5300 - Graphics and Shader Programming for Games </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A minecraft like with OpenGL</li>
+                  <li>A debug exam in OpenGL</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">CMN5400 - Marketing, Business Planning and Law </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A project of business, writing a business plan and a marketing plan</li>
+                </ul>
+              </div>
+            </div>
           </div>
+          
           <h3>3rd Year</h3>
           <div class="education-details">
             <div class="education-details-content">CMN6100 - Research Practice and Society </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A website about our projects</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">CMN6204 - Advanced Specialised Project </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A game for Nintendo Switch using our custom C++ game engine</li>
+                </ul>
+              </div>
+            </div>
             <div class="education-details-line"></div>
             <div class="education-details-content">CMN6302 - Major Project (BSc) </div>
+            <div class="education-details-text">
+              <div class="education-details-line"></div>
+              <div class="education-details-inner">
+                In this topic, we had to do:
+                <ul>
+                  <li>A Bachelor of science project</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
         </main>
@@ -47,7 +157,34 @@
           container.innerHTML = html;
         }
 
+        async function loadDetails() {
+          document.querySelectorAll('.education-details-content').forEach((contentEl) => {
+          contentEl.addEventListener('click', () => {
+            const detailEl = contentEl.nextElementSibling;
+
+            if (detailEl.style.height && detailEl.style.height !== '0px') {
+              // Fermer : anime vers 0
+              detailEl.style.height = detailEl.scrollHeight + 'px'; // force la hauteur actuelle
+              requestAnimationFrame(() => {
+                detailEl.style.height = '0px';
+              });
+            } else {
+              // Ouvrir : anime vers scrollHeight
+              detailEl.style.height = detailEl.scrollHeight + 'px';
+
+              // Nettoyage après animation (optionnel)
+              detailEl.addEventListener('transitionend', function cleanup() {
+                detailEl.style.height = 'auto';
+                detailEl.removeEventListener('transitionend', cleanup);
+              });
+            }
+          });
+        });
+
+        }
+
         loadHeader();
+        loadDetails();
       </script>
     </body>
   </head>

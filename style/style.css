@@ -262,6 +262,7 @@ h4 {
 
 .education-details {
   background-color: #333;
+  cursor: pointer;
 }
 
 .education-details-line {
@@ -270,6 +271,23 @@ h4 {
 .education-details-content {
   font-size: 2.0em;
   padding: 20px;
+}
+
+.education-details-text {
+  background-color: #444;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.4s ease;
+}
+
+.education-details-inner {
+  padding: 20px;
+  font-size: 1.5em;
+}
+
+.education-details-inner ul, ol {
+  padding-top: 5px;
+  margin-left: 20px;
 }
 
 .game-title{
