@@ -295,6 +295,11 @@ h4 {
   text-align: center;
 }
 
+.game-title img{
+  max-width: 800px;
+  width: 100%;
+}
+
 @media (orientation: portrait) {
   #menu {
     display: block;

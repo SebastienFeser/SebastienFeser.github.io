@@ -116,7 +116,7 @@ struct alignas(4 * sizeof(float)) FourQuaternion
               <br>
               Structures of Arrays are a layout separating elements of a structure into one parallel array per field. It makes it easier to use them by packing them into SIMD instructions. So I must create those first.
           </p>
-          <div class="game_title"><img src="images/ScalarVsSIMD.png" width="800"/></div>
+          <div class="game-title"><img src="images/ScalarVsSIMD.png" width="800"/></div>
           <p>
               The reason why structures of arrays are better here is because the values will be aligned in code so it's much faster to load all values from memory in one block instead of going for each value and then aligning them.
           </p>
@@ -130,7 +130,7 @@ struct alignas(4 * sizeof(float)) FourQuaternion
               <br>
               So combining these two values, it creates an Array of Structures of Array.
           </p>
-          <div class="game_title"><img src="images/FourQuaternionsAoSoA.png" width="600"/></div>
+          <div class="game-title"><img src="images/FourQuaternionsAoSoA.png" width="600"/></div>
           <h2>Intel Intrinsics</h2>
           <p>
               To do the functions with these arrays, I’ll have to use the Intel Intrinsic instructions, which are C style functions that provide access to many Intel instructions without the need to write assembly code.
@@ -206,7 +206,7 @@ static inline std::array<float, 4> Dot(const FourQuat& q1, const FourQuat& q2)
           <p>
               I created a test that calculates the Dot product of n Quaternions using the MSVC Compiler with an Intel core i7 CPU on a Windows 10 PC. Here’s the result:
           </p>
-          <div class="game_title"><img src="images/PerfResults.png" width="600"/></div>
+          <div class="game-title"><img src="images/PerfResults.png" width="600"/></div>
           <p>
               As you can see, the FourQuaternion Dot Produt is between 3 and 4 times faster than the Quaternion Dot Product which is a huge performance optimization.
               <br>
