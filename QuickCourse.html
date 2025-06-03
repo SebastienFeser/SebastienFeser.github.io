@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastien Feser's Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <body>
+      <div id="header-container">Loading...</div>
+      <div class="main-container">
+        <main>
+          <h3>Documents</h3>
+          <div class="blogposts-list">
+            <div class="blogpost-item" onclick="
+                window.open('QuickCourseBP.pdf', '_blank')
+              ">
+              <h4>Business Plan (fr)</h4>
+            </div>
+            <div class="blogpost-item" onclick="
+                window.open('QuickCoursePM.pdf', '_blank')
+              ">
+              <h4>Marketing Plan (fr)</h4>
+            </div>
+          </div>
+        </main>
+      </div>
+      <script>
+        async function loadHeader() {
+          const container = document.getElementById("header-container");
+          const response = await fetch("content/general/Header.html");
+          const html = await response.text();
+          container.innerHTML = html;
+        }
+
+        loadHeader();
+      </script>
+    </body>
+  </head>
+</html>
