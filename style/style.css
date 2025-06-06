@@ -121,7 +121,6 @@ main > * {
 .intro-text {
     max-width: 1200px;
     text-align: justify;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
   font-size: 1.7em;
 }
 
