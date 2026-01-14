@@ -1,0 +1,27 @@
+{
+  "bachelor": {
+    "badge": "Ricerca",
+    "title": "Tesi di Laurea",
+    "subtitle": "Qual è l'impatto del biofeedback nei giochi horror di sopravvivenza?",
+    "overview_title": "Panoramica",
+    "overview_text": "Questa tesi di ricerca esplora l'integrazione della tecnologia biofeedback nei giochi horror di sopravvivenza. Lo studio indaga come i dati fisiologici come la frequenza cardiaca e la conduttanza cutanea possano essere utilizzati per regolare dinamicamente la difficoltà del gioco e gli elementi atmosferici, creando un'esperienza horror più personalizzata e immersiva.",
+    "research_title": "Domanda di ricerca",
+    "research_text": "La domanda centrale di questa tesi è: \"Qual è l'impatto del biofeedback nei giochi horror di sopravvivenza?\" Questo esplora come il feedback fisiologico in tempo reale può migliorare l'immersione del giocatore e le risposte di paura negli ambienti di gioco horror.",
+    "methodology_title": "Metodologia",
+    "methodology_text": "La ricerca ha comportato lo sviluppo di un prototipo di gioco horror che integra sensori di biofeedback. Le risposte fisiologiche dei giocatori sono state misurate e analizzate per capire come gli adattamenti del gioco guidati dal biofeedback influenzano l'esperienza di gioco complessiva.",
+    "resources_title": "Risorse",
+    "thesis_doc_title": "Documento della tesi",
+    "thesis_doc_text": "Leggi la tesi completa che esplora l'integrazione del biofeedback nei giochi horror di sopravvivenza.",
+    "download_thesis": "Scarica la tesi (PDF)",
+    "source_code_title": "Codice sorgente",
+    "source_code_text": "Esplora l'implementazione e il prototipo sviluppati per questo progetto di ricerca.",
+    "view_github": "Vedi su GitHub",
+    "key_findings_title": "Risultati chiave",
+    "finding_1": "L'integrazione del biofeedback può migliorare significativamente l'immersione del giocatore nei giochi horror",
+    "finding_2": "L'adattamento dinamico della difficoltà basato sui dati fisiologici crea esperienze più personalizzate",
+    "finding_3": "Il monitoraggio della frequenza cardiaca si dimostra efficace per rilevare le risposte di paura dei giocatori",
+    "finding_4": "Le sfide di implementazione includono la precisione dei sensori e la latenza di risposta",
+    "tech_title": "Tecnologie utilizzate",
+    "back_home": "← Torna alla home"
+  }
+}

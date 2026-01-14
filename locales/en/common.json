@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "about": "About",
+    "wip": "In Progress",
+    "projects": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "sections": {
+    "wip": "Work in Progress",
+    "published": "Published Games",
+    "published_subtitle": "Game jam entries and personal projects available on itch.io",
+    "technical": "Technical Projects",
+    "technical_subtitle": "Academic work, engine development, and research",
+    "education": "Education",
+    "experience": "Professional Experience",
+    "skills": "Technical Skills"
+  },
+  "skills": {
+    "languages": "Languages",
+    "gamedev": "Game Development",
+    "tools": "AI & Tools",
+    "creative": "Creative"
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "description": "Looking for a gameplay programmer who can lead teams and ship polished experiences? I'd love to hear about your project.",
+    "email": "Send Email",
+    "linkedin": "LinkedIn",
+    "cv": "Download CV"
+  },
+  "footer": {
+    "copyright": "2026 Sebastien Feser. Built with passion."
+  },
+  "error": {
+    "title": "Page under construction",
+    "message": "This page doesn't exist yet or is currently under development. Come back soon to discover new content!",
+    "back_home": "← Back to home",
+    "contact": "Contact me"
+  }
+}

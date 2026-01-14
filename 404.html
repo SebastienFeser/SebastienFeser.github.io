@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page en construction | Sebastien Feser</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lang-selector {
+            display: flex;
+            gap: 2px;
+            margin-left: 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 2px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.4rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-icon {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .construction-bar {
+            width: 100%;
+            max-width: 400px;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .construction-progress {
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            border-radius: 4px;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link" data-i18n="nav.about">Home</a>
+                <a href="index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="error-page">
+        <div class="error-icon">🚧</div>
+        <div class="error-code">404</div>
+        <h1 class="error-title" data-i18n="error.title">Page under construction</h1>
+        <div class="construction-bar">
+            <div class="construction-progress"></div>
+        </div>
+        <p class="error-message" data-i18n="error.message">
+            This page doesn't exist yet or is currently under development.
+            Come back soon to discover new content!
+        </p>
+        <div class="error-links">
+            <a href="index.html" class="btn btn-primary" data-i18n="error.back_home">Back to home</a>
+            <a href="index.html#contact" class="btn btn-outline" data-i18n="error.contact">Contact me</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

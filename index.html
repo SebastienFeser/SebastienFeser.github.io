@@ -1,9 +1,653 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="refresh" content="0; url=Homepage.html">
-    </head>
-    <body>
-    
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastien Feser | Game Engineer & Developer</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gameplay Programmer specialized in responsive, fun, and polished game mechanics. Experienced with Unity (C#) and C++. Building engaging player experiences.">
+    <meta name="keywords" content="Game Developer, Gameplay Programmer, Unity, C++, Game Engine, Portfolio">
+    <meta name="author" content="Sebastien Feser">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sebastien Feser | Game Engineer & Developer">
+    <meta property="og:description" content="Gameplay Programmer specialized in responsive, fun, and polished game mechanics.">
+    <meta property="og:image" content="assets/images/og-image-placeholder.png">
+    <meta property="og:url" content="https://sebastienfeser.github.io">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sebastien Feser | Game Engineer">
+    <meta name="twitter:description" content="Gameplay Programmer building engaging player experiences.">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>SF</text></svg>">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="#wip" class="nav-link" data-i18n="nav.wip">In Progress</a>
+                <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
+                <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+                <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/SebastienFeser" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                    <img src="assets/images/GithubLogoWhite.svg" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/sebastien-feser/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                    <img src="assets/images/LinkedInLogoWhite.svg" alt="LinkedIn">
+                </a>
+                <a href="assets/documents/CV_EN.pdf" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">CV</a>
+                <div class="lang-selector">
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn" data-lang="it">IT</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- ENHANCED HERO SECTION -->
+            <section class="hero-enhanced" id="about">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero.badge">Available for opportunities</span>
+                    <h1>Sebastien Feser</h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">Game Engineer & Technical Lead</p>
+                    <p class="hero-description" data-i18n="hero.description">
+                        I build game engines, ship polished gameplay, and lead teams to deliver.
+                        From low-level C++ optimization to Unity prototypes, I turn technical challenges
+                        into smooth player experiences. AI-augmented workflow, human-driven quality.
+                    </p>
+                    <p class="hero-tagline" data-i18n="hero.tagline">
+                        I don't just make games. I engineer the systems that make them possible.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary" data-i18n="hero.cta_work">View My Work</a>
+                        <a href="#contact" class="btn btn-outline" data-i18n="hero.cta_contact">Get In Touch</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">19+</div>
+                            <div class="hero-stat-label" data-i18n="hero.stat_games">Published Games</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">5+</div>
+                            <div class="hero-stat-label" data-i18n="hero.stat_years">Years Experience</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">25</div>
+                            <div class="hero-stat-label" data-i18n="hero.stat_team">Team Members Led</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-avatar">
+                        <img src="assets/images/photo.jpeg" alt="Sebastien Feser">
+                    </div>
+                </div>
+            </section>
+
+            <!-- WORK IN PROGRESS -->
+            <section class="section" id="wip">
+                <h2 class="section-title" data-i18n="sections.wip">Work in Progress</h2>
+
+                <div class="wip-carousel">
+                    <button class="carousel-btn carousel-btn-prev" aria-label="Previous project">
+                        <span>←</span>
+                    </button>
+
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                        <!-- Slide 1: SebF2DEngine -->
+                        <a href="404.html" class="carousel-slide featured-project active" data-slide="0">
+                            <div class="featured-content">
+                                <h3 data-i18n="wip.engine.title">SebF2DEngine</h3>
+                                <p data-i18n="wip.engine.description">
+                                    Building a lightweight SNES-inspired 2D game engine from scratch using modern C++17.
+                                    This project explores AI-augmented development workflows while creating a pixel-perfect
+                                    rendering engine with custom ECS architecture, physics, and audio systems.
+                                </p>
+                                <div class="featured-highlights">
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.engine.highlight_1">C++17 / OpenGL 3.3</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.engine.highlight_2">Pixel Perfect (256x224)</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.engine.highlight_3">Custom ECS Architecture</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.engine.highlight_4">AI-Augmented Dev</span>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <span class="tag">C++</span>
+                                    <span class="tag">OpenGL</span>
+                                    <span class="tag">SDL2</span>
+                                    <span class="tag">ImGui</span>
+                                    <span class="tag">ECS</span>
+                                </div>
+                            </div>
+                            <div class="featured-media">
+                                <div class="featured-media-placeholder">
+                                    Screenshot placeholder<br>
+                                    (Add: assets/images/aiengine2d.png)
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Slide 2: Green Hero -->
+                        <a href="404.html" class="carousel-slide featured-project" data-slide="1">
+                            <div class="featured-content">
+                                <h3 data-i18n="wip.greenhero.title">Green Hero: Challenge Time</h3>
+                                <p data-i18n="wip.greenhero.description">
+                                    A fast-paced mobile mini-game collection developed for the "Mon Éco Pote" association.
+                                    Features short, skill-based challenges centered around eco-responsible actions.
+                                    Players must quickly sort waste, pedal to charge a battery, clean solar panels, and more.
+                                </p>
+                                <div class="featured-highlights">
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.greenhero.highlight_1">Mobile Mini-Games</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.greenhero.highlight_2">Eco-Awareness</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.greenhero.highlight_3">Educational Gameplay</span>
+                                    </div>
+                                    <div class="featured-highlight">
+                                        <span class="featured-highlight-icon">+</span>
+                                        <span data-i18n="wip.greenhero.highlight_4">Mon Éco Pote</span>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <span class="tag">Unity</span>
+                                    <span class="tag">C#</span>
+                                    <span class="tag">Mobile</span>
+                                    <span class="tag">Educational</span>
+                                </div>
+                            </div>
+                            <div class="featured-media">
+                                <div class="featured-media-placeholder">
+                                    Screenshot placeholder<br>
+                                    (Add image here)
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn carousel-btn-next" aria-label="Next project">
+                        <span>→</span>
+                    </button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                </div>
+            </section>
+
+            <!-- PUBLISHED GAMES -->
+            <section class="section" id="projects">
+                <h2 class="section-title" data-i18n="sections.published">Published Games</h2>
+                <p class="text-secondary mb-4" data-i18n="sections.published_subtitle">Game jam entries and personal projects available on itch.io</p>
+                <div class="cards-grid">
+                    <a href="https://stgm1.itch.io/dreamness" target="_blank" rel="noopener noreferrer" class="card">
+                        <video class="card-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/Dreamness.mp4" type="video/mp4">
+                        </video>
+                        <h3 class="card-title" data-i18n="games.dreamness.title">Dreamness</h3>
+                        <p class="card-description" data-i18n="games.dreamness.description">
+                            A mysterious 2D platformer with surreal pixel-art visuals. Features puzzle mechanics
+                            like character duplication and spatial shifts.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">2D Platformer</span>
+                            <span class="tag">Puzzle</span>
+                        </div>
+                    </a>
+
+                    <a href="https://demonskiddy.itch.io/the-13th-hour" target="_blank" rel="noopener noreferrer" class="card">
+                        <video class="card-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/The13thHour.mp4" type="video/mp4">
+                        </video>
+                        <h3 class="card-title" data-i18n="games.13th_hour.title">The 13th Hour</h3>
+                        <p class="card-description" data-i18n="games.13th_hour.description">
+                            A survival horror experience. Explore an abandoned building, prepare an exorcism,
+                            and survive when the ghost awakens at the Thirteenth Hour.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Horror</span>
+                            <span class="tag">Survival</span>
+                        </div>
+                    </a>
+
+                    <a href="https://cchambaz.itch.io/forgotenhero" target="_blank" rel="noopener noreferrer" class="card">
+                        <video class="card-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/ForgotenHero.mp4" type="video/mp4">
+                        </video>
+                        <h3 class="card-title" data-i18n="games.forgoten_hero.title">Forgoten Hero</h3>
+                        <p class="card-description" data-i18n="games.forgoten_hero.description">
+                            Pete the garbage collector wakes up on a conveyor belt heading to the incinerator.
+                            Run, dodge trash, and destroy generators to survive!
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Runner</span>
+                            <span class="tag">Game Jam</span>
+                        </div>
+                    </a>
+
+                    <a href="https://strueux.itch.io/gravitypunk" target="_blank" rel="noopener noreferrer" class="card">
+                        <video class="card-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/GravityPunk.mp4" type="video/mp4">
+                        </video>
+                        <h3 class="card-title" data-i18n="games.gravity_punk.title">Gravity Punk</h3>
+                        <p class="card-description" data-i18n="games.gravity_punk.description">
+                            A gravity-flipping 2D platformer in a neon cyberpunk world. You're Test Subject G-13,
+                            armed with gravity-shifting shoes to survive deadly trials.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Platformer</span>
+                            <span class="tag">Cyberpunk</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- TECHNICAL PROJECTS -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="sections.technical">Technical Projects</h2>
+                <p class="text-secondary mb-4" data-i18n="sections.technical_subtitle">Academic work, engine development, and research</p>
+                <div class="cards-grid">
+                    <a href="pages/aer-racers.html" class="card">
+                        <img class="card-image" src="assets/images/aer-racers/AerShip.jpg" alt="Aer Racers - Pod Racing Game">
+                        <span class="badge badge-accent mb-2" data-i18n="technical_projects.aer_racers.badge">Console Dev</span>
+                        <h3 class="card-title" data-i18n="technical_projects.aer_racers.title">Aer Racers</h3>
+                        <p class="card-description" data-i18n="technical_projects.aer_racers.description">
+                            A Ghibli-inspired multiplayer pod racing game for Nintendo Switch using a custom C++ engine.
+                            Led a team of 25 as Project Manager, Designer, and Gameplay Programmer.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">C++</span>
+                            <span class="tag">Nintendo Switch</span>
+                            <span class="tag">Leadership</span>
+                        </div>
+                    </a>
+
+                    <a href="pages/bachelor-thesis.html" class="card">
+                        <img class="card-image" src="assets/images/BachelorImage.png" alt="Bachelor Thesis - Biofeedback in Horror Games">
+                        <span class="badge badge-info mb-2" data-i18n="technical_projects.bachelor.badge">Research</span>
+                        <h3 class="card-title" data-i18n="technical_projects.bachelor.title">Bachelor Thesis: Biofeedback in Horror Games</h3>
+                        <p class="card-description" data-i18n="technical_projects.bachelor.description">
+                            Analyzed how players' pulse data can dynamically influence gameplay in VR horror.
+                            Built a custom Unity experience with real-time biometric integration.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">VR</span>
+                            <span class="tag">Biometrics</span>
+                        </div>
+                    </a>
+
+                    <a href="pages/neko-engine.html" class="card">
+                        <img class="card-image" src="assets/images/GameEngine.jpg" alt="Neko Engine - Custom 3D Game Engine" style="object-fit: contain; background-color: white; padding: 1rem;">
+                        <span class="badge badge-warning mb-2" data-i18n="technical_projects.neko.badge">Engine Dev</span>
+                        <h3 class="card-title" data-i18n="technical_projects.neko.title">Neko Engine</h3>
+                        <p class="card-description" data-i18n="technical_projects.neko.description">
+                            Contributed to a custom 3D game engine (SDL2 + OpenGL ES 3.0) targeting Desktop,
+                            WebGL2, and Nintendo Switch. Developed various optimization tools.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">C++</span>
+                            <span class="tag">OpenGL</span>
+                            <span class="tag">SDL2</span>
+                        </div>
+                    </a>
+
+                    <a href="pages/networking-fps.html" class="card">
+                        <img class="card-image" src="assets/images/NetworkingFPS.png" alt="Networking FPS - Multiplayer Game">
+                        <span class="badge badge-secondary mb-2" data-i18n="technical_projects.networking.badge">Multiplayer</span>
+                        <h3 class="card-title" data-i18n="technical_projects.networking.title">Networking FPS</h3>
+                        <p class="card-description" data-i18n="technical_projects.networking.description">
+                            Built a multiplayer FPS with Photon PUN. Implemented UDP networking, player sync,
+                            lag compensation, and networked game state management.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Photon</span>
+                            <span class="tag">Networking</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="section" id="education">
+                <h2 class="section-title" data-i18n="sections.education">Education</h2>
+                <a href="pages/sae-institute.html" class="education-card">
+                    <div class="education-icon">BSc</div>
+                    <div class="education-details">
+                        <h3 data-i18n="education.degree">Bachelor of Science in Games Programming</h3>
+                        <p class="education-school" data-i18n="education.school">SAE Institute of Geneva</p>
+                        <p class="education-awarded" data-i18n="education.awarded_by">Awarded by Middlesex University</p>
+                        <p class="education-date" data-i18n="education.date">2018 - 2023 | 180 ECTS</p>
+                        <p class="text-secondary mb-3" data-i18n="education.description">
+                            Comprehensive training in game development covering engine architecture,
+                            graphics programming, multiplayer systems, and gameplay implementation.
+                        </p>
+                        <div class="education-highlights">
+                            <span class="tag">Engine Development</span>
+                            <span class="tag">Graphics Programming</span>
+                            <span class="tag">Multiplayer Systems</span>
+                            <span class="tag">Console Development</span>
+                        </div>
+                    </div>
+                </a>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="section" id="experience">
+                <h2 class="section-title" data-i18n="sections.experience">Professional Experience</h2>
+                <div class="experience-grid">
+                    <a href="404.html" class="experience-card current" style="text-decoration: none; color: inherit;">
+                        <div class="experience-header">
+                            <div>
+                                <span class="badge badge-success mb-1" data-i18n="experience.eco_pote.badge">Current</span>
+                                <h3 data-i18n="experience.eco_pote.title">Gameplay Programmer & Project Lead</h3>
+                                <p class="text-accent mb-0" data-i18n="experience.eco_pote.company">Mon Eco Pote</p>
+                            </div>
+                            <span class="experience-date" data-i18n="experience.eco_pote.date">Nov 2024 - Present</span>
+                        </div>
+                        <p class="card-description" data-i18n="experience.eco_pote.description">
+                            Leading development of educational games promoting eco-friendly habits.
+                            Managing a team of 3-4 people, integrating artists into the pipeline,
+                            and developing mini-games inspired by Dumb Ways to Die.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Leadership</span>
+                            <span class="tag">Educational Games</span>
+                        </div>
+                    </a>
+
+                    <div class="experience-card current">
+                        <div class="experience-header">
+                            <div>
+                                <span class="badge badge-success mb-1" data-i18n="experience.unige.badge">Current</span>
+                                <h3 data-i18n="experience.unige.title">Developer</h3>
+                                <p class="text-accent mb-0" data-i18n="experience.unige.company">University of Geneva</p>
+                            </div>
+                            <span class="experience-date" data-i18n="experience.unige.date">Dec 2025 - Present</span>
+                        </div>
+                        <p class="card-description" data-i18n="experience.unige.description">
+                            Working on projects involving generative AI and modern development workflows.
+                            Exploring AI-augmented development practices and contributing to research-oriented applications.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">AI Development</span>
+                            <span class="tag">Research</span>
+                            <span class="tag">Full-Stack</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 data-i18n="experience.lausanne.title">Full-Stack Web Developer</h3>
+                                <p class="text-accent mb-0" data-i18n="experience.lausanne.company">City of Lausanne</p>
+                            </div>
+                            <span class="experience-date" data-i18n="experience.lausanne.date">Feb 2025 - Nov 2025</span>
+                        </div>
+                        <p class="card-description" data-i18n="experience.lausanne.description">
+                            Developed a web application using React.js, PHP, and modern web technologies.
+                            Built interfaces, implemented features, and managed server-side logic.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">React.js</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">Full-Stack</span>
+                        </div>
+                    </div>
+
+                    <a href="404.html" class="experience-card" style="text-decoration: none; color: inherit;">
+                        <div class="experience-header">
+                            <div>
+                                <h3 data-i18n="experience.athena.title">Developer</h3>
+                                <p class="text-accent mb-0" data-i18n="experience.athena.company">Athena Technologies</p>
+                            </div>
+                            <span class="experience-date" data-i18n="experience.athena.date">Feb 2024</span>
+                        </div>
+                        <p class="card-description" data-i18n="experience.athena.description">
+                            Web application development and extensive testing with R Studio.
+                            Combined technical implementation with data analysis and team support.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Web Dev</span>
+                            <span class="tag">R Studio</span>
+                            <span class="tag">Testing</span>
+                        </div>
+                    </a>
+
+                    <a href="404.html" class="experience-card" style="text-decoration: none; color: inherit;">
+                        <div class="experience-header">
+                            <div>
+                                <h3 data-i18n="experience.youtube.title">YouTube Channel Manager</h3>
+                                <p class="text-accent mb-0" data-i18n="experience.youtube.company">Self-employed</p>
+                            </div>
+                            <span class="experience-date" data-i18n="experience.youtube.date">Sept 2019 - Dec 2020</span>
+                        </div>
+                        <p class="card-description" data-i18n="experience.youtube.description">
+                            Managed a monetized channel with focus on audience engagement and trend analysis.
+                            Created thumbnails, optimized content, and analyzed performance metrics.
+                        </p>
+                        <div class="tags mt-2">
+                            <span class="tag">Content Creation</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Marketing</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- TECHNICAL SKILLS -->
+            <section class="section" id="skills">
+                <h2 class="section-title" data-i18n="sections.skills">Technical Skills</h2>
+                <div class="skills-section">
+                    <div class="skills-category">
+                        <h4 class="skills-category-title" data-i18n="skills.languages">Languages</h4>
+                        <div class="skills-container">
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">GLSL</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h4 class="skills-category-title" data-i18n="skills.gamedev">Game Development</h4>
+                        <div class="skills-container">
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">OpenGL</span>
+                            <span class="skill-tag">SDL2</span>
+                            <span class="skill-tag">SFML</span>
+                            <span class="skill-tag">Photon PUN</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h4 class="skills-category-title" data-i18n="skills.tools">AI & Tools</h4>
+                        <div class="skills-container">
+                            <span class="skill-tag">Claude</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">CMake</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h4 class="skills-category-title" data-i18n="skills.creative">Creative</h4>
+                        <div class="skills-container">
+                            <span class="skill-tag">Blender</span>
+                            <span class="skill-tag">Manim</span>
+                            <span class="skill-tag">Game Design</span>
+                            <span class="skill-tag">Level Design</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT CTA -->
+            <section class="contact-section" id="contact">
+                <h2 data-i18n="contact.title">Let's Work Together</h2>
+                <p data-i18n="contact.description">
+                    Looking for a gameplay programmer who can lead teams and ship polished experiences?
+                    I'd love to hear about your project.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:sebastien.feser@gmail.com" class="btn btn-primary" data-i18n="contact.email">
+                        Send Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/sebastien-feser/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="contact.linkedin">
+                        LinkedIn
+                    </a>
+                    <a href="assets/documents/CV_EN.pdf" target="_blank" class="btn btn-secondary" data-i18n="contact.cv">
+                        Download CV
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="https://github.com/SebastienFeser" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/sebastien-feser/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="assets/documents/CV_EN.pdf" target="_blank">CV</a>
+            <a href="mailto:sebastien.feser@gmail.com">Email</a>
+        </div>
+        <p class="mt-2">&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Close menu when clicking a link
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // WIP Carousel
+        const carousel = document.querySelector('.wip-carousel');
+        if (carousel) {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const prevBtn = carousel.querySelector('.carousel-btn-prev');
+            const nextBtn = carousel.querySelector('.carousel-btn-next');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                // Wrap around
+                if (index >= slides.length) index = 0;
+                if (index < 0) index = slides.length - 1;
+                currentSlide = index;
+
+                // Slide the track
+                track.style.transform = `translateX(-${index * 100}%)`;
+
+                // Update slides opacity/scale
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSlide(currentSlide - 1);
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+
+            // Keyboard navigation
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+                if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            });
+
+            // Touch swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) showSlide(currentSlide + 1);
+                    else showSlide(currentSlide - 1);
+                }
+            }, { passive: true });
+        }
+    </script>
+</body>
 </html>

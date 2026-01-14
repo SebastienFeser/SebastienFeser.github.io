@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/networking-fps">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking FPS | Sebastien Feser</title>
+    <meta name="description" content="Simple Networked FPS - A multiplayer first-person shooter built with Unity and Photon PUN, featuring real-time player synchronization and networked gameplay.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="networking.badge">Multiplayer</span>
+                <h1 data-i18n="networking.title">Simple Networked FPS</h1>
+                <p class="hero-subtitle" data-i18n="networking.subtitle">Multiplayer first-person shooter with Photon PUN networking</p>
+            </header>
+
+            <article class="article-content">
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/NetworkingFPS.png" alt="Networking FPS Gameplay" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                </div>
+
+                <h2 data-i18n="networking.intro_title">Introduction</h2>
+                <p data-i18n="networking.intro_text">
+                    This project was created for the GPR5100.1 module at SAE Institute Geneva. The goal was to build a small multiplayer game to learn networking concepts. The game was developed with Unity 2019.3.0f3 using Photon PUN 2.16 technology.
+                </p>
+
+                <h2 data-i18n="networking.mechanics_title">Game Mechanics</h2>
+                <p data-i18n="networking.mechanics_text">
+                    Players spawn in a map with the objective to shoot their opponents. Each kill grants 100 points. The first player to reach 1,000 points wins the game. Players shoot balls that travel straight forward - one hit kills the target.
+                </p>
+
+                <h3 data-i18n="networking.controls_title">Controls</h3>
+                <ul>
+                    <li data-i18n="networking.control_move">Movement: W, A, S, D keys</li>
+                    <li data-i18n="networking.control_camera">Camera: Mouse movement</li>
+                    <li data-i18n="networking.control_shoot">Shooting: Left mouse button</li>
+                </ul>
+
+                <h2 data-i18n="networking.lobby_title">Lobby System</h2>
+                <p data-i18n="networking.lobby_text">
+                    The game features a complete lobby system: players log in, join a random room (or create one if none exists), and can start the game when ready. The room closes and becomes invisible once the game starts.
+                </p>
+
+                <h2 data-i18n="networking.architecture_title">Network Architecture</h2>
+
+                <h3 data-i18n="networking.photon_view_title">Photon View</h3>
+                <p data-i18n="networking.photon_view_text">
+                    The Photon View component is required on every networked GameObject. It enables sending RPCs and integrates with other components like Transform View Classic, Rigidbody View, and OnPhotonSerializeView. It also provides access to the Photon Actor Number to identify each player.
+                </p>
+
+                <h3 data-i18n="networking.transform_title">Transform View Classic</h3>
+                <p data-i18n="networking.transform_text">
+                    Photon PUN's Transform View Classic interpolates position and rotation of other clients' GameObjects, ensuring smooth movement synchronization across the network.
+                </p>
+
+                <h3 data-i18n="networking.rigidbody_title">Rigidbody View</h3>
+                <p data-i18n="networking.rigidbody_text">
+                    The Rigidbody View sends player velocity to other clients, maintaining physics synchronization across the network.
+                </p>
+
+                <h3 data-i18n="networking.serialize_title">OnPhotonSerializeView</h3>
+                <p data-i18n="networking.serialize_text">
+                    This function synchronizes custom data - in this project, it's used to sync player materials through the MaterialObservable script.
+                </p>
+
+                <h2 data-i18n="networking.rpcs_title">Remote Procedure Calls (RPCs)</h2>
+                <p data-i18n="networking.rpcs_intro">
+                    RPCs update game state information and handle bullet instantiation across clients:
+                </p>
+
+                <div class="callout callout-info">
+                    <h4>PlayerController.cs</h4>
+                    <p><code>SpawnBall(Vector3 position, Vector3 velocity, int killerActorNumber)</code></p>
+                    <p data-i18n="networking.rpc_spawn">Instantiates bullets at the same position for all players.</p>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1rem;">
+                    <h4>GameManager.cs</h4>
+                    <p><code>GivePointsToKiller(int killerActorNumber, int killedActorNumber)</code></p>
+                    <p data-i18n="networking.rpc_points">Informs all clients about kills and score updates.</p>
+                    <p style="margin-top: 0.5rem;"><code>EndGame(int winnerActorNumberInRPC)</code></p>
+                    <p data-i18n="networking.rpc_end">Broadcasts the winner to all clients and triggers end game state.</p>
+                </div>
+
+                <h2 data-i18n="networking.project_title">Project Structure</h2>
+                <p data-i18n="networking.project_text">
+                    The project is organized with clear separation: Resources contain prefabs (Ball, Player), Scenes hold GameLauncher and GameScene, and Scripts are divided into GameScene logic (Bullet, GameManager, PlayerCamera, PlayerController) and Lobby UI (MainPanel, TopPanel).
+                </p>
+
+                <h2 data-i18n="networking.lessons_title">Lessons Learned</h2>
+                <ul>
+                    <li data-i18n="networking.lesson_1">Practical experience with Photon PUN networking framework</li>
+                    <li data-i18n="networking.lesson_2">Understanding RPCs for game state synchronization</li>
+                    <li data-i18n="networking.lesson_3">Implementing lobby systems with room creation/joining</li>
+                    <li data-i18n="networking.lesson_4">Handling player interpolation and physics sync</li>
+                </ul>
+
+                <h2 data-i18n="networking.resources_title">Resources</h2>
+                <div class="callout callout-info">
+                    <h4 data-i18n="networking.doc_title">Technical Document</h4>
+                    <p data-i18n="networking.doc_text">Read the complete technical documentation for this project.</p>
+                    <a href="../assets/documents/TechnicalDocumentNetworkingGame.pdf" target="_blank" class="btn btn-primary" style="margin-top: 1rem;" data-i18n="networking.download_doc">Download PDF</a>
+                </div>
+
+                <h2 data-i18n="networking.tech_title">Technologies Used</h2>
+                <div class="skills-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">Photon PUN 2</span>
+                    <span class="skill-tag">Multiplayer</span>
+                    <span class="skill-tag">Networking</span>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="networking.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

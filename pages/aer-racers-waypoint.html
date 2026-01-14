@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waypoint System | Aer Racers | Sebastien Feser</title>
+    <meta name="description" content="Technical blog post about the waypoint system used for player positioning in Aer Racers racing game.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="aer_racers.blog_waypoint_badge">Gameplay</span>
+                <h1 data-i18n="aer_waypoint.title">Waypoint System for Player Placement</h1>
+                <p class="hero-subtitle" data-i18n="aer_waypoint.subtitle">Calculating player positions in a racing game using dot products</p>
+            </header>
+
+            <article class="article-content">
+                <h2 data-i18n="aer_waypoint.context_title">Context</h2>
+                <p data-i18n="aer_waypoint.context_text">
+                    We developed a video game project during our third year of Bachelor at SAE Institute of Geneva. Our objective was to create a racing game for Nintendo Switch using a custom C++ Game Engine. Our game "AerRacers" is a multiplayer pod racing game where players can go very fast but must control their speed to avoid crashing.
+                </p>
+
+                <h2 data-i18n="aer_waypoint.problem_title">Player Positions in a Race</h2>
+                <p data-i18n="aer_waypoint.problem_text">
+                    An important feature in a multiplayer racing game is knowing player positioning. There are several ways to get it - you could imagine systems using triggers or chunks - but I decided to use a waypoint system for these reasons:
+                </p>
+                <ul>
+                    <li data-i18n="aer_waypoint.reason_1">Uses simple maths (Dot product)</li>
+                    <li data-i18n="aer_waypoint.reason_2">Easier to implement in our engine</li>
+                </ul>
+
+                <h2 data-i18n="aer_waypoint.system_title">The Waypoint System</h2>
+                <p data-i18n="aer_waypoint.system_text">
+                    The waypoint system uses a waypoint map in which the player's position is calculated between waypoints. The waypoint manager keeps a target waypoint to calculate the player's position and updates the target by calculating the dot product between the vector Player-Waypoint and the vector Waypoint-NextWaypoint.
+                </p>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/waypointsys.png" alt="Waypoint System Diagram" style="max-width: 100%; border-radius: 8px;">
+                </div>
+
+                <h2 data-i18n="aer_waypoint.waypoint_data_title">Waypoint Data</h2>
+                <p data-i18n="aer_waypoint.waypoint_data_intro">The waypoint structure contains:</p>
+                <ul>
+                    <li><strong>Position:</strong> <span data-i18n="aer_waypoint.data_position">Position of the waypoint</span></li>
+                    <li><strong>Index:</strong> <span data-i18n="aer_waypoint.data_index">Index of the waypoint</span></li>
+                    <li><strong>Next Waypoint Index:</strong> <span data-i18n="aer_waypoint.data_next">Index of the next waypoint</span></li>
+                    <li><strong>Previous Waypoint Index:</strong> <span data-i18n="aer_waypoint.data_prev">Index of the previous waypoint</span></li>
+                    <li><strong>Length:</strong> <span data-i18n="aer_waypoint.data_length">Length between this waypoint and the next</span></li>
+                    <li><strong>Normalized Next Vector:</strong> <span data-i18n="aer_waypoint.data_vector">Normalized vector to the next waypoint</span></li>
+                </ul>
+
+                <h2 data-i18n="aer_waypoint.player_data_title">PlayerPositionData</h2>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/PlayerPosData.png" alt="PlayerPositionData Structure" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                <p data-i18n="aer_waypoint.player_data_intro">I store every piece of information about player positions in a structure called "PlayerPositionData":</p>
+                <ul>
+                    <li><code>std::array&lt;RacePlacement, 4&gt; racePlacement</code> - <span data-i18n="aer_waypoint.array_placement">Keeps the players' placement in race</span></li>
+                    <li><code>std::array&lt;float, 4&gt; positionInWaypoint</code> - <span data-i18n="aer_waypoint.array_position">Keeps the dot product value for each ship</span></li>
+                    <li><code>std::array&lt;WaypointIndex, 4&gt; waypoints</code> - <span data-i18n="aer_waypoint.array_waypoint">Keeps the current waypoint for each player</span></li>
+                    <li><code>std::array&lt;WaypointsCount, 4&gt; waypointsCount</code> - <span data-i18n="aer_waypoint.array_count">Keeps the waypoint count for each player</span></li>
+                </ul>
+                <p data-i18n="aer_waypoint.max_players">The data is stored in arrays of size 4, corresponding to maximum players.</p>
+
+                <h2 data-i18n="aer_waypoint.manager_title">Waypoint Manager</h2>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/WaypointManager.png" alt="Waypoint Manager" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                <p data-i18n="aer_waypoint.manager_intro">To manage our waypoints, I created a waypoint manager with these key functions:</p>
+                <ul>
+                    <li><code>AddWaypointFromJson()</code> - <span data-i18n="aer_waypoint.func_add">Called when loading the scene to get waypoints from JSON</span></li>
+                    <li><code>CalculatePlayerPosition()</code> - <span data-i18n="aer_waypoint.func_calc">Calculates all waypoint position elements</span></li>
+                    <li><code>CalculatePlayerPlacement()</code> - <span data-i18n="aer_waypoint.func_placement">Calculates player placement using position data</span></li>
+                    <li><code>StartDetection()</code> - <span data-i18n="aer_waypoint.func_start">Starts waypoint detection and gets player data</span></li>
+                    <li><code>RestartWaypointManager()</code> - <span data-i18n="aer_waypoint.func_restart">Restarts manager when returning to main menu</span></li>
+                </ul>
+
+                <h2 data-i18n="aer_waypoint.creation_title">Creating the Waypoints</h2>
+                <p data-i18n="aer_waypoint.creation_intro">Before updating player positions, I had to create and store waypoints:</p>
+                <ol>
+                    <li data-i18n="aer_waypoint.step_1">Place waypoints on the Unity map</li>
+                    <li data-i18n="aer_waypoint.step_2">Export waypoints with Unity Scene Exporter tool</li>
+                    <li data-i18n="aer_waypoint.step_3">Import waypoints with Neko Scene Importer tool</li>
+                    <li data-i18n="aer_waypoint.step_4">Place waypoints in the Waypoint Manager array</li>
+                    <li data-i18n="aer_waypoint.step_5">Update the waypoint system</li>
+                </ol>
+
+                <h2 data-i18n="aer_waypoint.update_title">Updating PlayerPositionData</h2>
+                <p data-i18n="aer_waypoint.update_intro">To update player position data, we go through these steps:</p>
+                <ol>
+                    <li data-i18n="aer_waypoint.update_1">Calculate the vector between ship position and waypoint for each ship</li>
+                    <li data-i18n="aer_waypoint.update_2">Calculate the dot product between this vector and the waypoint's normalized next vector</li>
+                    <li data-i18n="aer_waypoint.update_3">Check the dot product value of each ship</li>
+                    <li data-i18n="aer_waypoint.update_4">Store the value in PlayerPositionData</li>
+                    <li data-i18n="aer_waypoint.update_5">CalculatePlayerPlacement: Check if players have won and compare values to create placement</li>
+                </ol>
+
+                <h2 data-i18n="aer_waypoint.special_title">Special Situations</h2>
+
+                <h3 data-i18n="aer_waypoint.negative_title">Checking if the Dot is Negative</h3>
+                <p data-i18n="aer_waypoint.negative_text">
+                    At first, when the dot product was negative, I set the target waypoint to the previous one. The problem was that in some situations, the dot could be negative while also higher than the previous waypoint length, causing waypoint changes every frame. To solve this, I added a check when negative to verify if the dot product was higher than the previous waypoint length.
+                </p>
+
+                <h3 data-i18n="aer_waypoint.paths_title">Multiple Paths</h3>
+                <p data-i18n="aer_waypoint.paths_text">
+                    Another situation was when the game had multiple paths. I created a boolean to check if the player had multiple next waypoints, then checked both waypoints. I also added a check to see which waypoint the player was nearest to. In the end, we decided not to implement multiple paths since it wasn't necessary for our map.
+                </p>
+
+                <h2 data-i18n="aer_waypoint.problems_title">Problems Encountered</h2>
+                <div class="callout callout-warning">
+                    <h4 data-i18n="aer_waypoint.export_problem_title">Scene Exportation</h4>
+                    <p data-i18n="aer_waypoint.export_problem_text">
+                        One of the main problems was that it was my first time working on the Neko Engine. The most complicated part was exporting waypoints from Unity and loading them correctly. I had to look at colleagues' code, which would've been easier if I was more curious during development. For example, the x-axis was inverted in Neko Engine, and I lost time trying to fix my system when it was actually an export issue. I solved this by asking precise questions about the problems I met.
+                    </p>
+                </div>
+
+                <h2 data-i18n="aer_waypoint.learned_title">What I Learned</h2>
+                <h3 data-i18n="aer_waypoint.personal_title">Personal Skills</h3>
+                <p data-i18n="aer_waypoint.personal_text">
+                    I was sure it would be much harder to code in C++, but switching between C# and C++ wasn't very hard. I learned that I liked creating systems more than programming gameplay features, because it's easier to know what you're doing when you don't depend too much on other people's code.
+                </p>
+            </article>
+
+            <nav class="nav-links">
+                <a href="aer-racers.html" class="nav-link-btn" data-i18n="aer_postmortem.back_project">&larr; Back to Aer Racers</a>
+                <a href="../index.html" class="nav-link-btn" data-i18n="aer_racers.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

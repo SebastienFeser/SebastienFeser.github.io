@@ -1,0 +1,76 @@
+{
+  "sae": {
+    "badge": "Education",
+    "title": "Bachelor of Science in Games Programming",
+    "subtitle": "SAE Institute Geneva | Awarded by Middlesex University",
+    "intro": "Three-year program (180 ECTS) covering all aspects of professional game development, from low-level engine programming to high-level gameplay systems.",
+
+    "year1": "1st Year",
+    "year2": "2nd Year",
+    "year3": "3rd Year",
+
+    "gpr4100": {
+      "title": "Introduction to Games Programming",
+      "item1": "C++ debugging exam",
+      "item2": "Game project with Unity"
+    },
+    "cmn4200": {
+      "title": "Information, Communication and Professional Media Practice",
+      "item1": "Cover letter writing",
+      "item2": "Industry analysis",
+      "item3": "Portfolio website development"
+    },
+    "gpa4300": {
+      "title": "Foundations of Game Design and Game Production",
+      "item1": "Game with focus on game design and level design"
+    },
+    "gpr4400": {
+      "title": "Applied Mathematics and Environment Programming",
+      "item1": "Game with procedural generation and AI",
+      "item2": "Mathematics and physics exam",
+      "item3": "Custom physics game engine"
+    },
+    "gpr5100": {
+      "title": "Network Programming and Tool Development",
+      "item1": "Computer networks exam",
+      "item2": "Online multiplayer game",
+      "item3": "Development tools for 3rd year game project"
+    },
+    "gpr5204": {
+      "title": "Game Optimization, Analysis and Interfacing",
+      "item1": "Optimizations on the Neko engine",
+      "item2": "Weekly presentations about industry optimizations",
+      "item3": "C++ optimization and analysis exam"
+    },
+    "gpr5300": {
+      "title": "Graphics and Shader Programming for Games",
+      "item1": "Minecraft-like game with OpenGL",
+      "item2": "OpenGL debugging exam"
+    },
+    "cmn5400": {
+      "title": "Marketing, Business Planning and Law",
+      "item1": "Business plan and marketing plan project"
+    },
+    "cmn6100": {
+      "title": "Research Practice and Society",
+      "item1": "Portfolio website about projects",
+      "item2": "Industry project presentation"
+    },
+    "cmn6204": {
+      "title": "Advanced Specialised Project",
+      "item1": "Nintendo Switch game using custom C++ engine"
+    },
+    "cmn6302": {
+      "title": "Major Project (BSc)",
+      "item1": "Bachelor thesis research project"
+    },
+
+    "resources_title": "Resources",
+    "website_title": "SAE Institute Geneva",
+    "website_text": "Visit the official SAE Institute Geneva website for more information about the program.",
+    "visit_website": "Visit Website",
+
+    "skills_title": "Skills Acquired",
+    "back_home": "← Back to Home"
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/bachelor-thesis">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachelor Thesis | Sebastien Feser</title>
+    <meta name="description" content="Bachelor thesis on the impact of biofeedback in survival horror games - Research on physiological feedback integration in game design.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="bachelor.badge">Research</span>
+                <h1 data-i18n="bachelor.title">Bachelor Thesis</h1>
+                <p class="hero-subtitle" data-i18n="bachelor.subtitle">What's the impact of biofeedback in survival horror games?</p>
+            </header>
+
+            <article class="article-content">
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/BachelorImage.png" alt="Bachelor Thesis Preview" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                </div>
+
+                <h2 data-i18n="bachelor.overview_title">Overview</h2>
+                <p data-i18n="bachelor.overview_text">
+                    This research thesis explores the integration of biofeedback technology in survival horror games. The study investigates how physiological data such as heart rate and skin conductance can be used to dynamically adjust game difficulty and atmospheric elements, creating a more personalized and immersive horror experience.
+                </p>
+
+                <h2 data-i18n="bachelor.research_title">Research Question</h2>
+                <p data-i18n="bachelor.research_text">
+                    The central question of this thesis is: "What's the impact of biofeedback in survival horror games?" This explores how real-time physiological feedback can enhance player immersion and fear responses in horror game environments.
+                </p>
+
+                <h2 data-i18n="bachelor.methodology_title">Methodology</h2>
+                <p data-i18n="bachelor.methodology_text">
+                    The research involved developing a prototype horror game that integrates biofeedback sensors. Player physiological responses were measured and analyzed to understand how biofeedback-driven game adaptations affect the overall gaming experience.
+                </p>
+
+                <h2 data-i18n="bachelor.resources_title">Resources</h2>
+
+                <div class="callout callout-info">
+                    <h4 data-i18n="bachelor.thesis_doc_title">Thesis Document</h4>
+                    <p data-i18n="bachelor.thesis_doc_text">Read the complete thesis paper exploring biofeedback integration in survival horror games.</p>
+                    <a href="../assets/documents/Bachelor_Thesis_Biofeedback.pdf" target="_blank" class="btn btn-primary" style="margin-top: 1rem;" data-i18n="bachelor.download_thesis">Download Thesis (PDF)</a>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1.5rem;">
+                    <h4 data-i18n="bachelor.source_code_title">Source Code</h4>
+                    <p data-i18n="bachelor.source_code_text">Explore the implementation and prototype developed for this research project.</p>
+                    <a href="https://github.com/SebastienFeser/Bachelor-Project" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: 1rem;" data-i18n="bachelor.view_github">View on GitHub</a>
+                </div>
+
+                <h2 data-i18n="bachelor.key_findings_title">Key Findings</h2>
+                <ul>
+                    <li data-i18n="bachelor.finding_1">Biofeedback integration can significantly enhance player immersion in horror games</li>
+                    <li data-i18n="bachelor.finding_2">Dynamic difficulty adjustment based on physiological data creates more personalized experiences</li>
+                    <li data-i18n="bachelor.finding_3">Heart rate monitoring proves effective for detecting player fear responses</li>
+                    <li data-i18n="bachelor.finding_4">Implementation challenges include sensor accuracy and response latency</li>
+                </ul>
+
+                <h2 data-i18n="bachelor.tech_title">Technologies Used</h2>
+                <div class="skills-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">Biofeedback Sensors</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Data Analysis</span>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="bachelor.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

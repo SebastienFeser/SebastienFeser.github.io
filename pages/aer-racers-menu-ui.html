@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu & Game Management | Aer Racers | Sebastien Feser</title>
+    <meta name="description" content="Technical blog post about the menu and game management systems in Aer Racers.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="aer_racers.blog_menu_badge">Systems</span>
+                <h1 data-i18n="aer_menu.title">Menu & Game Management for AerRacers</h1>
+                <p class="hero-subtitle" data-i18n="aer_menu.subtitle">State management and UI systems in a custom C++ engine</p>
+            </header>
+
+            <article class="article-content">
+                <h2 data-i18n="aer_menu.context_title">Context</h2>
+                <p data-i18n="aer_menu.context_text">
+                    We developed a video game project during our third year of bachelor at SAE Institute of Geneva in Games Programming. Our objective was to create a racing game for the Nintendo Switch, using a custom Game Engine in C++ developed by our teacher and by us. Our game "AerRacers" is a multiplayer pod racing game, where each player controls the rotors of their spaceship with the joysticks.
+                </p>
+
+                <h2 data-i18n="aer_menu.problem_title">Problem</h2>
+                <p data-i18n="aer_menu.problem_text">
+                    In video games, it's very important to manage game status. That's why games have menus and game managers. In our game, we have 2 different ship models each with different textures. It was important to let players choose their ship, join the game, and manage the game status to let players win and return to the menu. To do so, I created a Menu Manager and a Game Manager.
+                </p>
+
+                <h2 data-i18n="aer_menu.structure_title">Menu Structure</h2>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/menuhierarchy.png" alt="Menu Hierarchy" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                <p data-i18n="aer_menu.structure_intro">The menu has several sections:</p>
+                <ul>
+                    <li><strong>Main Menu:</strong> <span data-i18n="aer_menu.section_main">Where the player can look at the credits or start the game</span></li>
+                    <li><strong>Credits:</strong> <span data-i18n="aer_menu.section_credits">Where the credits of each team member are displayed</span></li>
+                    <li><strong>Selection Screen:</strong> <span data-i18n="aer_menu.section_selection">Where players can join the game and select their spaceship skin</span></li>
+                </ul>
+
+                <h2 data-i18n="aer_menu.selection_title">Selection Screen</h2>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/Selection.png" alt="Selection Screen" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                <p data-i18n="aer_menu.selection_text">
+                    The Selection Screen was important because there's a bunch of spaceship models & textures created by the Game Art team. It's also where the Game Manager gets information about which ship model to load and how many players will play.
+                </p>
+
+                <h2 data-i18n="aer_menu.enum_title">Enum Classes</h2>
+                <p data-i18n="aer_menu.enum_intro">To update the state of the menu, I created several enum classes:</p>
+
+                <div class="code-examples" style="margin: 2rem 0;">
+                    <div style="margin-bottom: 2rem;">
+                        <p><strong>MenuStatus:</strong> <span data-i18n="aer_menu.enum_menu">Used to know which part of the menu the player is in.</span></p>
+                        <img src="../assets/images/aer-racers/MenuStatus.png" alt="MenuStatus enum" style="max-width: 300px;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <p><strong>MainMenuPointer:</strong> <span data-i18n="aer_menu.enum_pointer">Used to know which button is highlighted.</span></p>
+                        <img src="../assets/images/aer-racers/MainMenuP.png" alt="MainMenuPointer enum" style="max-width: 300px;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <p><strong>CreditsStatus:</strong> <span data-i18n="aer_menu.enum_credits">Used to know which credits page the player is viewing.</span></p>
+                        <img src="../assets/images/aer-racers/CreditsS.png" alt="CreditsStatus enum" style="max-width: 300px;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <p><strong>SelectionStatus:</strong> <span data-i18n="aer_menu.enum_selection">Used to know which part of selection each player is in.</span></p>
+                        <img src="../assets/images/aer-racers/SelectionP.png" alt="SelectionStatus enum" style="max-width: 300px;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <p><strong>SelectedModel:</strong> <span data-i18n="aer_menu.enum_model">Used to know which model the player has selected.</span></p>
+                        <img src="../assets/images/aer-racers/SelectionM.png" alt="SelectedModel enum" style="max-width: 300px;">
+                    </div>
+                </div>
+
+                <h2 data-i18n="aer_menu.loading_title">Loading System</h2>
+                <p data-i18n="aer_menu.loading_text">
+                    We decided to load every texture and model at game start using other threads of the Nintendo Switch. Since we only have one level, the level loads while the player is in the main menu. However, a problem occurred: the level loaded faster than the menu, displaying chunks before the game manager. We reorganized the loading order:
+                </p>
+                <ol>
+                    <li data-i18n="aer_menu.loading_1">Menu UI Loading</li>
+                    <li data-i18n="aer_menu.loading_2">Scene Models and Textures Loading</li>
+                    <li data-i18n="aer_menu.loading_3">Spaceships and InGame UI Loading (only when game starts)</li>
+                </ol>
+
+                <h2 data-i18n="aer_menu.game_manager_title">Game Manager</h2>
+                <p data-i18n="aer_menu.game_manager_text">
+                    The game manager manages the entire game. It updates the current game status, updates the UI for each player, and checks which player has finished.
+                </p>
+
+                <h3 data-i18n="aer_menu.game_states_title">Game Manager States</h3>
+                <p data-i18n="aer_menu.game_states_intro">The Game Manager uses an enum class called GameState:</p>
+                <ul>
+                    <li><strong>Waiting:</strong> <span data-i18n="aer_menu.state_waiting">Countdown before the start of the game</span></li>
+                    <li><strong>Racing:</strong> <span data-i18n="aer_menu.state_racing">When the players are racing</span></li>
+                    <li><strong>End:</strong> <span data-i18n="aer_menu.state_end">Displays the end score then loads the main menu</span></li>
+                </ul>
+                <p data-i18n="aer_menu.waypoint_integration">
+                    To know if each player has finished the race, the Game Manager gets information from the Waypoint Manager.
+                </p>
+
+                <h2 data-i18n="aer_menu.problems_title">Problems Encountered</h2>
+                <div class="callout callout-warning">
+                    <h4 data-i18n="aer_menu.problem_lazy_title">Keeping Lazy Work for Later</h4>
+                    <p data-i18n="aer_menu.problem_lazy_text">
+                        I wanted to get a working system as fast as possible and then switch to another system instead of finishing lazy work like code polishing and writing credits text. This caused several problems:
+                    </p>
+                    <ul>
+                        <li data-i18n="aer_menu.problem_1">Code was working but not clean</li>
+                        <li data-i18n="aer_menu.problem_2">Missing lazy tasks accumulated and cost more time later</li>
+                        <li data-i18n="aer_menu.problem_3">Unclean code + missing tasks created organizational problems</li>
+                    </ul>
+                </div>
+
+                <h2 data-i18n="aer_menu.learned_title">What I Learned</h2>
+                <p data-i18n="aer_menu.learned_text">
+                    The development of the Menu and Game Management wasn't really hard to implement. When you have a precise idea of what you'd like to do and how, it's not very hard to implement a working system. The harder part of programming is knowing what you do and organizing your code well. Otherwise, you could get lost and lose more time than if you solved problems when they were fresh in your head.
+                </p>
+            </article>
+
+            <nav class="nav-links">
+                <a href="aer-racers.html" class="nav-link-btn" data-i18n="aer_postmortem.back_project">&larr; Back to Aer Racers</a>
+                <a href="../index.html" class="nav-link-btn" data-i18n="aer_racers.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

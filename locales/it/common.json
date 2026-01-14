@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "about": "Chi sono",
+    "wip": "In corso",
+    "projects": "Progetti",
+    "experience": "Esperienza",
+    "skills": "Competenze",
+    "contact": "Contatto"
+  },
+  "sections": {
+    "wip": "In fase di sviluppo",
+    "published": "Giochi pubblicati",
+    "published_subtitle": "Progetti game jam e personali disponibili su itch.io",
+    "technical": "Progetti tecnici",
+    "technical_subtitle": "Lavori accademici, sviluppo engine e ricerca",
+    "education": "Formazione",
+    "experience": "Esperienza professionale",
+    "skills": "Competenze tecniche"
+  },
+  "skills": {
+    "languages": "Linguaggi",
+    "gamedev": "Game Development",
+    "tools": "IA & Strumenti",
+    "creative": "Creativo"
+  },
+  "contact": {
+    "title": "Lavoriamo insieme",
+    "description": "Cerchi un gameplay programmer che possa guidare team e consegnare esperienze rifinite? Mi piacerebbe sentire del tuo progetto.",
+    "email": "Invia email",
+    "linkedin": "LinkedIn",
+    "cv": "Scarica CV"
+  },
+  "footer": {
+    "copyright": "2026 Sebastien Feser. Costruito con passione."
+  },
+  "error": {
+    "title": "Pagina in costruzione",
+    "message": "Questa pagina non esiste ancora o e in fase di sviluppo. Torna presto per scoprire nuovi contenuti!",
+    "back_home": "← Torna alla home",
+    "contact": "Contattami"
+  }
+}

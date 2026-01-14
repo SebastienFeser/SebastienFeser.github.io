@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "badge": "Disponibile per opportunita",
+    "subtitle": "Game Engineer & Technical Lead",
+    "description": "Costruisco game engine, consegno gameplay rifinito e guido team al successo. Dall'ottimizzazione C++ di basso livello ai prototipi Unity, trasformo sfide tecniche in esperienze di gioco fluide. Workflow potenziato dall'IA, qualita guidata dall'uomo.",
+    "tagline": "Non faccio solo giochi. Progetto i sistemi che li rendono possibili.",
+    "cta_work": "Vedi i miei lavori",
+    "cta_contact": "Contattami",
+    "stat_games": "Giochi pubblicati",
+    "stat_years": "Anni di esperienza",
+    "stat_team": "Membri del team guidati"
+  },
+  "wip": {
+    "engine": {
+      "title": "SebF2DEngine",
+      "description": "Costruzione di un game engine 2D leggero ispirato allo SNES da zero usando C++17 moderno. Questo progetto esplora workflow di sviluppo potenziati dall'IA creando un motore di rendering pixel-perfect con architettura ECS custom, fisica e audio.",
+      "highlight_1": "C++17 / OpenGL 3.3",
+      "highlight_2": "Pixel Perfect (256x224)",
+      "highlight_3": "Architettura ECS Custom",
+      "highlight_4": "Dev potenziato da IA"
+    },
+    "greenhero": {
+      "title": "Green Hero: Challenge Time",
+      "description": "Una collezione di mini-giochi mobile sviluppata per l'associazione \"Mon Éco Pote\". Propone sfide brevi basate su azioni eco-responsabili. I giocatori devono smistare rapidamente i rifiuti, pedalare per caricare una batteria, pulire pannelli solari e altro ancora.",
+      "highlight_1": "Mini-giochi mobile",
+      "highlight_2": "Consapevolezza ecologica",
+      "highlight_3": "Gameplay educativo",
+      "highlight_4": "Mon Éco Pote"
+    }
+  },
+  "games": {
+    "dreamness": {
+      "title": "Dreamness",
+      "description": "Un misterioso platformer 2D con visual pixel-art surreali. Include meccaniche puzzle come duplicazione del personaggio e spostamenti spaziali."
+    },
+    "13th_hour": {
+      "title": "The 13th Hour",
+      "description": "Un'esperienza survival horror. Esplora un edificio abbandonato, prepara un esorcismo e sopravvivi quando il fantasma si risveglia alla Tredicesima Ora."
+    },
+    "forgoten_hero": {
+      "title": "Forgoten Hero",
+      "description": "Pete il netturbino si sveglia su un nastro trasportatore diretto all'inceneritore. Corri, schiva i rifiuti e distruggi i generatori per sopravvivere!"
+    },
+    "gravity_punk": {
+      "title": "Gravity Punk",
+      "description": "Un platformer 2D con inversione di gravita in un mondo cyberpunk al neon. Sei il Soggetto Test G-13, equipaggiato con scarpe anti-gravita per superare prove mortali."
+    }
+  },
+  "technical_projects": {
+    "aer_racers": {
+      "badge": "Console Dev",
+      "title": "Aer Racers",
+      "description": "Un gioco di corse pod multiplayer ispirato a Ghibli per Nintendo Switch usando un engine C++ custom. Direzione di un team di 25 persone come Project Manager, Designer e Gameplay Programmer."
+    },
+    "bachelor": {
+      "badge": "Ricerca",
+      "title": "Tesi di laurea: Biofeedback nei giochi horror",
+      "description": "Analisi di come i dati del battito cardiaco dei giocatori possono influenzare dinamicamente il gameplay in VR horror. Creazione di un'esperienza Unity custom con integrazione biometrica in tempo reale."
+    },
+    "neko": {
+      "badge": "Engine Dev",
+      "title": "Neko Engine",
+      "description": "Contributo a un game engine 3D custom (SDL2 + OpenGL ES 3.0) per Desktop, WebGL2 e Nintendo Switch. Sviluppo di vari tool di ottimizzazione."
+    },
+    "networking": {
+      "badge": "Multiplayer",
+      "title": "Networking FPS",
+      "description": "Costruzione di un FPS multiplayer con Photon PUN. Implementazione di networking UDP, sincronizzazione giocatori, compensazione lag e gestione stato di rete."
+    }
+  },
+  "education": {
+    "degree": "Bachelor of Science in Games Programming",
+    "school": "SAE Institute di Ginevra",
+    "awarded_by": "Rilasciato da Middlesex University",
+    "date": "2018 - 2023 | 180 ECTS",
+    "description": "Formazione completa nello sviluppo di giochi che copre architettura engine, programmazione grafica, sistemi multiplayer e implementazione gameplay."
+  },
+  "experience": {
+    "eco_pote": {
+      "badge": "Attuale",
+      "title": "Gameplay Programmer & Project Lead",
+      "company": "Mon Eco Pote",
+      "date": "Nov 2024 - Presente",
+      "description": "Direzione dello sviluppo di giochi educativi che promuovono abitudini eco-friendly. Gestione di un team di 3-4 persone, integrazione degli artisti nella pipeline e sviluppo di mini-game ispirati a Dumb Ways to Die."
+    },
+    "unige": {
+      "badge": "Attuale",
+      "title": "Sviluppatore",
+      "company": "Universita di Ginevra",
+      "date": "Dic 2025 - Presente",
+      "description": "Lavoro su progetti che coinvolgono IA generativa e workflow di sviluppo moderni. Esplorazione di pratiche di sviluppo potenziate dall'IA e contributo ad applicazioni orientate alla ricerca."
+    },
+    "lausanne": {
+      "title": "Full-Stack Web Developer",
+      "company": "Citta di Losanna",
+      "date": "Feb 2025 - Nov 2025",
+      "description": "Sviluppo di un'applicazione web usando React.js, PHP e tecnologie web moderne. Costruzione di interfacce, implementazione di funzionalita e gestione della logica server."
+    },
+    "athena": {
+      "title": "Sviluppatore",
+      "company": "Athena Technologies",
+      "date": "Feb 2024",
+      "description": "Sviluppo di applicazioni web e test approfonditi con R Studio. Combinazione di implementazione tecnica con analisi dati e supporto al team."
+    },
+    "youtube": {
+      "title": "YouTube Channel Manager",
+      "company": "Lavoratore autonomo",
+      "date": "Sett 2019 - Dic 2020",
+      "description": "Gestione di un canale monetizzato con focus su audience engagement e analisi delle tendenze. Creazione di thumbnail, ottimizzazione dei contenuti e analisi delle metriche di performance."
+    }
+  }
+}

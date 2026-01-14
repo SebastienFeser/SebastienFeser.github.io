@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Sebastien Feser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #2c3e50;
+            background: white;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 70mm 1fr;
+            min-height: 297mm;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px 15px;
+        }
+
+        .photo-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid #e94560;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #e94560;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .sidebar h1 {
+            font-size: 16pt;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .sidebar .title {
+            color: #e94560;
+            font-size: 10pt;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .sidebar-section {
+            margin-bottom: 18px;
+        }
+
+        .sidebar-section h3 {
+            color: #e94560;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            font-size: 8.5pt;
+            gap: 8px;
+        }
+
+        .contact-icon {
+            width: 14px;
+            flex-shrink: 0;
+            opacity: 0.8;
+        }
+
+        .skill-category {
+            margin-bottom: 10px;
+        }
+
+        .skill-category-title {
+            font-size: 8pt;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .skill-tag {
+            background: rgba(233, 69, 96, 0.2);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 7.5pt;
+        }
+
+        .skill-tag.highlight {
+            background: #e94560;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 8.5pt;
+        }
+
+        .language-level {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 7.5pt;
+        }
+
+        .interests-list {
+            font-size: 8.5pt;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px 25px;
+        }
+
+        .section {
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            color: #1a1a2e;
+            font-size: 11pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #e94560;
+        }
+
+        .profile-text {
+            font-size: 9.5pt;
+            color: #34495e;
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 3px solid #e94560;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+        }
+
+        .highlight-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .stat-label {
+            font-size: 7.5pt;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .experience-title {
+            font-weight: bold;
+            font-size: 10pt;
+            color: #1a1a2e;
+        }
+
+        .experience-company {
+            color: #e94560;
+            font-size: 9pt;
+        }
+
+        .experience-date {
+            color: #7f8c8d;
+            font-size: 8pt;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .experience-current {
+            background: #27ae60;
+            color: white;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 7pt;
+            margin-left: 5px;
+        }
+
+        .experience-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-list li {
+            position: relative;
+            padding-left: 12px;
+            font-size: 8.5pt;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .experience-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #e94560;
+        }
+
+        .project-card.featured {
+            grid-column: 1 / -1;
+            border-left-color: #27ae60;
+        }
+
+        .project-title {
+            font-weight: bold;
+            font-size: 9pt;
+            color: #1a1a2e;
+            margin-bottom: 3px;
+        }
+
+        .project-meta {
+            font-size: 7.5pt;
+            color: #e94560;
+            margin-bottom: 4px;
+        }
+
+        .project-desc {
+            font-size: 8pt;
+            color: #666;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 10px;
+        }
+
+        .education-degree {
+            font-weight: bold;
+            font-size: 9.5pt;
+            color: #1a1a2e;
+        }
+
+        .education-school {
+            color: #e94560;
+            font-size: 8.5pt;
+        }
+
+        .education-date {
+            color: #7f8c8d;
+            font-size: 8pt;
+        }
+
+        .education-details {
+            font-size: 8pt;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cv-container {
+                width: 210mm;
+                height: 297mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="photo-container">
+                <div class="photo-placeholder">SF</div>
+                <!-- <img src="../images/photo.jpeg" alt="Sebastien Feser"> -->
+            </div>
+            <h1>SEBASTIEN FESER</h1>
+            <p class="title">Game Engineer & Technical Lead</p>
+
+            <div class="sidebar-section">
+                <h3>Contact</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <span>sebastien.feser@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>+41 78 849 10 66</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Chemin de Montelly 16<br>1263 Crassier, Suisse</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🌐</span>
+                    <span>sebastienfeser.ch</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📅</span>
+                    <span>Né le 15/10/1996</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Compétences</h3>
+                <div class="skill-category">
+                    <div class="skill-category-title">Langages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag highlight">C++</span>
+                        <span class="skill-tag highlight">C#</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">GLSL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Game Dev</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag highlight">Unity</span>
+                        <span class="skill-tag">OpenGL</span>
+                        <span class="skill-tag">SDL2</span>
+                        <span class="skill-tag">SFML</span>
+                        <span class="skill-tag">Photon</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Outils</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">CMake</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Blender</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Méthodes</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scrum</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Git Flow</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Langues</h3>
+                <div class="language-item">
+                    <span>Français</span>
+                    <span class="language-level">Natif</span>
+                </div>
+                <div class="language-item">
+                    <span>Anglais</span>
+                    <span class="language-level">C1</span>
+                </div>
+                <div class="language-item">
+                    <span>Allemand</span>
+                    <span class="language-level">B1</span>
+                </div>
+                <div class="language-item">
+                    <span>Italien</span>
+                    <span class="language-level">B1</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Intérêts</h3>
+                <p class="interests-list">
+                    Piano • Géopolitique • Histoire<br>
+                    World Building • Trekking • Plongée
+                </p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Profil</h2>
+                <p class="profile-text">
+                    Game Engineer diplômé avec 5+ années d'expérience en développement de jeux et d'engines.
+                    Expertise en C++ bas niveau et Unity, avec une expérience avérée de leadership
+                    (direction d'une équipe de 25 personnes). Je combine rigueur technique et vision
+                    produit pour livrer des expériences de jeu performantes et engageantes.
+                </p>
+                <div class="highlight-box">
+                    <div class="highlight-stats">
+                        <div class="stat">
+                            <div class="stat-value">19+</div>
+                            <div class="stat-label">Jeux publiés</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">Personnes dirigées</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5+</div>
+                            <div class="stat-label">Années d'exp.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Expérience Professionnelle</h2>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <span class="experience-title">Développeur</span>
+                            <span class="experience-current">Actuel</span>
+                            <div class="experience-company">Université de Genève</div>
+                        </div>
+                        <span class="experience-date">Déc 2025 - Présent</span>
+                    </div>
+                    <ul class="experience-list">
+                        <li>Développement de projets impliquant l'IA générative</li>
+                        <li>Exploration des workflows de développement augmentés par IA</li>
+                        <li>Contribution à des applications orientées recherche</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <span class="experience-title">Gameplay Programmer & Chef de projet</span>
+                            <span class="experience-current">Actuel</span>
+                            <div class="experience-company">Mon Eco Pote</div>
+                        </div>
+                        <span class="experience-date">Nov 2024 - Présent</span>
+                    </div>
+                    <ul class="experience-list">
+                        <li>Direction d'une équipe de 3-4 personnes (développeurs + artistes)</li>
+                        <li>Développement de mini-jeux éducatifs mobiles avec Unity</li>
+                        <li>Gestion du pipeline de production et intégration des assets</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <span class="experience-title">Développeur Web Full-Stack</span>
+                            <div class="experience-company">Ville de Lausanne</div>
+                        </div>
+                        <span class="experience-date">Fév 2025 - Nov 2025</span>
+                    </div>
+                    <ul class="experience-list">
+                        <li>Développement front-end et back-end (React.js, PHP, JavaScript)</li>
+                        <li>Travail en équipe selon méthodologie SCRUM</li>
+                        <li>Gestion de version avec Git</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <span class="experience-title">Développeur (Stage)</span>
+                            <div class="experience-company">Athena Technologies Sàrl</div>
+                        </div>
+                        <span class="experience-date">Fév 2024</span>
+                    </div>
+                    <ul class="experience-list">
+                        <li>Développement d'une application web</li>
+                        <li>Tests et validation avec R Studio</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Projets Notables</h2>
+                <div class="projects-grid">
+                    <div class="project-card featured">
+                        <div class="project-title">Aer Racers — Nintendo Switch</div>
+                        <div class="project-meta">Chef de projet & Gameplay Programmer • Équipe de 25 personnes</div>
+                        <div class="project-desc">
+                            Jeu de course de pods multijoueur inspiré de Ghibli. Engine C++ custom,
+                            développement de systèmes de waypoints et UI.
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Neko Engine</div>
+                        <div class="project-meta">C++ • SDL2 • OpenGL ES 3.0</div>
+                        <div class="project-desc">
+                            Contribution à un game engine 3D multi-plateforme (Desktop, WebGL2, Switch).
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">19+ Jeux Publiés</div>
+                        <div class="project-meta">Unity • Game Jams • itch.io</div>
+                        <div class="project-desc">
+                            Dont Dreamness, The 13th Hour, Forgoten Hero, Gravity Punk.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Formation</h2>
+                <div class="education-item">
+                    <div class="education-degree">Bachelor of Science in Games Programming (180 ECTS)</div>
+                    <div class="education-school">SAE Institute Genève</div>
+                    <div class="education-date">2018 - 2023</div>
+                    <div class="education-details">
+                        Mémoire : "Impact du biofeedback dans les jeux d'horreur" — Jeu VR avec intégration biométrique
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-degree">Maturité Bilingue Français-Italien</div>
+                    <div class="education-school">Lycée Pareto, Mies</div>
+                    <div class="education-date">2016</div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

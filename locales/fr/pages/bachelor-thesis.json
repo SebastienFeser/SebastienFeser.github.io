@@ -1,0 +1,27 @@
+{
+  "bachelor": {
+    "badge": "Recherche",
+    "title": "Mémoire de Bachelor",
+    "subtitle": "Quel est l'impact du biofeedback dans les jeux d'horreur de survie ?",
+    "overview_title": "Aperçu",
+    "overview_text": "Ce mémoire de recherche explore l'intégration de la technologie de biofeedback dans les jeux d'horreur de survie. L'étude examine comment les données physiologiques telles que la fréquence cardiaque et la conductance cutanée peuvent être utilisées pour ajuster dynamiquement la difficulté du jeu et les éléments atmosphériques, créant une expérience d'horreur plus personnalisée et immersive.",
+    "research_title": "Question de recherche",
+    "research_text": "La question centrale de ce mémoire est : \"Quel est l'impact du biofeedback dans les jeux d'horreur de survie ?\" Cette recherche explore comment le retour physiologique en temps réel peut améliorer l'immersion du joueur et les réponses de peur dans les environnements de jeux d'horreur.",
+    "methodology_title": "Méthodologie",
+    "methodology_text": "La recherche a impliqué le développement d'un prototype de jeu d'horreur intégrant des capteurs de biofeedback. Les réponses physiologiques des joueurs ont été mesurées et analysées pour comprendre comment les adaptations de jeu pilotées par le biofeedback affectent l'expérience de jeu globale.",
+    "resources_title": "Ressources",
+    "thesis_doc_title": "Document de thèse",
+    "thesis_doc_text": "Lisez le mémoire complet explorant l'intégration du biofeedback dans les jeux d'horreur de survie.",
+    "download_thesis": "Télécharger le mémoire (PDF)",
+    "source_code_title": "Code source",
+    "source_code_text": "Explorez l'implémentation et le prototype développés pour ce projet de recherche.",
+    "view_github": "Voir sur GitHub",
+    "key_findings_title": "Résultats clés",
+    "finding_1": "L'intégration du biofeedback peut améliorer significativement l'immersion du joueur dans les jeux d'horreur",
+    "finding_2": "L'ajustement dynamique de la difficulté basé sur les données physiologiques crée des expériences plus personnalisées",
+    "finding_3": "La surveillance de la fréquence cardiaque s'avère efficace pour détecter les réponses de peur des joueurs",
+    "finding_4": "Les défis d'implémentation incluent la précision des capteurs et la latence de réponse",
+    "tech_title": "Technologies utilisées",
+    "back_home": "← Retour à l'accueil"
+  }
+}

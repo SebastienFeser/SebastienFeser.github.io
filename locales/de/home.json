@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "badge": "Offen fur neue Moglichkeiten",
+    "subtitle": "Game Engineer & Technical Lead",
+    "description": "Ich baue Game Engines, liefere ausgefeiltes Gameplay und fuhre Teams zum Erfolg. Von Low-Level C++ Optimierung bis Unity Prototypen verwandle ich technische Herausforderungen in flussige Spielerlebnisse. KI-unterstutzter Workflow, menschlich gesteuerte Qualitat.",
+    "tagline": "Ich mache nicht nur Spiele. Ich entwickle die Systeme, die sie moglich machen.",
+    "cta_work": "Meine Arbeit ansehen",
+    "cta_contact": "Kontakt aufnehmen",
+    "stat_games": "Veroffentlichte Spiele",
+    "stat_years": "Jahre Erfahrung",
+    "stat_team": "Gefuhrte Teammitglieder"
+  },
+  "wip": {
+    "engine": {
+      "title": "SebF2DEngine",
+      "description": "Entwicklung einer leichtgewichtigen SNES-inspirierten 2D Game Engine von Grund auf mit modernem C++17. Dieses Projekt erkundet KI-unterstützte Entwicklungs-Workflows und erstellt eine pixel-perfekte Rendering Engine mit Custom ECS Architektur, Physik und Audio.",
+      "highlight_1": "C++17 / OpenGL 3.3",
+      "highlight_2": "Pixel Perfect (256x224)",
+      "highlight_3": "Custom ECS Architektur",
+      "highlight_4": "KI-unterstützte Entwicklung"
+    },
+    "greenhero": {
+      "title": "Green Hero: Challenge Time",
+      "description": "Eine rasante Mobile Mini-Spielsammlung, entwickelt für den Verein \"Mon Éco Pote\". Bietet kurze, geschicklichkeitsbasierte Herausforderungen rund um umweltbewusste Aktionen. Spieler müssen schnell Müll sortieren, in die Pedale treten um eine Batterie zu laden, Solarpanele reinigen und mehr.",
+      "highlight_1": "Mobile Mini-Spiele",
+      "highlight_2": "Umweltbewusstsein",
+      "highlight_3": "Lehrreiches Gameplay",
+      "highlight_4": "Mon Éco Pote"
+    }
+  },
+  "games": {
+    "dreamness": {
+      "title": "Dreamness",
+      "description": "Ein mysterioser 2D Platformer mit surrealen Pixel-Art Visuals. Features Puzzle-Mechaniken wie Charakter-Duplikation und raumliche Verschiebungen."
+    },
+    "13th_hour": {
+      "title": "The 13th Hour",
+      "description": "Ein Survival Horror Erlebnis. Erkunde ein verlassenes Gebaude, bereite einen Exorzismus vor und uberlebe wenn der Geist zur Dreizehnten Stunde erwacht."
+    },
+    "forgoten_hero": {
+      "title": "Forgoten Hero",
+      "description": "Pete der Mullsammler wacht auf einem Forderband Richtung Verbrennungsanlage auf. Renne, weiche Mull aus und zerstore Generatoren um zu uberleben!"
+    },
+    "gravity_punk": {
+      "title": "Gravity Punk",
+      "description": "Ein Gravity-Flipping 2D Platformer in einer Neon-Cyberpunk Welt. Du bist Testsubjekt G-13, ausgerustet mit Gravity-Shifting Schuhen um todliche Prufungen zu uberstehen."
+    }
+  },
+  "technical_projects": {
+    "aer_racers": {
+      "badge": "Console Dev",
+      "title": "Aer Racers",
+      "description": "Ein Ghibli-inspiriertes Multiplayer Pod Racing Spiel fur Nintendo Switch mit Custom C++ Engine. Fuhrung eines 25-kopfigen Teams als Projektmanager, Designer und Gameplay Programmer."
+    },
+    "bachelor": {
+      "badge": "Forschung",
+      "title": "Bachelorarbeit: Biofeedback in Horror Games",
+      "description": "Analyse wie Puls-Daten der Spieler das Gameplay in VR Horror dynamisch beeinflussen konnen. Entwicklung einer Custom Unity Experience mit Echtzeit-Biometrie Integration."
+    },
+    "neko": {
+      "badge": "Engine Dev",
+      "title": "Neko Engine",
+      "description": "Beitrag zu einer Custom 3D Game Engine (SDL2 + OpenGL ES 3.0) fur Desktop, WebGL2 und Nintendo Switch. Entwicklung verschiedener Optimierungs-Tools."
+    },
+    "networking": {
+      "badge": "Multiplayer",
+      "title": "Networking FPS",
+      "description": "Entwicklung eines Multiplayer FPS mit Photon PUN. Implementation von UDP Networking, Player Sync, Lag Compensation und Networked Game State Management."
+    }
+  },
+  "education": {
+    "degree": "Bachelor of Science in Games Programming",
+    "school": "SAE Institute Genf",
+    "awarded_by": "Verliehen von Middlesex University",
+    "date": "2018 - 2023 | 180 ECTS",
+    "description": "Umfassende Ausbildung in Spieleentwicklung mit Engine-Architektur, Grafik-Programmierung, Multiplayer-Systemen und Gameplay-Implementation."
+  },
+  "experience": {
+    "eco_pote": {
+      "badge": "Aktuell",
+      "title": "Gameplay Programmer & Projektleiter",
+      "company": "Mon Eco Pote",
+      "date": "Nov 2024 - Heute",
+      "description": "Leitung der Entwicklung von Lernspielen zur Forderung umweltfreundlicher Gewohnheiten. Fuhrung eines 3-4 kopfigen Teams, Integration von Kunstlern in die Pipeline und Entwicklung von Mini-Games inspiriert von Dumb Ways to Die."
+    },
+    "unige": {
+      "badge": "Aktuell",
+      "title": "Entwickler",
+      "company": "Universitat Genf",
+      "date": "Dez 2025 - Heute",
+      "description": "Arbeit an Projekten mit generativer KI und modernen Entwicklungs-Workflows. Erforschung von KI-unterstutzten Entwicklungspraktiken und Beitrag zu forschungsorientierten Anwendungen."
+    },
+    "lausanne": {
+      "title": "Full-Stack Web Developer",
+      "company": "Stadt Lausanne",
+      "date": "Feb 2025 - Nov 2025",
+      "description": "Entwicklung einer Webanwendung mit React.js, PHP und modernen Web-Technologien. Erstellung von Interfaces, Implementation von Features und Server-seitige Logik."
+    },
+    "athena": {
+      "title": "Entwickler",
+      "company": "Athena Technologies",
+      "date": "Feb 2024",
+      "description": "Webanwendungs-Entwicklung und umfangreiche Tests mit R Studio. Kombination von technischer Implementation mit Datenanalyse und Team-Support."
+    },
+    "youtube": {
+      "title": "YouTube Channel Manager",
+      "company": "Selbststandig",
+      "date": "Sept 2019 - Dez 2020",
+      "description": "Verwaltung eines monetarisierten Kanals mit Fokus auf Audience Engagement und Trendanalyse. Erstellung von Thumbnails, Content-Optimierung und Performance-Metriken Analyse."
+    }
+  }
+}

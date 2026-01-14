@@ -1,0 +1,76 @@
+{
+  "sae": {
+    "badge": "Ausbildung",
+    "title": "Bachelor of Science in Games Programming",
+    "subtitle": "SAE Institute Genf | Verliehen von Middlesex University",
+    "intro": "Dreijähriges Programm (180 ECTS), das alle Aspekte der professionellen Spieleentwicklung abdeckt, von Low-Level-Engine-Programmierung bis hin zu High-Level-Gameplay-Systemen.",
+
+    "year1": "1. Jahr",
+    "year2": "2. Jahr",
+    "year3": "3. Jahr",
+
+    "gpr4100": {
+      "title": "Einführung in die Spieleprogrammierung",
+      "item1": "C++ Debugging-Prüfung",
+      "item2": "Spielprojekt mit Unity"
+    },
+    "cmn4200": {
+      "title": "Information, Kommunikation und professionelle Medienpraxis",
+      "item1": "Anschreiben verfassen",
+      "item2": "Branchenanalyse",
+      "item3": "Portfolio-Website-Entwicklung"
+    },
+    "gpa4300": {
+      "title": "Grundlagen des Game Design und der Spieleproduktion",
+      "item1": "Spiel mit Fokus auf Game Design und Level Design"
+    },
+    "gpr4400": {
+      "title": "Angewandte Mathematik und Umgebungsprogrammierung",
+      "item1": "Spiel mit prozeduraler Generierung und KI",
+      "item2": "Mathematik- und Physikprüfung",
+      "item3": "Eigene Physik-Engine"
+    },
+    "gpr5100": {
+      "title": "Netzwerkprogrammierung und Tool-Entwicklung",
+      "item1": "Computernetzwerk-Prüfung",
+      "item2": "Online-Multiplayer-Spiel",
+      "item3": "Entwicklungstools für das Spielprojekt des 3. Jahres"
+    },
+    "gpr5204": {
+      "title": "Spieloptimierung, Analyse und Schnittstellen",
+      "item1": "Optimierungen an der Neko-Engine",
+      "item2": "Wöchentliche Präsentationen über Branchenoptimierungen",
+      "item3": "C++ Optimierungs- und Analyseprüfung"
+    },
+    "gpr5300": {
+      "title": "Grafik- und Shader-Programmierung für Spiele",
+      "item1": "Minecraft-ähnliches Spiel mit OpenGL",
+      "item2": "OpenGL Debugging-Prüfung"
+    },
+    "cmn5400": {
+      "title": "Marketing, Businessplanung und Recht",
+      "item1": "Business-Plan und Marketing-Plan Projekt"
+    },
+    "cmn6100": {
+      "title": "Forschungspraxis und Gesellschaft",
+      "item1": "Portfolio-Website über Projekte",
+      "item2": "Branchenprojekt-Präsentation"
+    },
+    "cmn6204": {
+      "title": "Fortgeschrittenes Spezialprojekt",
+      "item1": "Nintendo Switch Spiel mit eigener C++ Engine"
+    },
+    "cmn6302": {
+      "title": "Hauptprojekt (BSc)",
+      "item1": "Bachelorarbeit-Forschungsprojekt"
+    },
+
+    "resources_title": "Ressourcen",
+    "website_title": "SAE Institute Genf",
+    "website_text": "Besuchen Sie die offizielle Website des SAE Institute Genf für weitere Informationen zum Programm.",
+    "visit_website": "Website besuchen",
+
+    "skills_title": "Erworbene Fähigkeiten",
+    "back_home": "← Zurück zur Startseite"
+  }
+}

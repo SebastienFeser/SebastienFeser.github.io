@@ -1,0 +1,27 @@
+{
+  "bachelor": {
+    "badge": "Forschung",
+    "title": "Bachelorarbeit",
+    "subtitle": "Welchen Einfluss hat Biofeedback in Survival-Horror-Spielen?",
+    "overview_title": "Überblick",
+    "overview_text": "Diese Forschungsarbeit untersucht die Integration von Biofeedback-Technologie in Survival-Horror-Spielen. Die Studie erforscht, wie physiologische Daten wie Herzfrequenz und Hautleitfähigkeit genutzt werden können, um die Spielschwierigkeit und atmosphärische Elemente dynamisch anzupassen und so ein personalisiertes und immersiveres Horror-Erlebnis zu schaffen.",
+    "research_title": "Forschungsfrage",
+    "research_text": "Die zentrale Frage dieser Arbeit lautet: \"Welchen Einfluss hat Biofeedback in Survival-Horror-Spielen?\" Dies untersucht, wie physiologisches Echtzeit-Feedback die Spieler-Immersion und Angstreaktionen in Horror-Spielumgebungen verbessern kann.",
+    "methodology_title": "Methodik",
+    "methodology_text": "Die Forschung umfasste die Entwicklung eines Horror-Spiel-Prototyps mit integrierten Biofeedback-Sensoren. Die physiologischen Reaktionen der Spieler wurden gemessen und analysiert, um zu verstehen, wie biofeedback-gesteuerte Spielanpassungen das gesamte Spielerlebnis beeinflussen.",
+    "resources_title": "Ressourcen",
+    "thesis_doc_title": "Thesis-Dokument",
+    "thesis_doc_text": "Lesen Sie die vollständige Arbeit über die Integration von Biofeedback in Survival-Horror-Spielen.",
+    "download_thesis": "Thesis herunterladen (PDF)",
+    "source_code_title": "Quellcode",
+    "source_code_text": "Erkunden Sie die Implementierung und den Prototyp, die für dieses Forschungsprojekt entwickelt wurden.",
+    "view_github": "Auf GitHub ansehen",
+    "key_findings_title": "Wichtigste Ergebnisse",
+    "finding_1": "Biofeedback-Integration kann die Spieler-Immersion in Horror-Spielen erheblich verbessern",
+    "finding_2": "Dynamische Schwierigkeitsanpassung basierend auf physiologischen Daten schafft personalisiertere Erlebnisse",
+    "finding_3": "Herzfrequenzüberwachung erweist sich als effektiv zur Erkennung von Angstreaktionen der Spieler",
+    "finding_4": "Implementierungsherausforderungen umfassen Sensorgenauigkeit und Antwortlatenz",
+    "tech_title": "Verwendete Technologien",
+    "back_home": "← Zurück zur Startseite"
+  }
+}

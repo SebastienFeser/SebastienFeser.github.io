@@ -1,0 +1,27 @@
+{
+  "bachelor": {
+    "badge": "Research",
+    "title": "Bachelor Thesis",
+    "subtitle": "What's the impact of biofeedback in survival horror games?",
+    "overview_title": "Overview",
+    "overview_text": "This research thesis explores the integration of biofeedback technology in survival horror games. The study investigates how physiological data such as heart rate and skin conductance can be used to dynamically adjust game difficulty and atmospheric elements, creating a more personalized and immersive horror experience.",
+    "research_title": "Research Question",
+    "research_text": "The central question of this thesis is: \"What's the impact of biofeedback in survival horror games?\" This explores how real-time physiological feedback can enhance player immersion and fear responses in horror game environments.",
+    "methodology_title": "Methodology",
+    "methodology_text": "The research involved developing a prototype horror game that integrates biofeedback sensors. Player physiological responses were measured and analyzed to understand how biofeedback-driven game adaptations affect the overall gaming experience.",
+    "resources_title": "Resources",
+    "thesis_doc_title": "Thesis Document",
+    "thesis_doc_text": "Read the complete thesis paper exploring biofeedback integration in survival horror games.",
+    "download_thesis": "Download Thesis (PDF)",
+    "source_code_title": "Source Code",
+    "source_code_text": "Explore the implementation and prototype developed for this research project.",
+    "view_github": "View on GitHub",
+    "key_findings_title": "Key Findings",
+    "finding_1": "Biofeedback integration can significantly enhance player immersion in horror games",
+    "finding_2": "Dynamic difficulty adjustment based on physiological data creates more personalized experiences",
+    "finding_3": "Heart rate monitoring proves effective for detecting player fear responses",
+    "finding_4": "Implementation challenges include sensor accuracy and response latency",
+    "tech_title": "Technologies Used",
+    "back_home": "← Back to Home"
+  }
+}

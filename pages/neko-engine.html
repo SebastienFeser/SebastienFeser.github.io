@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/neko-engine">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neko Engine | Sebastien Feser</title>
+    <meta name="description" content="Neko Engine - A custom game engine with SIMD-optimized quaternion operations using Intel Intrinsics for high-performance 3D transformations.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="neko.badge">Game Engine</span>
+                <h1 data-i18n="neko.title">Neko Engine</h1>
+                <p class="hero-subtitle" data-i18n="neko.subtitle">Custom game engine with SIMD-optimized quaternion operations</p>
+            </header>
+
+            <article class="article-content">
+                <h2 data-i18n="neko.intro_title">Introduction</h2>
+                <p data-i18n="neko.intro_text">
+                    During my studies at SAE Institute of Geneva in the Games Programming section, I worked on a custom game engine as part of a two-person team. This article presents an optimization I implemented using Intel Intrinsics to significantly improve quaternion performance.
+                </p>
+
+                <h2 data-i18n="neko.quaternions_title">Understanding Quaternions</h2>
+                <p data-i18n="neko.quaternions_text">
+                    Quaternions are used to represent rotations in 3D space. Based on complex numbers, they aren't intuitive to understand, but they're essential in game development. One of the main reasons we use quaternions is to avoid gimbal lock - the loss of one degree of freedom in rotation.
+                </p>
+
+                <h3 data-i18n="neko.gimbal_title">3 Axes Gimbal Rotation</h3>
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="../assets/images/3AxesGimbal.gif" alt="3 Axes Gimbal Rotation" style="max-width: 300px; border-radius: 8px;">
+                </div>
+
+                <h3 data-i18n="neko.gimbal_lock_title">Gimbal Lock Problem</h3>
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="../assets/images/GimbalLock.gif" alt="Gimbal Lock Demonstration" style="max-width: 300px; border-radius: 8px;">
+                </div>
+
+                <p data-i18n="neko.task_text">
+                    My task was to optimize quaternion operations as much as possible, so I decided to use Intel Intrinsics functions to achieve this.
+                </p>
+
+                <h2 data-i18n="neko.basic_title">Basic Quaternion Implementation</h2>
+                <p data-i18n="neko.basic_text">
+                    The basic implementation of quaternions looks like this:
+                </p>
+
+                <pre><code>struct Quaternion
+{
+    float x;        //4 bytes
+    float y;        //4 bytes
+    float z;        //4 bytes
+    float w;        //4 bytes
+};
+
+static float Dot(const Quaternion& a, const Quaternion& b)
+{
+    return  a.x * b.x +
+            a.y * b.y +
+            a.z * b.z +
+            a.w * b.w;
+}</code></pre>
+
+                <p data-i18n="neko.basic_explain">
+                    The quaternion contains 4 floats representing each value, and the Dot function calculates the dot product by multiplying and summing corresponding components.
+                </p>
+
+                <h2 data-i18n="neko.four_quat_title">FourQuaternion Optimization</h2>
+                <p data-i18n="neko.four_quat_text">
+                    To optimize the code, I created a new struct called FourQuaternion. Instead of doing calculations 4 times with different quaternions, we do it once by aligning values. We use 4 floats because they total 16 bytes - exactly what an XMM register can hold.
+                </p>
+
+                <pre><code>struct alignas(4 * sizeof(float)) FourQuaternion
+{
+    std::array&lt;float, 4&gt; x;       //16 bytes
+    std::array&lt;float, 4&gt; y;       //16 bytes
+    std::array&lt;float, 4&gt; z;       //16 bytes
+    std::array&lt;float, 4&gt; w;       //16 bytes
+};</code></pre>
+
+                <h2 data-i18n="neko.aosoa_title">Array of Structures of Arrays (AoSoA)</h2>
+                <p data-i18n="neko.aosoa_text">
+                    I approached the problem by creating an AoSoA system. Structures of Arrays separate elements into one parallel array per field, making it easier to pack them into SIMD instructions.
+                </p>
+
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="../assets/images/ScalarVsSIMD.png" alt="Scalar vs SIMD comparison" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                </div>
+
+                <p data-i18n="neko.alignment_text">
+                    The reason SoA is better here is because values are aligned in memory, making it faster to load all values in one block instead of accessing each individually:
+                </p>
+
+                <ul>
+                    <li data-i18n="neko.aos_alignment">AoS Alignment: xyzwxyzwxyzwxyzw</li>
+                    <li data-i18n="neko.soa_alignment">SoA Alignment: xxxxyyyyzzzzwwww</li>
+                </ul>
+
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="../assets/images/FourQuaternionsAoSoA.png" alt="FourQuaternions AoSoA Structure" style="max-width: 600px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                </div>
+
+                <h2 data-i18n="neko.intrinsics_title">Intel Intrinsics Implementation</h2>
+                <p data-i18n="neko.intrinsics_text">
+                    Intel Intrinsics are C-style functions that provide access to Intel instructions without writing assembly code. Here's the optimized Dot function:
+                </p>
+
+                <pre><code>static inline std::array&lt;float, 4&gt; Dot(const FourQuat& q1, const FourQuat& q2)
+{
+    alignas(4 * sizeof(float)) std::array&lt;float, 4&gt; result;
+    auto x1 = _mm_load_ps(q1.x.data());
+    auto y1 = _mm_load_ps(q1.y.data());
+    auto z1 = _mm_load_ps(q1.z.data());
+    auto w1 = _mm_load_ps(q1.w.data());
+
+    auto x2 = _mm_load_ps(q2.x.data());
+    auto y2 = _mm_load_ps(q2.y.data());
+    auto z2 = _mm_load_ps(q2.z.data());
+    auto w2 = _mm_load_ps(q2.w.data());
+
+    x1 = _mm_mul_ps(x1, x2);
+    y1 = _mm_mul_ps(y1, y2);
+    z1 = _mm_mul_ps(z1, z2);
+    w1 = _mm_mul_ps(w1, w2);
+
+    x1 = _mm_add_ps(x1, y1);
+    z1 = _mm_add_ps(z1, w1);
+    x1 = _mm_add_ps(x1, z1);
+    _mm_store_ps(result.data(), x1);
+    return result;
+}</code></pre>
+
+                <h3 data-i18n="neko.functions_title">Intel Intrinsics Functions Explained</h3>
+
+                <div class="callout callout-info">
+                    <p><strong>ps</strong> - <span data-i18n="neko.ps_explain">Packed single-precision floating-points (4 × 32-bit floats as a 128-bit value)</span></p>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1rem;">
+                    <p><strong>_mm_load_ps()</strong> - <span data-i18n="neko.load_explain">Loads 16 bytes from memory (4 aligned floats)</span></p>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1rem;">
+                    <p><strong>_mm_mul_ps()</strong> - <span data-i18n="neko.mul_explain">Multiplies 4 floats with 4 other floats simultaneously</span></p>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1rem;">
+                    <p><strong>_mm_add_ps()</strong> - <span data-i18n="neko.add_explain">Adds 4 floats with 4 other floats simultaneously</span></p>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1rem;">
+                    <p><strong>_mm_store_ps()</strong> - <span data-i18n="neko.store_explain">Stores the result back to memory</span></p>
+                </div>
+
+                <h2 data-i18n="neko.results_title">Performance Results</h2>
+                <p data-i18n="neko.results_text">
+                    I created a test that calculates the Dot product of n quaternions using the MSVC compiler with an Intel Core i7 CPU on Windows 10:
+                </p>
+
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="../assets/images/PerfResults.png" alt="Performance Results Chart" style="max-width: 600px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                </div>
+
+                <div class="callout callout-success">
+                    <h4 data-i18n="neko.speedup_title">3-4x Performance Improvement</h4>
+                    <p data-i18n="neko.speedup_text">The FourQuaternion Dot product is between 3 and 4 times faster than the standard Quaternion Dot product - a significant optimization for real-time applications.</p>
+                </div>
+
+                <p data-i18n="neko.assembly_text">
+                    Analysis on Godbolt showed the key difference: the standard Quaternion Dot function used jumps and movss (32-bit), while the FourQuaternion version used movaps (128-bit) with no jumps - confirming proper Intel Intrinsics usage.
+                </p>
+
+                <h2 data-i18n="neko.lessons_title">Lessons Learned</h2>
+                <ul>
+                    <li data-i18n="neko.lesson_1">First experience with low-level SIMD optimization</li>
+                    <li data-i18n="neko.lesson_2">Understanding AoSoA data layouts for cache efficiency</li>
+                    <li data-i18n="neko.lesson_3">Learning Intel Intrinsics and their mapping to assembly</li>
+                    <li data-i18n="neko.lesson_4">Analyzing compiler output to verify optimizations</li>
+                </ul>
+
+                <h2 data-i18n="neko.resources_title">Resources</h2>
+                <div class="callout callout-info">
+                    <h4 data-i18n="neko.godbolt_title">View on Godbolt</h4>
+                    <p data-i18n="neko.godbolt_text">Compare the assembly output of both implementations.</p>
+                    <a href="https://godbolt.org/z/SHBEmn" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: 1rem;" data-i18n="neko.view_godbolt">Open in Godbolt</a>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 1.5rem;">
+                    <h4 data-i18n="neko.quaternion_viz_title">Visualizing Quaternions</h4>
+                    <p data-i18n="neko.quaternion_viz_text">An excellent interactive resource for understanding quaternions visually.</p>
+                    <a href="https://eater.net/quaternions" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: 1rem;" data-i18n="neko.view_quaternions">Visualizing Quaternions</a>
+                </div>
+
+                <h2 data-i18n="neko.tech_title">Technologies Used</h2>
+                <div class="skills-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Intel Intrinsics</span>
+                    <span class="skill-tag">SIMD</span>
+                    <span class="skill-tag">SSE</span>
+                    <span class="skill-tag">MSVC</span>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="neko.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

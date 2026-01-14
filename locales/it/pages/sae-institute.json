@@ -1,0 +1,76 @@
+{
+  "sae": {
+    "badge": "Formazione",
+    "title": "Bachelor of Science in Games Programming",
+    "subtitle": "SAE Institute Ginevra | Rilasciato da Middlesex University",
+    "intro": "Programma triennale (180 ECTS) che copre tutti gli aspetti dello sviluppo professionale di videogiochi, dalla programmazione low-level dei motori ai sistemi di gameplay ad alto livello.",
+
+    "year1": "1° Anno",
+    "year2": "2° Anno",
+    "year3": "3° Anno",
+
+    "gpr4100": {
+      "title": "Introduzione alla programmazione di giochi",
+      "item1": "Esame di debugging C++",
+      "item2": "Progetto di gioco con Unity"
+    },
+    "cmn4200": {
+      "title": "Informazione, comunicazione e pratica professionale dei media",
+      "item1": "Scrittura lettera di presentazione",
+      "item2": "Analisi del settore",
+      "item3": "Sviluppo sito portfolio"
+    },
+    "gpa4300": {
+      "title": "Fondamenti di game design e produzione di giochi",
+      "item1": "Gioco incentrato su game design e level design"
+    },
+    "gpr4400": {
+      "title": "Matematica applicata e programmazione ambientale",
+      "item1": "Gioco con generazione procedurale e IA",
+      "item2": "Esame di matematica e fisica",
+      "item3": "Motore fisico personalizzato"
+    },
+    "gpr5100": {
+      "title": "Programmazione di rete e sviluppo di strumenti",
+      "item1": "Esame sulle reti informatiche",
+      "item2": "Gioco multiplayer online",
+      "item3": "Strumenti di sviluppo per il progetto del 3° anno"
+    },
+    "gpr5204": {
+      "title": "Ottimizzazione, analisi e interfacciamento dei giochi",
+      "item1": "Ottimizzazioni sul motore Neko",
+      "item2": "Presentazioni settimanali sulle ottimizzazioni nel settore",
+      "item3": "Esame di ottimizzazione e analisi C++"
+    },
+    "gpr5300": {
+      "title": "Programmazione grafica e shader per giochi",
+      "item1": "Gioco tipo Minecraft con OpenGL",
+      "item2": "Esame di debugging OpenGL"
+    },
+    "cmn5400": {
+      "title": "Marketing, pianificazione aziendale e diritto",
+      "item1": "Progetto di business plan e piano marketing"
+    },
+    "cmn6100": {
+      "title": "Pratica della ricerca e società",
+      "item1": "Sito portfolio sui progetti",
+      "item2": "Presentazione di un progetto industriale"
+    },
+    "cmn6204": {
+      "title": "Progetto specializzato avanzato",
+      "item1": "Gioco Nintendo Switch con motore C++ personalizzato"
+    },
+    "cmn6302": {
+      "title": "Progetto principale (BSc)",
+      "item1": "Progetto di ricerca per la tesi di laurea"
+    },
+
+    "resources_title": "Risorse",
+    "website_title": "SAE Institute Ginevra",
+    "website_text": "Visita il sito ufficiale del SAE Institute Ginevra per maggiori informazioni sul programma.",
+    "visit_website": "Visita il sito",
+
+    "skills_title": "Competenze acquisite",
+    "back_home": "← Torna alla home"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "sae": {
+    "badge": "Formation",
+    "title": "Bachelor of Science en Programmation de Jeux Vidéo",
+    "subtitle": "SAE Institute Genève | Diplôme délivré par Middlesex University",
+    "intro": "Programme de trois ans (180 ECTS) couvrant tous les aspects du développement professionnel de jeux vidéo, de la programmation bas niveau des moteurs aux systèmes de gameplay haut niveau.",
+
+    "year1": "1ère année",
+    "year2": "2ème année",
+    "year3": "3ème année",
+
+    "gpr4100": {
+      "title": "Introduction à la programmation de jeux",
+      "item1": "Examen de débogage C++",
+      "item2": "Projet de jeu avec Unity"
+    },
+    "cmn4200": {
+      "title": "Information, communication et pratique professionnelle des médias",
+      "item1": "Rédaction de lettre de motivation",
+      "item2": "Analyse de l'industrie",
+      "item3": "Développement de site portfolio"
+    },
+    "gpa4300": {
+      "title": "Fondements du game design et de la production de jeux",
+      "item1": "Jeu axé sur le game design et le level design"
+    },
+    "gpr4400": {
+      "title": "Mathématiques appliquées et programmation d'environnement",
+      "item1": "Jeu avec génération procédurale et IA",
+      "item2": "Examen de mathématiques et physique",
+      "item3": "Moteur physique personnalisé"
+    },
+    "gpr5100": {
+      "title": "Programmation réseau et développement d'outils",
+      "item1": "Examen sur les réseaux informatiques",
+      "item2": "Jeu multijoueur en ligne",
+      "item3": "Outils de développement pour le projet de 3ème année"
+    },
+    "gpr5204": {
+      "title": "Optimisation, analyse et interfaçage de jeux",
+      "item1": "Optimisations sur le moteur Neko",
+      "item2": "Présentations hebdomadaires sur les optimisations dans l'industrie",
+      "item3": "Examen d'optimisation et d'analyse C++"
+    },
+    "gpr5300": {
+      "title": "Programmation graphique et shaders pour les jeux",
+      "item1": "Jeu type Minecraft avec OpenGL",
+      "item2": "Examen de débogage OpenGL"
+    },
+    "cmn5400": {
+      "title": "Marketing, business plan et droit",
+      "item1": "Projet de business plan et plan marketing"
+    },
+    "cmn6100": {
+      "title": "Pratique de la recherche et société",
+      "item1": "Site portfolio présentant les projets",
+      "item2": "Présentation d'un projet industriel"
+    },
+    "cmn6204": {
+      "title": "Projet spécialisé avancé",
+      "item1": "Jeu Nintendo Switch avec moteur C++ personnalisé"
+    },
+    "cmn6302": {
+      "title": "Projet majeur (BSc)",
+      "item1": "Projet de recherche pour le mémoire de bachelor"
+    },
+
+    "resources_title": "Ressources",
+    "website_title": "SAE Institute Genève",
+    "website_text": "Visitez le site officiel de SAE Institute Genève pour plus d'informations sur le programme.",
+    "visit_website": "Visiter le site",
+
+    "skills_title": "Compétences acquises",
+    "back_home": "← Retour à l'accueil"
+  }
+}

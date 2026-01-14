@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aer Racers Post Mortem | Sebastien Feser</title>
+    <meta name="description" content="Post mortem analysis of Aer Racers - A Nintendo Switch racing game developed with a custom C++ engine.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="aer_racers.blog_postmortem_badge">Post Mortem</span>
+                <h1 data-i18n="aer_postmortem.title">Aer Racers Post Mortem</h1>
+                <p class="hero-subtitle" data-i18n="aer_postmortem.subtitle">Complete analysis of the project from start to finish</p>
+            </header>
+
+            <article class="article-content">
+                <h2 data-i18n="aer_postmortem.context_title">Context</h2>
+                <p data-i18n="aer_postmortem.context_text">
+                    This project was developed at the SAE Institute of Geneva during my third year of bachelor in Games Programming. The objectives were to create a game on a custom Game engine in C++ that would run on the Nintendo Switch.
+                </p>
+
+                <h2 data-i18n="aer_postmortem.team_title">Team</h2>
+                <p data-i18n="aer_postmortem.team_intro">For the project, we were 4 main members who worked on the project from start to end:</p>
+                <ul>
+                    <li><strong>Sebastien Feser:</strong> Lead Project, Lead Gameplay Programmer, Lead Designer</li>
+                    <li><strong>Luca Floreau:</strong> Producer, Lead Programmer, Gameplay Programmer</li>
+                    <li><strong>Simon Canas:</strong> Lead Engine Programmer, Lead Tool Programmer</li>
+                    <li><strong>Stephen Grosjean:</strong> DevOps, Gameplay Programmer, Game Designer</li>
+                </ul>
+                <p data-i18n="aer_postmortem.team_total">The entire team counted 25 people working on the project:</p>
+                <ul>
+                    <li>10 Game Artists</li>
+                    <li>2 Audio Engineers</li>
+                    <li>13 Programmers</li>
+                </ul>
+
+                <h2 data-i18n="aer_postmortem.constraints_title">Constraints</h2>
+                <p data-i18n="aer_postmortem.constraints_tech_intro">Technical constraints given by our teacher:</p>
+                <ul>
+                    <li data-i18n="aer_postmortem.constraint_1">Use the Neko engine (custom game engine developed by our teacher and ourselves)</li>
+                    <li data-i18n="aer_postmortem.constraint_2">Develop a game for the Nintendo Switch</li>
+                </ul>
+                <p data-i18n="aer_postmortem.constraints_gameplay_intro">Gameplay constraints:</p>
+                <ul>
+                    <li data-i18n="aer_postmortem.constraint_3">Develop a racing game</li>
+                    <li data-i18n="aer_postmortem.constraint_4">Develop a local multiplayer game</li>
+                </ul>
+
+                <h2 data-i18n="aer_postmortem.project_title">Project Overview</h2>
+                <p data-i18n="aer_postmortem.project_text">
+                    Our project "AerRacers" is a multiplayer pod racing game where the player can go very fast but has to be careful about obstacles. The player has to manage speed - the ship's movements are directly controlled by the joycons joysticks, each stick moving a rotor from the spaceship.
+                </p>
+
+                <h2 data-i18n="aer_postmortem.organization_title">Organization</h2>
+                <p data-i18n="aer_postmortem.organization_text">
+                    We had 5 months to develop this project (September 17th 2020 - May 07th 2021). Every week, we held meetings to track everyone's progress:
+                </p>
+                <ul>
+                    <li data-i18n="aer_postmortem.meeting_1">Wednesday: Meeting with the 4 main team members</li>
+                    <li data-i18n="aer_postmortem.meeting_2">Thursday: Meeting with our teacher Elias Fahran</li>
+                </ul>
+
+                <h2 data-i18n="aer_postmortem.lead_project_title">Lead Project Role</h2>
+                <p data-i18n="aer_postmortem.lead_project_text">
+                    As Lead Project, I had to communicate with every team member and manage the leads. I was also responsible for communication with external members. At the beginning, we accumulated delays because members met problems with their tasks. To catch up, we reorganized our planning in December and cut some features. After that, we managed to meet our deadlines.
+                </p>
+
+                <h2 data-i18n="aer_postmortem.lead_designer_title">Lead Designer Role</h2>
+
+                <h3 data-i18n="aer_postmortem.references_title">Gameplay References</h3>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/Mario_Kart_8.png" alt="Mario Kart 8" style="max-width: 300px; margin-bottom: 1rem;">
+                    <img src="../assets/images/aer-racers/MK8Gif.gif" alt="Mario Kart 8 Gameplay" style="max-width: 100%; border-radius: 8px;">
+                    <p data-i18n="aer_postmortem.ref_mk8_text">We were inspired by Mario Kart 8 for the simple UI and level design.</p>
+                </div>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/SE1RLogo.png" alt="Star Wars Episode I Racer" style="max-width: 300px; margin-bottom: 1rem;">
+                    <img src="../assets/images/aer-racers/SWE1R-min.gif" alt="SW Episode I Racer Gameplay" style="max-width: 100%; border-radius: 8px;">
+                    <p data-i18n="aer_postmortem.ref_swe1r_text">Our main reference. We got inspired by the speed and open levels.</p>
+                </div>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/WipeoutLogo.png" alt="Wipeout" style="max-width: 300px; margin-bottom: 1rem;">
+                    <img src="../assets/images/aer-racers/Wipeout.gif" alt="Wipeout Gameplay" style="max-width: 100%; border-radius: 8px;">
+                    <p data-i18n="aer_postmortem.ref_wipeout_text">We got inspired by the smooth camera and vehicle reactions.</p>
+                </div>
+
+                <h3 data-i18n="aer_postmortem.art_refs_title">Art References</h3>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/PorcoRosso.png" alt="Porco Rosso" style="max-width: 300px; margin-bottom: 1rem;">
+                    <img src="../assets/images/aer-racers/porco.png" alt="Porco Rosso Ships" style="max-width: 100%; border-radius: 8px;">
+                    <p data-i18n="aer_postmortem.ref_porco_text">We got inspired by the Porco Rosso ships with a 1930s look.</p>
+                </div>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/RimeLogo.svg" alt="Rime" style="max-width: 300px; margin-bottom: 1rem;">
+                    <img src="../assets/images/aer-racers/rime.png" alt="Rime Visual Style" style="max-width: 100%; border-radius: 8px;">
+                    <p data-i18n="aer_postmortem.ref_rime_text">Inspired us for the low poly look and colorful environments.</p>
+                </div>
+
+                <h3 data-i18n="aer_postmortem.concept_title">Concept</h3>
+                <p data-i18n="aer_postmortem.concept_intro">We decided to develop our game around these basic rules:</p>
+                <ul>
+                    <li data-i18n="aer_postmortem.concept_1">Pod racing multiplayer game</li>
+                    <li data-i18n="aer_postmortem.concept_2">Ships move fast</li>
+                    <li data-i18n="aer_postmortem.concept_3">Movements with the joycon's sticks</li>
+                </ul>
+                <p data-i18n="aer_postmortem.concept_mechanics">We thought about mechanics like destructible ships, boosts, and health bars, but only kept local multiplayer due to development delays.</p>
+
+                <h3 data-i18n="aer_postmortem.level_design_title">Level Design</h3>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="../assets/images/aer-racers/leveldesign.png" alt="Level Design" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                <p data-i18n="aer_postmortem.level_design_text">
+                    We worked on level design using Unity Engine with two different scenes: a Playground for testing 3Cs and a Level Design scene for the final level.
+                </p>
+
+                <h2 data-i18n="aer_postmortem.lead_programmer_title">Lead Gameplay Programmer Role</h2>
+                <p data-i18n="aer_postmortem.programmer_intro">The gameplay development was split into two parts:</p>
+                <ul>
+                    <li data-i18n="aer_postmortem.dev_part_1">3C and Level Design using Unity</li>
+                    <li data-i18n="aer_postmortem.dev_part_2">Game features & exportation of Unity code to Neko Engine</li>
+                </ul>
+
+                <h3 data-i18n="aer_postmortem.camera_title">Camera Development</h3>
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 2rem 0;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <p data-i18n="aer_postmortem.camera_text">
+                            To make a fun camera, I had the idea to make it behave like a driver in a car. If the ship accelerates, the camera would lag behind. I imagined a spring system linking the ship and camera. The development of this system took more than 2 months due to glitching issues. In the end, we used a simpler SmoothDamp function.
+                        </p>
+                    </div>
+                    <div style="flex: 0 0 auto;">
+                        <img src="../assets/images/aer-racers/car.png" alt="Car concept" style="max-width: 200px;">
+                        <img src="../assets/images/aer-racers/RessortVoiture.png" alt="Spring system" style="max-width: 200px;">
+                    </div>
+                </div>
+
+                <h3 data-i18n="aer_postmortem.neko_title">Development in Neko</h3>
+                <p data-i18n="aer_postmortem.neko_text">
+                    After Unity development, I worked on the Neko Engine to implement missing features. Stephen worked on Unity code implementation and Audio, while I worked on menu and game management and the waypoint system.
+                </p>
+
+                <div class="callout callout-info">
+                    <h4 data-i18n="aer_postmortem.related_posts_title">Related Blog Posts</h4>
+                    <ul>
+                        <li><a href="aer-racers-waypoint.html" data-i18n="aer_postmortem.link_waypoint">Waypoint System for player placement</a></li>
+                        <li><a href="aer-racers-menu-ui.html" data-i18n="aer_postmortem.link_menu">Menu & Game Management</a></li>
+                    </ul>
+                </div>
+
+                <h2 data-i18n="aer_postmortem.conclusion_title">Conclusion</h2>
+
+                <h3 data-i18n="aer_postmortem.soft_skills_title">Soft Skills Learned</h3>
+                <p data-i18n="aer_postmortem.soft_skills_text">
+                    I learned about my strengths and weaknesses. I have strong logic skills - it's not hard for me to create working code when I know what I'm doing. I also learned that I preferred working on systems instead of gameplay features. The quarantine due to COVID-19 had a huge impact on my motivation and working efficiency.
+                </p>
+
+                <h3 data-i18n="aer_postmortem.work_skills_title">Work Skills</h3>
+                <p data-i18n="aer_postmortem.work_skills_text">
+                    A skill I missed was knowledge in maths that could help solve simple problems. I learned that I still have a lot of work to do to be a better programmer. It's also very important to organize code well and be more curious about others' code.
+                </p>
+
+                <div class="callout callout-warning">
+                    <h4 data-i18n="aer_postmortem.lessons_title">Key Lessons</h4>
+                    <ul>
+                        <li data-i18n="aer_postmortem.lesson_1">Define game design and concept as fast as possible, especially the MVP</li>
+                        <li data-i18n="aer_postmortem.lesson_2">Iterate on gameplay frequently and create tests often</li>
+                        <li data-i18n="aer_postmortem.lesson_3">Don't stay too long on one task - ask for help early</li>
+                        <li data-i18n="aer_postmortem.lesson_4">Be curious about colleagues' code to understand it better</li>
+                        <li data-i18n="aer_postmortem.lesson_5">Ask precise questions when blocked - a 3-day problem might be solved in 10 minutes by a teammate</li>
+                    </ul>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="aer-racers.html" class="nav-link-btn" data-i18n="aer_postmortem.back_project">&larr; Back to Aer Racers</a>
+                <a href="../index.html" class="nav-link-btn" data-i18n="aer_racers.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('mobile-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

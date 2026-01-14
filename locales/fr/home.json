@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "badge": "Disponible pour opportunites",
+    "subtitle": "Game Engineer & Technical Lead",
+    "description": "Je construis des game engines, livre du gameplay soigne et dirige des equipes. De l'optimisation C++ bas niveau aux prototypes Unity, je transforme les defis techniques en experiences fluides. Workflow augmente par l'IA, qualite pilotee par l'humain.",
+    "tagline": "Je ne fais pas que des jeux. J'ingenierie les systemes qui les rendent possibles.",
+    "cta_work": "Voir mes travaux",
+    "cta_contact": "Me contacter",
+    "stat_games": "Jeux publies",
+    "stat_years": "Annees d'experience",
+    "stat_team": "Personnes dirigees"
+  },
+  "wip": {
+    "engine": {
+      "title": "SebF2DEngine",
+      "description": "Construction d'un game engine 2D inspiré de la SNES en C++17 moderne. Ce projet explore les workflows de développement augmentés par l'IA tout en créant un moteur de rendu pixel-perfect avec une architecture ECS custom, physique et audio.",
+      "highlight_1": "C++17 / OpenGL 3.3",
+      "highlight_2": "Pixel Perfect (256x224)",
+      "highlight_3": "Architecture ECS custom",
+      "highlight_4": "Dév augmenté par IA"
+    },
+    "greenhero": {
+      "title": "Green Hero: Challenge Time",
+      "description": "Une collection de mini-jeux mobiles développée pour l'association \"Mon Éco Pote\". Propose des défis courts basés sur des actions éco-responsables. Les joueurs doivent trier les déchets rapidement, pédaler pour charger une batterie, nettoyer des panneaux solaires, et plus encore.",
+      "highlight_1": "Mini-jeux mobiles",
+      "highlight_2": "Sensibilisation écologique",
+      "highlight_3": "Gameplay éducatif",
+      "highlight_4": "Mon Éco Pote"
+    }
+  },
+  "games": {
+    "dreamness": {
+      "title": "Dreamness",
+      "description": "Un platformer 2D mysterieux avec des visuels pixel-art surrealistes. Inclut des mecaniques de puzzle comme la duplication de personnage et les decalages spatiaux."
+    },
+    "13th_hour": {
+      "title": "The 13th Hour",
+      "description": "Une experience survival horror. Explorez un batiment abandonne, preparez un exorcisme et survivez quand le fantome se reveille a la Treizieme Heure."
+    },
+    "forgoten_hero": {
+      "title": "Forgoten Hero",
+      "description": "Pete l'eboueur se reveille sur un tapis roulant vers l'incinerateur. Courez, esquivez les dechets et detruisez les generateurs pour survivre !"
+    },
+    "gravity_punk": {
+      "title": "Gravity Punk",
+      "description": "Un platformer 2D avec inversion de gravite dans un monde cyberpunk neon. Vous etes le Sujet Test G-13, equipe de chaussures anti-gravite pour survivre aux epreuves mortelles."
+    }
+  },
+  "technical_projects": {
+    "aer_racers": {
+      "badge": "Console Dev",
+      "title": "Aer Racers",
+      "description": "Un jeu de course de pods multijoueur inspire de Ghibli pour Nintendo Switch utilisant un engine C++ custom. Direction d'une equipe de 25 personnes en tant que Chef de projet, Designer et Gameplay Programmer."
+    },
+    "bachelor": {
+      "badge": "Recherche",
+      "title": "These de Bachelor : Biofeedback dans les jeux d'horreur",
+      "description": "Analyse de comment les donnees de pouls des joueurs peuvent influencer dynamiquement le gameplay en VR horreur. Creation d'une experience Unity custom avec integration biometrique en temps reel."
+    },
+    "neko": {
+      "badge": "Engine Dev",
+      "title": "Neko Engine",
+      "description": "Contribution a un game engine 3D custom (SDL2 + OpenGL ES 3.0) ciblant Desktop, WebGL2 et Nintendo Switch. Developpement de divers outils d'optimisation."
+    },
+    "networking": {
+      "badge": "Multijoueur",
+      "title": "Networking FPS",
+      "description": "Construction d'un FPS multijoueur avec Photon PUN. Implementation du networking UDP, synchronisation joueurs, compensation de lag et gestion d'etat reseau."
+    }
+  },
+  "education": {
+    "degree": "Bachelor of Science in Games Programming",
+    "school": "SAE Institute de Genève",
+    "awarded_by": "Délivré par Middlesex University",
+    "date": "2018 - 2023 | 180 ECTS",
+    "description": "Formation complète en développement de jeux couvrant l'architecture moteur, la programmation graphique, les systèmes multijoueur et l'implémentation gameplay."
+  },
+  "experience": {
+    "eco_pote": {
+      "badge": "Actuel",
+      "title": "Gameplay Programmer & Chef de projet",
+      "company": "Mon Eco Pote",
+      "date": "Nov 2024 - Present",
+      "description": "Direction du developpement de jeux educatifs promouvant les habitudes eco-responsables. Gestion d'une equipe de 3-4 personnes, integration des artistes dans le pipeline et developpement de mini-jeux inspires de Dumb Ways to Die."
+    },
+    "unige": {
+      "badge": "Actuel",
+      "title": "Developpeur",
+      "company": "Universite de Geneve",
+      "date": "Dec 2025 - Present",
+      "description": "Travail sur des projets impliquant l'IA generative et les workflows de developpement modernes. Exploration des pratiques de developpement augmente par l'IA et contribution a des applications orientees recherche."
+    },
+    "lausanne": {
+      "title": "Developpeur Web Full-Stack",
+      "company": "Ville de Lausanne",
+      "date": "Fev 2025 - Nov 2025",
+      "description": "Developpement d'une application web utilisant React.js, PHP et technologies web modernes. Construction d'interfaces, implementation de fonctionnalites et gestion de la logique serveur."
+    },
+    "athena": {
+      "title": "Developpeur",
+      "company": "Athena Technologies",
+      "date": "Fev 2024",
+      "description": "Developpement d'applications web et tests approfondis avec R Studio. Combinaison d'implementation technique avec analyse de donnees et support d'equipe."
+    },
+    "youtube": {
+      "title": "Gestionnaire de chaine YouTube",
+      "company": "Independant",
+      "date": "Sept 2019 - Dec 2020",
+      "description": "Gestion d'une chaine monetisee avec focus sur l'engagement audience et l'analyse des tendances. Creation de miniatures, optimisation du contenu et analyse des metriques de performance."
+    }
+  }
+}
