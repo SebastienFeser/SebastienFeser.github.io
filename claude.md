@@ -112,6 +112,10 @@ The key path (e.g., `sections.experience`) corresponds to the JSON structure:
    - German: ä, ö, ü, ß (e.g., "Über", "Fähigkeiten", "Zurück", "für")
    - Italian: à, è, é, ì, ò, ù (e.g., "Perché", "è", "più")
    - Use Unicode characters directly in JSON files, NOT HTML entities
+7. **Translations must sound natural in each language:**
+   - Don't translate word-for-word - adapt the meaning to sound natural
+   - Stay as close as possible to the original meaning
+   - Example: "I build game engines and deliver polished gameplay" should NOT be "Je construis des game engines et livre du gameplay soigné" (too literal) but rather "Je conçois des moteurs de jeu et développe du gameplay abouti" (natural French)
 
 ### Modifying Translations
 

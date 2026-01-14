@@ -167,12 +167,16 @@ p {
     max-width: var(--container-lg);
     margin: 0 auto;
     padding: var(--spacing-xl);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .container-wide {
     max-width: var(--container-xl);
     margin: 0 auto;
     padding: var(--spacing-xl);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .section {
@@ -203,6 +207,8 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .site-logo {
@@ -220,6 +226,8 @@ p {
     display: flex;
     gap: var(--spacing-lg);
     align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .nav-link {
@@ -239,6 +247,7 @@ p {
 .social-links {
     display: flex;
     gap: var(--spacing-md);
+    align-items: center;
 }
 
 .social-link {
@@ -248,7 +257,7 @@ p {
     width: 40px;
     height: 40px;
     border-radius: var(--radius-full);
-    background: var(--bg-tertiary);
+    background: transparent;
     transition: all var(--transition-fast);
 }
 
@@ -842,53 +851,36 @@ li {
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
-@media (max-width: 768px) {
-    :root {
-        font-size: 14px;
-    }
-
-    .container,
-    .container-wide {
-        padding: var(--spacing-md);
-    }
-
-    .header-content {
-        padding: var(--spacing-sm) var(--spacing-md);
+@media (max-width: 1024px) {
+    .main-nav {
         gap: var(--spacing-sm);
     }
 
-    .site-logo {
-        font-size: 1.2rem;
+    .nav-link {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.85rem;
     }
 
+    .lang-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .social-links {
+        gap: var(--spacing-sm);
+    }
+
+    .social-links .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 900px) {
     .main-nav {
         display: none;
     }
 
-    .social-links {
-        gap: var(--spacing-xs);
-    }
-
-    .social-link {
-        width: 32px;
-        height: 32px;
-    }
-
-    .social-link img {
-        width: 16px;
-        height: 16px;
-    }
-
-    .lang-selector {
-        gap: 2px;
-    }
-
-    .lang-btn {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        font-size: 0.75rem;
-    }
-
-    /* Mobile hamburger menu */
     .mobile-menu-toggle {
         display: flex;
         flex-direction: column;
@@ -927,6 +919,54 @@ li {
     .main-nav.mobile-open .nav-link {
         padding: var(--spacing-sm) var(--spacing-md);
         text-align: center;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+
+    .container,
+    .container-wide {
+        padding: var(--spacing-md);
+    }
+
+    .header-content {
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .site-logo {
+        font-size: 1.2rem;
+    }
+
+    .social-links {
+        gap: var(--spacing-xs);
+    }
+
+    .social-links .btn {
+        display: none;
+    }
+
+    .social-link {
+        width: 32px;
+        height: 32px;
+    }
+
+    .social-link img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .lang-selector {
+        gap: 2px;
+    }
+
+    .lang-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.75rem;
     }
 
     .hero {
@@ -957,6 +997,70 @@ li {
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-enhanced {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.25rem;
+    }
+
+    .hero-content .hero-description {
+        max-width: 100%;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .hero-avatar {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .featured-project {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-project::before {
+        top: 10px;
+        right: -40px;
+    }
+
+    .carousel-btn {
+        display: none;
+    }
+
+    .carousel-dots {
+        margin-top: var(--spacing-md);
+    }
+
+    .education-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .experience-header {
+        flex-direction: column;
+    }
+
+    .lang-selector {
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 
@@ -1779,5 +1883,203 @@ a.education-card:focus {
         flex: 0 0 auto;
         width: 100%;
         max-width: 250px;
+    }
+}
+
+/* ============================================
+   MON ECO POTE PAGE STYLES
+   ============================================ */
+
+/* Current badge variant (green) */
+.hero-badge--current {
+    background: var(--success) !important;
+}
+
+/* Placeholder image for future screenshots */
+.placeholder-image {
+    width: 100%;
+    min-height: 250px;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+    border: 2px dashed var(--accent-secondary);
+}
+
+.placeholder-content {
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+/* Mini-games grid */
+.minigames-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.minigame-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    border: 1px solid var(--accent-secondary);
+    transition: all var(--transition-normal);
+}
+
+.minigame-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+}
+
+.minigame-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    filter: grayscale(0);
+}
+
+.minigame-card h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+.minigame-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Roles grid */
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.role-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border-left: 3px solid var(--accent);
+}
+
+.role-card h4 {
+    color: var(--accent);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+}
+
+.role-card ul {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+}
+
+.role-card li {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+}
+
+/* Tools grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.tool-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.tool-item strong {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.tool-item span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Tech badges */
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0 var(--spacing-xl);
+}
+
+.tech-badge {
+    background: var(--accent-secondary);
+    color: var(--text-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Challenge items */
+.challenge-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    border-left: 3px solid var(--warning);
+}
+
+.challenge-item h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.05rem;
+}
+
+.challenge-item p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Success callout variant */
+.callout-success {
+    border-left-color: var(--success);
+    background: rgba(74, 222, 128, 0.1);
+}
+
+.callout-success h4 {
+    color: var(--success);
+}
+
+/* Text utilities */
+.text-muted {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .minigames-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -25,17 +25,17 @@
   },
   "contact": {
     "title": "Lavoriamo insieme",
-    "description": "Cerchi un gameplay programmer che possa guidare team e consegnare esperienze rifinite? Mi piacerebbe sentire del tuo progetto.",
+    "description": "Una sfida tecnica o un gioco da pubblicare? Parliamone.",
     "email": "Invia email",
     "linkedin": "LinkedIn",
     "cv": "Scarica CV"
   },
   "footer": {
-    "copyright": "2026 Sebastien Feser. Costruito con passione."
+    "copyright": "2026 Sébastien Feser. Costruito con passione."
   },
   "error": {
     "title": "Pagina in costruzione",
-    "message": "Questa pagina non esiste ancora o e in fase di sviluppo. Torna presto per scoprire nuovi contenuti!",
+    "message": "Questa pagina non esiste ancora o è in fase di sviluppo. Torna presto per scoprire nuovi contenuti!",
     "back_home": "← Torna alla home",
     "contact": "Contattami"
   }

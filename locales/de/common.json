@@ -25,7 +25,7 @@
   },
   "contact": {
     "title": "Lass uns zusammenarbeiten",
-    "description": "Suchen Sie einen Gameplay Programmer der Teams führen und polierte Erlebnisse liefern kann? Ich würde gerne von Ihrem Projekt hören.",
+    "description": "Eine technische Herausforderung oder ein Spiel das fertig werden muss? Lass uns reden.",
     "email": "E-Mail senden",
     "linkedin": "LinkedIn",
     "cv": "CV herunterladen"
@@ -35,7 +35,7 @@
   },
   "error": {
     "title": "Seite im Aufbau",
-    "message": "Diese Seite existiert noch nicht oder befindet sich in Entwicklung. Kommen Sie bald wieder, um neue Inhalte zu entdecken!",
+    "message": "Diese Seite existiert noch nicht oder befindet sich in Entwicklung. Schau bald wieder vorbei, um neue Inhalte zu entdecken!",
     "back_home": "← Zurück zur Startseite",
     "contact": "Kontakt aufnehmen"
   }

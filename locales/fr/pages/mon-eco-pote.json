@@ -1,0 +1,76 @@
+{
+  "eco_pote": {
+    "badge": "Actuel",
+    "title": "Green Hero: Challenge Time",
+    "subtitle": "Mini-jeux mobiles éducatifs pour Mon Éco Pote",
+    "placeholder_image": "Captures d'écran et vidéos de gameplay à venir",
+    "intro": "Green Hero: Challenge Time est une collection de mini-jeux mobiles développée pour l'association « Mon Éco Pote ». Les joueurs affrontent des défis rapides basés sur des gestes éco-responsables, apprenant les bons réflexes environnementaux tout en s'amusant.",
+
+    "highlights_title": "Points clés du projet",
+    "highlight_1": "Collection de mini-jeux mobiles (Unity + C#)",
+    "highlight_2": "Équipe de 3-4 personnes (taille variable)",
+    "highlight_3": "Double rôle : Gameplay Programmer & Chef de projet",
+    "highlight_4": "Version beta jouable",
+
+    "project_title": "Le Projet",
+    "project_desc": "Mon Éco Pote est une association dédiée à la promotion des gestes éco-responsables. Green Hero: Challenge Time est leur jeu mobile phare, conçu pour rendre la sensibilisation environnementale ludique et accessible à travers des mini-jeux arcade rapides.",
+
+    "minigames_title": "Mini-Jeux",
+    "minigames_desc": "Le jeu propose plusieurs défis basés sur l'adresse, notamment :",
+    "minigame_trash_title": "Tri des déchets",
+    "minigame_trash_desc": "Triez les déchets qui tombent dans les bonnes poubelles le plus vite possible avant la fin du temps.",
+    "minigame_bike_title": "Pédalage énergétique",
+    "minigame_bike_desc": "Pédalez à toute vitesse pour charger une batterie et alimenter des appareils en énergie propre.",
+    "minigame_solar_title": "Panneaux solaires",
+    "minigame_solar_desc": "Nettoyez les panneaux solaires sales pour maximiser la production d'énergie avant le coucher du soleil.",
+    "minigames_more": "Et plusieurs autres mini-jeux à découvrir...",
+
+    "role_title": "Mon Rôle",
+    "role_intro": "En tant que Gameplay Programmer & Chef de projet, j'occupe une double fonction sur ce projet :",
+
+    "role_programmer_title": "Gameplay Programmer",
+    "role_programmer_1": "Implémentation des mécaniques de mini-jeux et des boucles de gameplay",
+    "role_programmer_2": "Construction d'une architecture modulaire (un script par mini-jeu)",
+    "role_programmer_3": "Garantie de la qualité et maintenabilité du code",
+    "role_programmer_4": "Optimisation mobile et performance",
+
+    "role_lead_title": "Chef de projet",
+    "role_lead_1": "Coordination d'une équipe à taille variable (3-4 membres)",
+    "role_lead_2": "Gestion des tâches et sprints via Jira",
+    "role_lead_3": "Rédaction de documentation technique et de design",
+    "role_lead_4": "Intégration des contributions artistiques dans le pipeline",
+
+    "team_title": "Équipe & Méthodologie",
+    "team_desc": "Travailler avec une équipe de taille variable demande de la flexibilité et une communication claire. J'ai mis en place des workflows qui s'adaptent aux disponibilités changeantes tout en maintenant la dynamique du projet.",
+
+    "tool_jira": "Gestion des tâches & planification des sprints",
+    "tool_teams": "Communication d'équipe & réunions",
+    "tool_git": "Contrôle de version & collaboration code",
+
+    "tech_title": "Stack Technique",
+    "architecture_title": "Architecture",
+    "architecture_desc": "Le projet utilise une architecture modulaire où chaque mini-jeu est autonome dans son propre script. Cette approche permet aux membres de l'équipe de travailler sur différents mini-jeux simultanément sans conflits, et facilite l'ajout de nouveaux jeux à la collection.",
+
+    "challenges_title": "Défis & Solutions",
+
+    "challenge_1_title": "Coordination d'équipe variable",
+    "challenge_1_desc": "Gérer une équipe dont la taille change entre les phases nécessite une planification flexible. J'ai mis en place une documentation claire et des tâches modulaires pour que le travail puisse continuer sereinement, peu importe qui est disponible.",
+
+    "challenge_2_title": "Ressources artistiques limitées",
+    "challenge_2_desc": "Avec peu d'artistes dans l'équipe, je me suis concentré sur des assets de programmeur et des systèmes de placeholders facilement remplaçables quand les assets finaux arrivent. Cela permet de continuer le développement sans être bloqué par les visuels.",
+
+    "challenge_3_title": "Cohérence du code",
+    "challenge_3_desc": "Assurer une qualité de code constante dans l'équipe a nécessité l'établissement de guidelines de codage claires et la mise en place de revues de code régulières. Cela aide à maintenir une codebase propre et maintenable.",
+
+    "challenge_4_title": "Design de difficulté & accessibilité",
+    "challenge_4_desc": "Équilibrer les courbes de difficulté et l'accessibilité pour un large public (y compris les enfants) a nécessité des tests itératifs et un ajustement minutieux des paramètres de jeu pour garantir du fun sans frustration.",
+
+    "challenge_5_title": "Documentation technique",
+    "challenge_5_desc": "Créer des documents techniques et de design complets assure le transfert de connaissances et aide à intégrer rapidement les nouveaux membres. J'ai établi des templates et processus pour une documentation cohérente.",
+
+    "status_title": "Statut actuel",
+    "status_desc": "Le projet est actuellement en beta jouable avec le gameplay de base implémenté. Les assets visuels sont en cours de finalisation, et nous itérons sur l'équilibrage de la difficulté en fonction des retours de playtest.",
+
+    "back_home": "← Retour à l'accueil"
+  }
+}

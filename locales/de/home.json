@@ -1,27 +1,27 @@
 {
   "hero": {
-    "badge": "Offen fur neue Moglichkeiten",
+    "badge": "Offen für neue Möglichkeiten",
     "subtitle": "Game Engineer & Technical Lead",
-    "description": "Ich baue Game Engines, liefere ausgefeiltes Gameplay und fuhre Teams zum Erfolg. Von Low-Level C++ Optimierung bis Unity Prototypen verwandle ich technische Herausforderungen in flussige Spielerlebnisse. KI-unterstutzter Workflow, menschlich gesteuerte Qualitat.",
-    "tagline": "Ich mache nicht nur Spiele. Ich entwickle die Systeme, die sie moglich machen.",
+    "description": "Ich entwickle Game Engines, liefere ausgefeiltes Gameplay und führe Teams zum Erfolg. Von Low-Level C++ Optimierung bis hin zu Unity-Prototypen verwandle ich technische Herausforderungen in flüssige Spielerlebnisse. KI-gestützter Workflow, menschlich garantierte Qualität.",
+    "tagline": "Ich mache nicht nur Spiele. Ich entwickle die Systeme, die sie erst möglich machen.",
     "cta_work": "Meine Arbeit ansehen",
     "cta_contact": "Kontakt aufnehmen",
-    "stat_games": "Veroffentlichte Spiele",
+    "stat_games": "Veröffentlichte Spiele",
     "stat_years": "Jahre Erfahrung",
-    "stat_team": "Gefuhrte Teammitglieder"
+    "stat_team": "Geführte Teammitglieder"
   },
   "wip": {
     "engine": {
       "title": "SebF2DEngine",
-      "description": "Entwicklung einer leichtgewichtigen SNES-inspirierten 2D Game Engine von Grund auf mit modernem C++17. Dieses Projekt erkundet KI-unterstützte Entwicklungs-Workflows und erstellt eine pixel-perfekte Rendering Engine mit Custom ECS Architektur, Physik und Audio.",
+      "description": "Entwicklung einer SNES-inspirierten 2D Game Engine von Grund auf mit modernem C++17. Dieses Projekt erkundet KI-gestützte Entwicklungs-Workflows und erstellt eine pixel-perfekte Rendering Engine mit eigener ECS-Architektur, Physik und Audio.",
       "highlight_1": "C++17 / OpenGL 3.3",
       "highlight_2": "Pixel Perfect (256x224)",
-      "highlight_3": "Custom ECS Architektur",
-      "highlight_4": "KI-unterstützte Entwicklung"
+      "highlight_3": "Eigene ECS-Architektur",
+      "highlight_4": "KI-gestützte Entwicklung"
     },
     "greenhero": {
       "title": "Green Hero: Challenge Time",
-      "description": "Eine rasante Mobile Mini-Spielsammlung, entwickelt für den Verein \"Mon Éco Pote\". Bietet kurze, geschicklichkeitsbasierte Herausforderungen rund um umweltbewusste Aktionen. Spieler müssen schnell Müll sortieren, in die Pedale treten um eine Batterie zu laden, Solarpanele reinigen und mehr.",
+      "description": "Eine rasante Mobile Mini-Spielsammlung für den Verein « Mon Éco Pote ». Bietet kurze, geschicklichkeitsbasierte Herausforderungen rund um umweltbewusste Aktionen. Spieler müssen schnell Müll sortieren, in die Pedale treten um eine Batterie zu laden, Solarpanele reinigen und mehr.",
       "highlight_1": "Mobile Mini-Spiele",
       "highlight_2": "Umweltbewusstsein",
       "highlight_3": "Lehrreiches Gameplay",
@@ -31,41 +31,41 @@
   "games": {
     "dreamness": {
       "title": "Dreamness",
-      "description": "Ein mysterioser 2D Platformer mit surrealen Pixel-Art Visuals. Features Puzzle-Mechaniken wie Charakter-Duplikation und raumliche Verschiebungen."
+      "description": "Ein mysteriöser 2D-Platformer mit surrealer Pixel-Art-Grafik. Bietet Puzzle-Mechaniken wie Charakter-Duplikation und räumliche Verzerrungen."
     },
     "13th_hour": {
       "title": "The 13th Hour",
-      "description": "Ein Survival Horror Erlebnis. Erkunde ein verlassenes Gebaude, bereite einen Exorzismus vor und uberlebe wenn der Geist zur Dreizehnten Stunde erwacht."
+      "description": "Ein Survival-Horror-Erlebnis. Erkunde ein verlassenes Gebäude, bereite einen Exorzismus vor und überlebe, wenn der Geist zur Dreizehnten Stunde erwacht."
     },
     "forgoten_hero": {
       "title": "Forgoten Hero",
-      "description": "Pete der Mullsammler wacht auf einem Forderband Richtung Verbrennungsanlage auf. Renne, weiche Mull aus und zerstore Generatoren um zu uberleben!"
+      "description": "Pete der Müllsammler erwacht auf einem Förderband Richtung Verbrennungsanlage. Renne, weiche dem Müll aus und zerstöre Generatoren, um zu überleben!"
     },
     "gravity_punk": {
       "title": "Gravity Punk",
-      "description": "Ein Gravity-Flipping 2D Platformer in einer Neon-Cyberpunk Welt. Du bist Testsubjekt G-13, ausgerustet mit Gravity-Shifting Schuhen um todliche Prufungen zu uberstehen."
+      "description": "Ein 2D-Platformer mit Schwerkraft-Umkehr in einer Neon-Cyberpunk-Welt. Du bist Testsubjekt G-13, ausgerüstet mit Antigravitations-Schuhen, um tödliche Prüfungen zu überstehen."
     }
   },
   "technical_projects": {
     "aer_racers": {
       "badge": "Console Dev",
       "title": "Aer Racers",
-      "description": "Ein Ghibli-inspiriertes Multiplayer Pod Racing Spiel fur Nintendo Switch mit Custom C++ Engine. Fuhrung eines 25-kopfigen Teams als Projektmanager, Designer und Gameplay Programmer."
+      "description": "Ein Ghibli-inspiriertes Multiplayer-Pod-Racing-Spiel für Nintendo Switch mit eigener C++ Engine. Führung eines 25-köpfigen Teams als Projektmanager, Designer und Gameplay Programmer."
     },
     "bachelor": {
       "badge": "Forschung",
-      "title": "Bachelorarbeit: Biofeedback in Horror Games",
-      "description": "Analyse wie Puls-Daten der Spieler das Gameplay in VR Horror dynamisch beeinflussen konnen. Entwicklung einer Custom Unity Experience mit Echtzeit-Biometrie Integration."
+      "title": "Bachelorarbeit: Biofeedback in Horror-Spielen",
+      "description": "Untersuchung, wie Pulsdaten der Spieler das Gameplay in VR-Horror dynamisch beeinflussen können. Entwicklung einer Unity-Erfahrung mit Echtzeit-Biometrie-Integration."
     },
     "neko": {
       "badge": "Engine Dev",
       "title": "Neko Engine",
-      "description": "Beitrag zu einer Custom 3D Game Engine (SDL2 + OpenGL ES 3.0) fur Desktop, WebGL2 und Nintendo Switch. Entwicklung verschiedener Optimierungs-Tools."
+      "description": "Beitrag zu einer eigenen 3D Game Engine (SDL2 + OpenGL ES 3.0) für Desktop, WebGL2 und Nintendo Switch. Entwicklung verschiedener Optimierungs-Tools."
     },
     "networking": {
       "badge": "Multiplayer",
       "title": "Networking FPS",
-      "description": "Entwicklung eines Multiplayer FPS mit Photon PUN. Implementation von UDP Networking, Player Sync, Lag Compensation und Networked Game State Management."
+      "description": "Entwicklung eines Multiplayer-FPS mit Photon PUN. Implementierung von UDP-Networking, Spieler-Synchronisation, Lag-Kompensation und Netzwerk-Zustandsverwaltung."
     }
   },
   "education": {
@@ -73,40 +73,40 @@
     "school": "SAE Institute Genf",
     "awarded_by": "Verliehen von Middlesex University",
     "date": "2018 - 2023 | 180 ECTS",
-    "description": "Umfassende Ausbildung in Spieleentwicklung mit Engine-Architektur, Grafik-Programmierung, Multiplayer-Systemen und Gameplay-Implementation."
+    "description": "Umfassende Ausbildung in Spieleentwicklung mit Engine-Architektur, Grafik-Programmierung, Multiplayer-Systemen und Gameplay-Implementierung."
   },
   "experience": {
     "eco_pote": {
       "badge": "Aktuell",
       "title": "Gameplay Programmer & Projektleiter",
-      "company": "Mon Eco Pote",
+      "company": "Mon Éco Pote",
       "date": "Nov 2024 - Heute",
-      "description": "Leitung der Entwicklung von Lernspielen zur Forderung umweltfreundlicher Gewohnheiten. Fuhrung eines 3-4 kopfigen Teams, Integration von Kunstlern in die Pipeline und Entwicklung von Mini-Games inspiriert von Dumb Ways to Die."
+      "description": "Leitung der Entwicklung von Lernspielen zur Förderung umweltfreundlicher Gewohnheiten. Führung eines 3-4-köpfigen Teams, Integration von Künstlern in die Pipeline und Entwicklung von Mini-Games im Stil von Dumb Ways to Die."
     },
     "unige": {
       "badge": "Aktuell",
       "title": "Entwickler",
-      "company": "Universitat Genf",
+      "company": "Universität Genf",
       "date": "Dez 2025 - Heute",
-      "description": "Arbeit an Projekten mit generativer KI und modernen Entwicklungs-Workflows. Erforschung von KI-unterstutzten Entwicklungspraktiken und Beitrag zu forschungsorientierten Anwendungen."
+      "description": "Arbeit an Projekten mit generativer KI und modernen Entwicklungs-Workflows. Erforschung von KI-gestützten Entwicklungspraktiken und Beitrag zu forschungsorientierten Anwendungen."
     },
     "lausanne": {
       "title": "Full-Stack Web Developer",
       "company": "Stadt Lausanne",
       "date": "Feb 2025 - Nov 2025",
-      "description": "Entwicklung einer Webanwendung mit React.js, PHP und modernen Web-Technologien. Erstellung von Interfaces, Implementation von Features und Server-seitige Logik."
+      "description": "Entwicklung einer Webanwendung mit React.js, PHP und modernen Web-Technologien. Erstellung von Benutzeroberflächen, Implementierung von Funktionen und serverseitige Logik."
     },
     "athena": {
       "title": "Entwickler",
       "company": "Athena Technologies",
       "date": "Feb 2024",
-      "description": "Webanwendungs-Entwicklung und umfangreiche Tests mit R Studio. Kombination von technischer Implementation mit Datenanalyse und Team-Support."
+      "description": "Webanwendungs-Entwicklung und umfangreiche Tests mit R Studio. Kombination von technischer Implementierung mit Datenanalyse und Team-Unterstützung."
     },
     "youtube": {
       "title": "YouTube Channel Manager",
-      "company": "Selbststandig",
+      "company": "Selbstständig",
       "date": "Sept 2019 - Dez 2020",
-      "description": "Verwaltung eines monetarisierten Kanals mit Fokus auf Audience Engagement und Trendanalyse. Erstellung von Thumbnails, Content-Optimierung und Performance-Metriken Analyse."
+      "description": "Verwaltung eines monetarisierten Kanals mit Fokus auf Zuschauer-Engagement und Trendanalyse. Erstellung von Thumbnails, Content-Optimierung und Analyse der Performance-Metriken."
     }
   }
 }

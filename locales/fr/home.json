@@ -1,27 +1,27 @@
 {
   "hero": {
-    "badge": "Disponible pour opportunites",
+    "badge": "Disponible pour de nouvelles opportunités",
     "subtitle": "Game Engineer & Technical Lead",
-    "description": "Je construis des game engines, livre du gameplay soigne et dirige des equipes. De l'optimisation C++ bas niveau aux prototypes Unity, je transforme les defis techniques en experiences fluides. Workflow augmente par l'IA, qualite pilotee par l'humain.",
-    "tagline": "Je ne fais pas que des jeux. J'ingenierie les systemes qui les rendent possibles.",
+    "description": "Je conçois des moteurs de jeu, développe du gameplay abouti et dirige des équipes techniques. De l'optimisation C++ bas niveau aux prototypes Unity, je transforme les défis techniques en expériences de jeu fluides. Workflow augmenté par l'IA, qualité garantie par l'humain.",
+    "tagline": "Je ne fais pas que créer des jeux. Je conçois les systèmes qui les rendent possibles.",
     "cta_work": "Voir mes travaux",
     "cta_contact": "Me contacter",
-    "stat_games": "Jeux publies",
-    "stat_years": "Annees d'experience",
-    "stat_team": "Personnes dirigees"
+    "stat_games": "Jeux publiés",
+    "stat_years": "Années d'expérience",
+    "stat_team": "Personnes encadrées"
   },
   "wip": {
     "engine": {
       "title": "SebF2DEngine",
-      "description": "Construction d'un game engine 2D inspiré de la SNES en C++17 moderne. Ce projet explore les workflows de développement augmentés par l'IA tout en créant un moteur de rendu pixel-perfect avec une architecture ECS custom, physique et audio.",
+      "description": "Développement d'un moteur de jeu 2D inspiré de la SNES en C++17 moderne. Ce projet explore les workflows de développement assistés par l'IA tout en créant un moteur de rendu pixel-perfect avec architecture ECS personnalisée, physique et audio.",
       "highlight_1": "C++17 / OpenGL 3.3",
       "highlight_2": "Pixel Perfect (256x224)",
-      "highlight_3": "Architecture ECS custom",
-      "highlight_4": "Dév augmenté par IA"
+      "highlight_3": "Architecture ECS personnalisée",
+      "highlight_4": "Développement assisté par IA"
     },
     "greenhero": {
       "title": "Green Hero: Challenge Time",
-      "description": "Une collection de mini-jeux mobiles développée pour l'association \"Mon Éco Pote\". Propose des défis courts basés sur des actions éco-responsables. Les joueurs doivent trier les déchets rapidement, pédaler pour charger une batterie, nettoyer des panneaux solaires, et plus encore.",
+      "description": "Une collection de mini-jeux mobiles développée pour l'association « Mon Éco Pote ». Propose des défis rapides basés sur des gestes éco-responsables. Les joueurs doivent trier les déchets à toute vitesse, pédaler pour recharger une batterie, nettoyer des panneaux solaires, et bien plus.",
       "highlight_1": "Mini-jeux mobiles",
       "highlight_2": "Sensibilisation écologique",
       "highlight_3": "Gameplay éducatif",
@@ -31,41 +31,41 @@
   "games": {
     "dreamness": {
       "title": "Dreamness",
-      "description": "Un platformer 2D mysterieux avec des visuels pixel-art surrealistes. Inclut des mecaniques de puzzle comme la duplication de personnage et les decalages spatiaux."
+      "description": "Un platformer 2D mystérieux aux visuels pixel-art surréalistes. Propose des mécaniques de puzzle comme la duplication de personnage et les distorsions spatiales."
     },
     "13th_hour": {
       "title": "The 13th Hour",
-      "description": "Une experience survival horror. Explorez un batiment abandonne, preparez un exorcisme et survivez quand le fantome se reveille a la Treizieme Heure."
+      "description": "Une expérience survival horror. Explorez un bâtiment abandonné, préparez un exorcisme et survivez quand le fantôme se réveille à la Treizième Heure."
     },
     "forgoten_hero": {
       "title": "Forgoten Hero",
-      "description": "Pete l'eboueur se reveille sur un tapis roulant vers l'incinerateur. Courez, esquivez les dechets et detruisez les generateurs pour survivre !"
+      "description": "Pete l'éboueur se réveille sur un tapis roulant menant à l'incinérateur. Courez, esquivez les déchets et détruisez les générateurs pour survivre !"
     },
     "gravity_punk": {
       "title": "Gravity Punk",
-      "description": "Un platformer 2D avec inversion de gravite dans un monde cyberpunk neon. Vous etes le Sujet Test G-13, equipe de chaussures anti-gravite pour survivre aux epreuves mortelles."
+      "description": "Un platformer 2D avec inversion de gravité dans un univers cyberpunk néon. Vous incarnez le Sujet G-13, équipé de chaussures antigravité pour survivre à des épreuves mortelles."
     }
   },
   "technical_projects": {
     "aer_racers": {
       "badge": "Console Dev",
       "title": "Aer Racers",
-      "description": "Un jeu de course de pods multijoueur inspire de Ghibli pour Nintendo Switch utilisant un engine C++ custom. Direction d'une equipe de 25 personnes en tant que Chef de projet, Designer et Gameplay Programmer."
+      "description": "Un jeu de course de pods multijoueur inspiré de Ghibli pour Nintendo Switch, développé avec un moteur C++ personnalisé. Direction d'une équipe de 25 personnes en tant que Chef de projet, Designer et Gameplay Programmer."
     },
     "bachelor": {
       "badge": "Recherche",
-      "title": "These de Bachelor : Biofeedback dans les jeux d'horreur",
-      "description": "Analyse de comment les donnees de pouls des joueurs peuvent influencer dynamiquement le gameplay en VR horreur. Creation d'une experience Unity custom avec integration biometrique en temps reel."
+      "title": "Thèse de Bachelor : Biofeedback dans les jeux d'horreur",
+      "description": "Étude de l'influence des données de pouls des joueurs sur le gameplay en VR horreur. Création d'une expérience Unity avec intégration biométrique en temps réel."
     },
     "neko": {
       "badge": "Engine Dev",
       "title": "Neko Engine",
-      "description": "Contribution a un game engine 3D custom (SDL2 + OpenGL ES 3.0) ciblant Desktop, WebGL2 et Nintendo Switch. Developpement de divers outils d'optimisation."
+      "description": "Contribution à un moteur de jeu 3D personnalisé (SDL2 + OpenGL ES 3.0) ciblant Desktop, WebGL2 et Nintendo Switch. Développement de divers outils d'optimisation."
     },
     "networking": {
       "badge": "Multijoueur",
       "title": "Networking FPS",
-      "description": "Construction d'un FPS multijoueur avec Photon PUN. Implementation du networking UDP, synchronisation joueurs, compensation de lag et gestion d'etat reseau."
+      "description": "Développement d'un FPS multijoueur avec Photon PUN. Implémentation du réseau UDP, synchronisation des joueurs, compensation du lag et gestion de l'état réseau."
     }
   },
   "education": {
@@ -79,34 +79,34 @@
     "eco_pote": {
       "badge": "Actuel",
       "title": "Gameplay Programmer & Chef de projet",
-      "company": "Mon Eco Pote",
-      "date": "Nov 2024 - Present",
-      "description": "Direction du developpement de jeux educatifs promouvant les habitudes eco-responsables. Gestion d'une equipe de 3-4 personnes, integration des artistes dans le pipeline et developpement de mini-jeux inspires de Dumb Ways to Die."
+      "company": "Mon Éco Pote",
+      "date": "Nov 2024 - Présent",
+      "description": "Direction du développement de jeux éducatifs promouvant les gestes éco-responsables. Gestion d'une équipe de 3-4 personnes, intégration des artistes dans le pipeline et développement de mini-jeux inspirés de Dumb Ways to Die."
     },
     "unige": {
       "badge": "Actuel",
-      "title": "Developpeur",
-      "company": "Universite de Geneve",
-      "date": "Dec 2025 - Present",
-      "description": "Travail sur des projets impliquant l'IA generative et les workflows de developpement modernes. Exploration des pratiques de developpement augmente par l'IA et contribution a des applications orientees recherche."
+      "title": "Développeur",
+      "company": "Université de Genève",
+      "date": "Déc 2025 - Présent",
+      "description": "Travail sur des projets impliquant l'IA générative et les workflows de développement modernes. Exploration des pratiques de développement assistées par l'IA et contribution à des applications orientées recherche."
     },
     "lausanne": {
-      "title": "Developpeur Web Full-Stack",
+      "title": "Développeur Web Full-Stack",
       "company": "Ville de Lausanne",
-      "date": "Fev 2025 - Nov 2025",
-      "description": "Developpement d'une application web utilisant React.js, PHP et technologies web modernes. Construction d'interfaces, implementation de fonctionnalites et gestion de la logique serveur."
+      "date": "Fév 2025 - Nov 2025",
+      "description": "Développement d'une application web avec React.js, PHP et technologies web modernes. Conception d'interfaces, implémentation de fonctionnalités et gestion de la logique serveur."
     },
     "athena": {
-      "title": "Developpeur",
+      "title": "Développeur",
       "company": "Athena Technologies",
-      "date": "Fev 2024",
-      "description": "Developpement d'applications web et tests approfondis avec R Studio. Combinaison d'implementation technique avec analyse de donnees et support d'equipe."
+      "date": "Fév 2024",
+      "description": "Développement d'applications web et tests approfondis avec R Studio. Combinaison d'implémentation technique, d'analyse de données et de support d'équipe."
     },
     "youtube": {
-      "title": "Gestionnaire de chaine YouTube",
-      "company": "Independant",
-      "date": "Sept 2019 - Dec 2020",
-      "description": "Gestion d'une chaine monetisee avec focus sur l'engagement audience et l'analyse des tendances. Creation de miniatures, optimisation du contenu et analyse des metriques de performance."
+      "title": "Gestionnaire de chaîne YouTube",
+      "company": "Indépendant",
+      "date": "Sept 2019 - Déc 2020",
+      "description": "Gestion d'une chaîne monétisée avec focus sur l'engagement de l'audience et l'analyse des tendances. Création de miniatures, optimisation du contenu et analyse des métriques de performance."
     }
   }
 }
