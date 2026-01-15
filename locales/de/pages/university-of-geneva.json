@@ -1,0 +1,39 @@
+{
+  "unige": {
+    "badge": "Aktuell",
+    "title": "Universität Genf",
+    "subtitle": "Entwickler im Data Analytics Lab — Fakultät für Pharmazeutische Wissenschaften",
+    "placeholder_image": "Screenshots und Animationen folgen bald",
+    "intro": "Als vielseitiger Entwickler im Data Analytics Lab (Fakultät für Pharmazeutische Wissenschaften) übernehme ich alle Aufgaben, die anfallen: Erstellung von Mathe-Animationen mit Manim für MOOCs, Entwicklung eines KI-Chatbots für Statistik-Fragen oder Beiträge zur Studierenden-Webplattform.",
+
+    "highlights_title": "Projekt-Highlights",
+    "highlight_1": "Mathe-Animationen mit Manim für MOOCs",
+    "highlight_2": "KI-Chatbot für Statistik-Fragen",
+    "highlight_3": "Studierenden-Webplattform (Quarto, R)",
+    "highlight_4": "Team von 10 in pharmazeutischer Forschung",
+
+    "context_title": "Der Kontext",
+    "context_desc": "Das Data Analytics Lab ist spezialisiert auf Biostatistik, Data Science, statistische Modellierung und Machine Learning in der pharmazeutischen Forschung. In diesem Team von 10 Personen trage ich zu Bildungstechnologie-Initiativen bei, die Statistik für Pharmazie-Studierende durch visuelle Erklärungen und KI-gestützte Unterstützung zugänglicher machen.",
+
+    "projects_title": "Projekte",
+
+    "manim_title": "Manim-Animationen",
+    "manim_desc": "Erstellung pädagogischer Animationen mit Manim (Mathematical Animation Engine) zur Visualisierung grundlegender mathematischer Konzepte für MOOCs. Diese Animationen helfen Studierenden, abstrakte mathematische Ideen durch klare visuelle Darstellungen zu verstehen.",
+
+    "chatbot_title": "KI-Chatbot für Statistik",
+    "chatbot_desc": "Entwicklung eines KI-gestützten Chatbots, der Studierenden bei Statistik-Fragen basierend auf Kursfolien und -materialien hilft. Der Chatbot verwendet die OpenAI-API, um kontextbezogene Unterstützung zu bieten und Studierenden zu helfen, statistische Konzepte außerhalb der Unterrichtszeiten zu verstehen.",
+
+    "website_title": "Studierenden-Webplattform",
+    "website_desc": "Beitrag zur Entwicklung von Webplattformen für Studierende, Erstellung von Schnittstellen und Funktionen, die den Zugang zu Bildungsressourcen und Kursmaterialien verbessern.",
+
+    "role_title": "Meine Rolle",
+    "role_desc": "Als vielseitiger Entwickler passe ich mich an jede Aufgabe an, die das Team braucht. Ob Python-Skripte für Animationen schreiben, Serverless-Funktionen für den Chatbot entwickeln oder zur Webplattform beitragen – ich kann einspringen und liefern. Diese Flexibilität ermöglicht es mir, über den gesamten Stack beizutragen und das Team dort zu unterstützen, wo es nötig ist.",
+
+    "tech_title": "Tech-Stack",
+
+    "future_title": "Was kommt als Nächstes",
+    "future_desc": "Über die aktuellen studierendenorientierten Projekte hinaus werde ich auch zu Forschungsprojekten beitragen und neue Anwendungen von KI und modernen Entwicklungspraktiken in akademischen Kontexten erkunden.",
+
+    "back_home": "← Zurück zur Startseite"
+  }
+}

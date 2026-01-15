@@ -1,0 +1,39 @@
+{
+  "unige": {
+    "badge": "Attuale",
+    "title": "Università di Ginevra",
+    "subtitle": "Sviluppatore presso il Data Analytics Lab — Facoltà di Scienze Farmaceutiche",
+    "placeholder_image": "Screenshot e animazioni in arrivo",
+    "intro": "Come sviluppatore versatile presso il Data Analytics Lab (Facoltà di Scienze Farmaceutiche), mi adatto a qualsiasi compito mi venga assegnato: creazione di animazioni matematiche con Manim per MOOC, sviluppo di un chatbot IA per aiutare gli studenti con domande di statistica, o contributi alla piattaforma web studentesca.",
+
+    "highlights_title": "Punti salienti del progetto",
+    "highlight_1": "Animazioni matematiche con Manim per MOOC",
+    "highlight_2": "Chatbot IA per domande di statistica",
+    "highlight_3": "Piattaforma web studentesca (Quarto, R)",
+    "highlight_4": "Team di 10 nella ricerca farmaceutica",
+
+    "context_title": "Il contesto",
+    "context_desc": "Il Data Analytics Lab è specializzato in biostatistica, data science, modellazione statistica e machine learning applicati alla ricerca farmaceutica. In questo team di 10 persone, contribuisco a iniziative di tecnologia educativa che rendono la statistica più accessibile agli studenti di farmacia attraverso spiegazioni visive e assistenza basata sull'IA.",
+
+    "projects_title": "Progetti",
+
+    "manim_title": "Animazioni Manim",
+    "manim_desc": "Creazione di animazioni educative utilizzando Manim (Mathematical Animation Engine) per visualizzare concetti matematici di base per i MOOC. Queste animazioni aiutano gli studenti a comprendere idee matematiche astratte attraverso rappresentazioni visive chiare.",
+
+    "chatbot_title": "Chatbot IA per la statistica",
+    "chatbot_desc": "Sviluppo di un chatbot basato sull'IA che aiuta gli studenti con domande di statistica basate sulle slide e sui materiali del corso. Il chatbot utilizza l'API di OpenAI per fornire assistenza contestuale, aiutando gli studenti a comprendere i concetti statistici al di fuori delle ore di lezione.",
+
+    "website_title": "Piattaforma web studentesca",
+    "website_desc": "Contributo allo sviluppo di piattaforme web per studenti, creazione di interfacce e funzionalità che migliorano l'accesso alle risorse educative e ai materiali del corso.",
+
+    "role_title": "Il mio ruolo",
+    "role_desc": "Come sviluppatore versatile, mi adatto a qualsiasi compito di cui il team ha bisogno. Che si tratti di scrivere script Python per le animazioni, sviluppare funzioni serverless per il chatbot o contribuire alla piattaforma web, sono in grado di intervenire e consegnare. Questa flessibilità mi permette di contribuire su tutto lo stack e supportare il team dove necessario.",
+
+    "tech_title": "Stack tecnologico",
+
+    "future_title": "Prossimi passi",
+    "future_desc": "Oltre agli attuali progetti incentrati sugli studenti, contribuirò anche a progetti di ricerca, esplorando nuove applicazioni dell'IA e pratiche di sviluppo moderne in contesti accademici.",
+
+    "back_home": "← Torna alla Home"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "unige": {
+    "badge": "Current",
+    "title": "University of Geneva",
+    "subtitle": "Developer at the Data Analytics Lab — Faculty of Pharmaceutical Sciences",
+    "placeholder_image": "Screenshots & animations coming soon",
+    "intro": "As a versatile developer at the Data Analytics Lab (Faculty of Pharmaceutical Sciences), I handle whatever tasks come my way: creating math animations with Manim for MOOCs, developing an AI chatbot to help students with statistics questions, or contributing to the student web platform.",
+
+    "highlights_title": "Project Highlights",
+    "highlight_1": "Math animations with Manim for MOOCs",
+    "highlight_2": "AI chatbot for statistics questions",
+    "highlight_3": "Student web platform (Quarto, R)",
+    "highlight_4": "Team of 10 in pharmaceutical research",
+
+    "context_title": "The Context",
+    "context_desc": "The Data Analytics Lab specializes in biostatistics, data science, statistical modeling, and machine learning applied to pharmaceutical research. Within this team of 10 people, I contribute to educational technology initiatives that make statistics more accessible to pharmacy students through visual explanations and AI-powered assistance.",
+
+    "projects_title": "Projects",
+
+    "manim_title": "Manim Animations",
+    "manim_desc": "Creating educational animations using Manim (Mathematical Animation Engine) to visualize basic math concepts for MOOCs. These animations help students understand abstract mathematical ideas through clear visual representations.",
+
+    "chatbot_title": "AI Statistics Chatbot",
+    "chatbot_desc": "Developing an AI-powered chatbot that helps students with statistics questions based on course slides and materials. The chatbot uses OpenAI's API to provide contextual assistance, helping students understand statistical concepts outside of class hours.",
+
+    "website_title": "Student Web Platform",
+    "website_desc": "Contributing to the development of web platforms for students, building interfaces and features that improve access to educational resources and course materials.",
+
+    "role_title": "My Role",
+    "role_desc": "As a versatile developer, I adapt to any task the team needs. Whether it's writing Python scripts for animations, building serverless functions for the chatbot, or contributing to the web platform, I'm able to jump in and deliver. This flexibility allows me to contribute across the full stack and support the team wherever needed.",
+
+    "tech_title": "Tech Stack",
+
+    "future_title": "What's Next",
+    "future_desc": "Beyond current student-focused projects, I will also be contributing to research projects, exploring new applications of AI and modern development practices in academic contexts.",
+
+    "back_home": "← Back to Home"
+  }
+}
