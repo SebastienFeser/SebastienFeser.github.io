@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/blog">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Sebastien Feser</title>
+    <meta name="description" content="Technical blog posts about game development, engine programming, and software engineering by Sebastien Feser.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#blog" class="nav-link" data-i18n="nav.blog">Blog</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <h1 data-i18n="blog_page.title">Blog</h1>
+                <p class="hero-subtitle" data-i18n="blog_page.subtitle">Technical articles about game development and engine programming</p>
+            </header>
+
+            <!-- Learning Journey Section -->
+            <section class="blog-section">
+                <h2 class="blog-section-title" data-i18n="blog_page.learning_section">Learning Journey</h2>
+                <p class="text-secondary mb-4" data-i18n="blog_page.learning_description">Personal experiences learning new tools and technologies.</p>
+
+                <div class="blog-list">
+                    <a href="learning-manim.html" class="blog-list-item">
+                        <div class="blog-list-content">
+                            <span class="blog-badge" data-i18n="blog.manim.badge">Learning</span>
+                            <h3 class="blog-list-title" data-i18n="blog.manim.title">My First Manim Animation</h3>
+                            <p class="blog-list-description" data-i18n="blog.manim.description">Learning Manim from scratch without AI - a journey through documentation, tutorials, and hands-on experimentation.</p>
+                        </div>
+                        <span class="blog-list-date">2026</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Aer Racers Section -->
+            <section class="blog-section">
+                <h2 class="blog-section-title" data-i18n="blog_page.aer_racers_section">Aer Racers</h2>
+                <p class="text-secondary mb-4" data-i18n="blog_page.aer_racers_description">Articles about the development of a Nintendo Switch racing game with a custom C++ engine.</p>
+
+                <div class="blog-list">
+                    <a href="aer-racers-postmortem.html" class="blog-list-item">
+                        <div class="blog-list-content">
+                            <span class="blog-badge" data-i18n="blog.postmortem.badge">Post Mortem</span>
+                            <h3 class="blog-list-title" data-i18n="blog.postmortem.title">Aer Racers Post Mortem</h3>
+                            <p class="blog-list-description" data-i18n="blog.postmortem.description">Complete analysis of the project: what went well, what went wrong, and lessons learned from leading a team of 25.</p>
+                        </div>
+                        <span class="blog-list-date">2021</span>
+                    </a>
+
+                    <a href="aer-racers-menu-ui.html" class="blog-list-item">
+                        <div class="blog-list-content">
+                            <span class="blog-badge" data-i18n="blog.menu.badge">Systems</span>
+                            <h3 class="blog-list-title" data-i18n="blog.menu.title">Menu & Game Management</h3>
+                            <p class="blog-list-description" data-i18n="blog.menu.description">State management and UI systems implementation in a custom C++ engine for Nintendo Switch.</p>
+                        </div>
+                        <span class="blog-list-date">2021</span>
+                    </a>
+
+                    <a href="aer-racers-waypoint.html" class="blog-list-item">
+                        <div class="blog-list-content">
+                            <span class="blog-badge" data-i18n="blog.waypoint.badge">Gameplay</span>
+                            <h3 class="blog-list-title" data-i18n="blog.waypoint.title">Waypoint System</h3>
+                            <p class="blog-list-description" data-i18n="blog.waypoint.description">Calculating player positions in a racing game using dot products and waypoint interpolation.</p>
+                        </div>
+                        <span class="blog-list-date">2021</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Neko Engine Section -->
+            <section class="blog-section">
+                <h2 class="blog-section-title" data-i18n="blog_page.neko_section">Neko Engine</h2>
+                <p class="text-secondary mb-4" data-i18n="blog_page.neko_description">Articles about low-level optimization and engine development.</p>
+
+                <div class="blog-list">
+                    <a href="neko-engine.html" class="blog-list-item">
+                        <div class="blog-list-content">
+                            <span class="blog-badge" data-i18n="blog.neko.badge">Engine</span>
+                            <h3 class="blog-list-title" data-i18n="blog.neko.title">SIMD Quaternion Optimization</h3>
+                            <p class="blog-list-description" data-i18n="blog.neko.description">High-performance quaternion operations using Intel Intrinsics for 3D transformations in game engines.</p>
+                        </div>
+                        <span class="blog-list-date">2020</span>
+                    </a>
+                </div>
+            </section>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="error.back_home">&larr; Back to home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/mobile-menu.js"></script>
+</body>
+</html>

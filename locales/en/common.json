@@ -1,14 +1,16 @@
 {
   "nav": {
     "about": "About",
-    "wip": "In Progress",
+    "blog": "Blog",
     "projects": "Projects",
     "experience": "Experience",
     "skills": "Skills",
     "contact": "Contact"
   },
   "sections": {
-    "wip": "Work in Progress",
+    "blog": "Last Blogposts",
+    "blog_subtitle": "Technical articles about game development and engine programming",
+    "blog_view_all": "View all blogposts →",
     "published": "Published Games",
     "published_subtitle": "Game jam entries and personal projects available on itch.io",
     "technical": "Technical Projects",

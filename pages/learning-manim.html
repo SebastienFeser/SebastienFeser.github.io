@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/manim">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Manim Animation | Sebastien Feser</title>
+    <meta name="description" content="Learning Manim from scratch without AI assistance - a journey through documentation, tutorials, and hands-on experimentation.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#blog" class="nav-link" data-i18n="nav.blog">Blog</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="manim.badge">Learning</span>
+                <h1 data-i18n="manim.title">My First Manim Animation</h1>
+                <p class="hero-subtitle" data-i18n="manim.subtitle">Learning by doing, without AI assistance</p>
+            </header>
+
+            <article class="article-content">
+                <h2 data-i18n="manim.why_title">Why Manim?</h2>
+                <p data-i18n="manim.why_text">
+                    I've always been fascinated by 3Blue1Brown's math videos. The elegant animations that make complex concepts intuitive - they're created with Manim, a Python library Grant Sanderson developed. I wanted to learn it, but more importantly, I wanted to learn it the old-fashioned way: reading documentation, watching tutorials, and experimenting. No AI shortcuts.
+                </p>
+
+                <h2 data-i18n="manim.goal_title">The Goal</h2>
+                <p data-i18n="manim.goal_text">
+                    I set myself a challenge: create an animation explaining the concept of derivatives. From a line between two points on a curve, shrink the distance until it becomes a tangent. Simple concept, but it required understanding Manim's coordinate systems, animations, and real-time updates.
+                </p>
+
+                
+                <h2 data-i18n="manim.journey_title">The Learning Journey</h2>
+
+                <h3 data-i18n="manim.step1_title">Step 1: Understanding the Basics</h3>
+                <p data-i18n="manim.step1_text">
+                    I started with the official Manim documentation and some YouTube tutorials. The first hours were spent understanding the core concepts: Scenes, Mobjects, and Animations. Just getting a simple text to appear on screen felt like an achievement.
+                </p>
+
+                <h3 data-i18n="manim.step2_title">Step 2: Plotting Functions</h3>
+                <p data-i18n="manim.step2_text">
+                    Creating axes and plotting a function was my next challenge. I chose a cubic polynomial that would give interesting visual results. The documentation for ThreeDAxes was my guide, and after several attempts, I had a working graph.
+                </p>
+
+                <pre><code>func = axes.plot_parametric_curve(
+    lambda x: np.array([
+        x,
+        0.01 * (x - 5) * (x - 12) * (x - 22) + 7,
+        0
+    ]),
+    t_range=(0, 25)
+)</code></pre>
+
+                <h3 data-i18n="manim.step3_title">Step 3: The Secant Line</h3>
+                <p data-i18n="manim.step3_text">
+                    The real challenge began with the secant line. I discovered ValueTracker and always_redraw - powerful tools that let you create objects that automatically update when a value changes. This was the key to making the animation interactive.
+                </p>
+
+                <pre><code>x = ValueTracker(21)
+dx = ValueTracker(3)
+secant = always_redraw(
+    lambda: axes.get_secant_slope_group(
+        x=x.get_value(),
+        graph=func,
+        dx=dx.get_value(),
+        secant_line_color=GREEN
+    )
+)</code></pre>
+
+                <h3 data-i18n="manim.step4_title">Step 4: Animation Magic</h3>
+                <p data-i18n="manim.step4_text">
+                    Once I understood ValueTracker, animating was straightforward. Shrinking dx from 3 to nearly 0 transforms the secant into a tangent, visually demonstrating the derivative concept.
+                </p>
+
+                <pre><code>self.play(dx.animate.set_value(0.001))</code></pre>
+
+                <h3 data-i18n="manim.step5_title">Step 5: Going 3D</h3>
+                <p data-i18n="manim.step5_text">
+                    I couldn't resist adding a 3D twist. ThreeDScene allows camera movements, and I created a surface to show that derivatives work in higher dimensions too. Moving the camera and adding a surface felt like the cherry on top.
+                </p>
+
+                <h2 data-i18n="manim.struggles_title">The Struggles</h2>
+                <p data-i18n="manim.struggles_text">
+                    It wasn't all smooth. I spent hours debugging coordinate systems, figuring out why my function wasn't displaying correctly. The documentation sometimes assumed knowledge I didn't have. But each solved problem felt earned, not given.
+                </p>
+
+                <div class="callout callout-warning">
+                    <h4 data-i18n="manim.tip_title">Key Takeaway</h4>
+                    <p data-i18n="manim.tip_text">always_redraw is incredibly powerful but took me a while to understand. It recreates the object every frame based on current ValueTracker values - essential for smooth animations.</p>
+                </div>
+
+                <h2 data-i18n="manim.no_ai_title">Why No AI?</h2>
+                <p data-i18n="manim.no_ai_text">
+                    I use AI daily in my work - it's a fantastic tool for productivity. But for learning something new, I wanted to build genuine understanding. When you copy-paste AI-generated code, you might get it working, but you don't truly learn. By reading documentation and experimenting, I now understand Manim's architecture deeply enough to create my own animations from scratch.
+                </p>
+
+                <p data-i18n="manim.no_ai_text2">
+                    I did use AI at the very end for minor cleanup, but the core learning - understanding Scenes, Mobjects, ValueTrackers, and animations - was all done manually. And that foundation will stay with me.
+                </p>
+
+                <h2 data-i18n="manim.lessons_title">Lessons Learned</h2>
+                <ul>
+                    <li data-i18n="manim.lesson_1">Documentation is underrated - it's often better than tutorials for deep understanding</li>
+                    <li data-i18n="manim.lesson_2">ValueTracker + always_redraw is the core pattern for dynamic Manim animations</li>
+                    <li data-i18n="manim.lesson_3">3D in Manim requires ThreeDScene and careful coordinate management</li>
+                    <li data-i18n="manim.lesson_4">Learning without AI is slower but builds lasting knowledge</li>
+                </ul>
+
+                <h2 data-i18n="manim.next_title">What's Next?</h2>
+                <p data-i18n="manim.next_text">
+                    This was just my first animation. I want to create more mathematical visualizations - maybe Fourier transforms or linear algebra concepts. Now that I understand the fundamentals, the possibilities are exciting.
+                </p>
+
+                <h2 data-i18n="manim.result_title">The Final Result</h2>
+                <p data-i18n="manim.result_text">
+                    Here's the animation I created - from the initial function plot to the 3D extension. Every frame represents hours of learning, debugging, and experimenting.
+                </p>
+
+                <div class="video-container" style="margin: 2rem 0;">
+                    <video controls style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <source src="../assets/videos/DerivativeComplete.mp4" type="video/mp4">
+                        <span data-i18n="manim.video_fallback">Your browser does not support the video tag.</span>
+                    </video>
+                </div>
+
+                <h2 data-i18n="manim.tech_title">Technologies Used</h2>
+                <div class="skills-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Manim</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Mathematics</span>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="manim.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/mobile-menu.js"></script>
+</body>
+</html>

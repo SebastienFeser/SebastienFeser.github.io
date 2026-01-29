@@ -1,14 +1,16 @@
 {
   "nav": {
     "about": "Über mich",
-    "wip": "In Arbeit",
+    "blog": "Blog",
     "projects": "Projekte",
     "experience": "Erfahrung",
     "skills": "Fähigkeiten",
     "contact": "Kontakt"
   },
   "sections": {
-    "wip": "In Entwicklung",
+    "blog": "Letzte Blogbeiträge",
+    "blog_subtitle": "Technische Artikel über Spieleentwicklung und Engine-Programmierung",
+    "blog_view_all": "Alle Blogbeiträge ansehen →",
     "published": "Veröffentlichte Spiele",
     "published_subtitle": "Game Jam Beiträge und persönliche Projekte auf itch.io verfügbar",
     "technical": "Technische Projekte",

@@ -28,6 +28,33 @@
       "highlight_4": "Mon Éco Pote"
     }
   },
+  "blog": {
+    "manim": {
+      "badge": "Lernen",
+      "title": "Meine erste Manim-Animation",
+      "description": "Manim von Grund auf lernen ohne KI : eine Reise durch Dokumentation, Tutorials und praktisches Experimentieren."
+    },
+    "postmortem": {
+      "badge": "Post Mortem",
+      "title": "Aer Racers Post Mortem",
+      "description": "Vollständige Projektanalyse: Was gut lief, was schiefging und Erkenntnisse aus der Leitung eines 25-köpfigen Teams."
+    },
+    "menu": {
+      "badge": "Systeme",
+      "title": "Menü & Spielverwaltung",
+      "description": "Implementierung von Zustandsverwaltung und UI-Systemen in einer eigenen C++ Engine für Nintendo Switch."
+    },
+    "waypoint": {
+      "badge": "Gameplay",
+      "title": "Waypoint-System",
+      "description": "Berechnung von Spielerpositionen in einem Rennspiel mittels Skalarprodukt und Waypoint-Interpolation."
+    },
+    "neko": {
+      "badge": "Engine",
+      "title": "SIMD Quaternion-Optimierung",
+      "description": "Hochleistungs-Quaternion-Operationen mit Intel Intrinsics für 3D-Transformationen in Game Engines."
+    }
+  },
   "games": {
     "dreamness": {
       "title": "Dreamness",

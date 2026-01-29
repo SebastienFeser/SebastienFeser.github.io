@@ -39,7 +39,7 @@
             </button>
             <nav class="main-nav">
                 <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
-                <a href="#wip" class="nav-link" data-i18n="nav.wip">In Progress</a>
+                <a href="#blog" class="nav-link" data-i18n="nav.blog">Blog</a>
                 <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
                 <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
                 <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
@@ -105,112 +105,43 @@
                 </div>
             </section>
 
-            <!-- WORK IN PROGRESS -->
-            <section class="section" id="wip">
-                <h2 class="section-title" data-i18n="sections.wip">Work in Progress</h2>
+            <!-- BLOG -->
+            <section class="section" id="blog">
+                <h2 class="section-title" data-i18n="sections.blog">Last Blogposts</h2>
+                <p class="text-secondary mb-4" data-i18n="sections.blog_subtitle">Technical articles about game development and engine programming</p>
 
-                <div class="wip-carousel">
-                    <button class="carousel-btn carousel-btn-prev" aria-label="Previous project">
-                        <span>←</span>
-                    </button>
+                <div class="blog-grid">
+                    <a href="pages/learning-manim.html" class="blog-card">
+                        <span class="blog-badge" data-i18n="blog.manim.badge">Learning</span>
+                        <h3 class="blog-title" data-i18n="blog.manim.title">My First Manim Animation</h3>
+                        <p class="blog-description" data-i18n="blog.manim.description">Learning Manim from scratch without AI - a journey through documentation, tutorials, and hands-on experimentation.</p>
+                        <span class="blog-date">2026</span>
+                    </a>
 
-                    <div class="carousel-container">
-                        <div class="carousel-track">
-                        <!-- Slide 1: SebF2DEngine -->
-                        <a href="404.html" class="carousel-slide featured-project active" data-slide="0">
-                            <div class="featured-content">
-                                <h3 data-i18n="wip.engine.title">SebF2DEngine</h3>
-                                <p data-i18n="wip.engine.description">
-                                    Building a lightweight SNES-inspired 2D game engine from scratch using modern C++17.
-                                    This project explores AI-augmented development workflows while creating a pixel-perfect
-                                    rendering engine with custom ECS architecture, physics, and audio systems.
-                                </p>
-                                <div class="featured-highlights">
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.engine.highlight_1">C++17 / OpenGL 3.3</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.engine.highlight_2">Pixel Perfect (256x224)</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.engine.highlight_3">Custom ECS Architecture</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.engine.highlight_4">AI-Augmented Dev</span>
-                                    </div>
-                                </div>
-                                <div class="tags">
-                                    <span class="tag">C++</span>
-                                    <span class="tag">OpenGL</span>
-                                    <span class="tag">SDL2</span>
-                                    <span class="tag">ImGui</span>
-                                    <span class="tag">ECS</span>
-                                </div>
-                            </div>
-                            <div class="featured-media hidden">
-                                <div class="featured-media-placeholder">
-                                    Screenshot placeholder<br>
-                                    (Add: assets/images/aiengine2d.png)
-                                </div>
-                            </div>
-                        </a>
+                    <a href="pages/aer-racers-postmortem.html" class="blog-card">
+                        <span class="blog-badge" data-i18n="blog.postmortem.badge">Post Mortem</span>
+                        <h3 class="blog-title" data-i18n="blog.postmortem.title">Aer Racers Post Mortem</h3>
+                        <p class="blog-description" data-i18n="blog.postmortem.description">Complete analysis of the project: what went well, what went wrong, and lessons learned from leading a team of 25.</p>
+                        <span class="blog-date">2021</span>
+                    </a>
 
-                        <!-- Slide 2: Green Hero -->
-                        <a href="pages/mon-eco-pote.html" class="carousel-slide featured-project" data-slide="1">
-                            <div class="featured-content">
-                                <h3 data-i18n="wip.greenhero.title">Green Hero: Challenge Time</h3>
-                                <p data-i18n="wip.greenhero.description">
-                                    A fast-paced mobile mini-game collection developed for the "Mon Éco Pote" association.
-                                    Features short, skill-based challenges centered around eco-responsible actions.
-                                    Players must quickly sort waste, pedal to charge a battery, clean solar panels, and more.
-                                </p>
-                                <div class="featured-highlights">
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.greenhero.highlight_1">Mobile Mini-Games</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.greenhero.highlight_2">Eco-Awareness</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.greenhero.highlight_3">Educational Gameplay</span>
-                                    </div>
-                                    <div class="featured-highlight">
-                                        <span class="featured-highlight-icon">+</span>
-                                        <span data-i18n="wip.greenhero.highlight_4">Mon Éco Pote</span>
-                                    </div>
-                                </div>
-                                <div class="tags">
-                                    <span class="tag">Unity</span>
-                                    <span class="tag">C#</span>
-                                    <span class="tag">Mobile</span>
-                                    <span class="tag">Educational</span>
-                                </div>
-                            </div>
-                            <div class="featured-media hidden">
-                                <div class="featured-media-placeholder">
-                                    Screenshot placeholder<br>
-                                    (Add image here)
-                                </div>
-                            </div>
-                        </a>
-                        </div>
-                    </div>
+                    <a href="pages/aer-racers-menu-ui.html" class="blog-card">
+                        <span class="blog-badge" data-i18n="blog.menu.badge">Systems</span>
+                        <h3 class="blog-title" data-i18n="blog.menu.title">Menu & Game Management</h3>
+                        <p class="blog-description" data-i18n="blog.menu.description">State management and UI systems implementation in a custom C++ engine for Nintendo Switch.</p>
+                        <span class="blog-date">2021</span>
+                    </a>
 
-                    <button class="carousel-btn carousel-btn-next" aria-label="Next project">
-                        <span>→</span>
-                    </button>
+                    <a href="pages/aer-racers-waypoint.html" class="blog-card">
+                        <span class="blog-badge" data-i18n="blog.waypoint.badge">Gameplay</span>
+                        <h3 class="blog-title" data-i18n="blog.waypoint.title">Waypoint System</h3>
+                        <p class="blog-description" data-i18n="blog.waypoint.description">Calculating player positions in a racing game using dot products and waypoint interpolation.</p>
+                        <span class="blog-date">2021</span>
+                    </a>
                 </div>
 
-                <div class="carousel-dots">
-                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                <div class="blog-view-all">
+                    <a href="pages/blog.html" class="btn btn-outline" data-i18n="sections.blog_view_all">View all blogposts →</a>
                 </div>
             </section>
 

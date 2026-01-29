@@ -339,6 +339,61 @@ Use this template in `pages/`:
 </html>
 ```
 
+## Creating Blog Posts
+
+Chaque nouveau blog post doit être ajouté à **deux endroits** :
+
+### 1. Page Blog (`pages/blog.html`)
+
+Ajouter un élément `.blog-list-item` dans la section appropriée (existante ou nouvelle) :
+
+```html
+<!-- Dans la section appropriée, à l'intérieur de <div class="blog-list"> -->
+<a href="your-blog-post.html" class="blog-list-item">
+    <div class="blog-list-content">
+        <span class="blog-badge" data-i18n="blog.yourpost.badge">Category</span>
+        <h3 class="blog-list-title" data-i18n="blog.yourpost.title">Post Title</h3>
+        <p class="blog-list-description" data-i18n="blog.yourpost.description">Description...</p>
+    </div>
+    <span class="blog-list-date">2024</span>
+</a>
+```
+
+**Emplacement** : À l'intérieur d'une `<section class="blog-section">`, dans le `<div class="blog-list">`.
+
+### 2. Page Principale (`index.html`)
+
+Ajouter une carte dans la grille de blog pour afficher un aperçu :
+
+```html
+<!-- Dans la section #blog, à l'intérieur de <div class="blog-grid"> -->
+<a href="pages/your-blog-post.html" class="blog-card">
+    <span class="blog-badge" data-i18n="blog.yourpost.badge">Category</span>
+    <h3 class="blog-title" data-i18n="blog.yourpost.title">Post Title</h3>
+    <p class="blog-description" data-i18n="blog.yourpost.description">Description...</p>
+    <span class="blog-date">2024</span>
+</a>
+```
+
+**Emplacement** : Section `#blog` (ligne ~109), à l'intérieur de `<div class="blog-grid">` (ligne ~113).
+
+### Checklist pour un nouveau blog post
+
+1. Créer la page du blog post dans `pages/`
+2. Ajouter les traductions dans `locales/{lang}/pages/blog.json` (4 langues)
+3. Ajouter le `.blog-list-item` dans `pages/blog.html`
+4. Ajouter le `.blog-card` dans `index.html` section `#blog`
+5. Vérifier les 4 langues
+
+### Fichiers concernés
+
+| Fichier | Description |
+|---------|-------------|
+| `pages/blog.html` | Liste complète des blog posts |
+| `index.html` (section `#blog`) | Aperçus des derniers posts sur la page d'accueil |
+| `locales/{lang}/pages/blog.json` | Traductions des posts (titres, descriptions, badges) |
+| `locales/{lang}/home.json` | Traductions pour les aperçus sur la homepage |
+
 ## Responsive Breakpoints
 
 - **Desktop**: > 768px (full layout)

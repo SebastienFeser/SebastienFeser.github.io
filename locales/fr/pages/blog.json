@@ -1,0 +1,39 @@
+{
+  "blog_page": {
+    "title": "Blog",
+    "subtitle": "Articles techniques sur le développement de jeux et la programmation moteur",
+    "aer_racers_section": "Aer Racers",
+    "aer_racers_description": "Articles sur le développement d'un jeu de course Nintendo Switch avec un moteur C++ personnalisé.",
+    "neko_section": "Neko Engine",
+    "neko_description": "Articles sur l'optimisation bas niveau et le développement moteur.",
+    "learning_section": "Parcours d'apprentissage",
+    "learning_description": "Expériences personnelles d'apprentissage de nouveaux outils et technologies."
+  },
+  "blog": {
+    "postmortem": {
+      "badge": "Post Mortem",
+      "title": "Aer Racers Post Mortem",
+      "description": "Analyse complète du projet : ce qui a fonctionné, ce qui n'a pas marché, et les leçons tirées de la direction d'une équipe de 25 personnes."
+    },
+    "menu": {
+      "badge": "Systèmes",
+      "title": "Menu & Game Management",
+      "description": "Implémentation des systèmes de gestion d'état et d'interface utilisateur dans un moteur C++ personnalisé pour Nintendo Switch."
+    },
+    "waypoint": {
+      "badge": "Gameplay",
+      "title": "Système de Waypoints",
+      "description": "Calcul des positions des joueurs dans un jeu de course via produits scalaires et interpolation de waypoints."
+    },
+    "neko": {
+      "badge": "Engine",
+      "title": "Optimisation SIMD des Quaternions",
+      "description": "Opérations quaternion haute performance avec Intel Intrinsics pour les transformations 3D dans les moteurs de jeu."
+    },
+    "manim": {
+      "badge": "Apprentissage",
+      "title": "Ma première animation Manim",
+      "description": "Apprendre Manim de zéro sans IA : un parcours à travers la documentation, les tutoriels et l'expérimentation."
+    }
+  }
+}
