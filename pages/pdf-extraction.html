@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-module="pages/pdf-extraction">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Data Extraction Pipeline | Sebastien Feser</title>
+    <meta name="description" content="Building an AI-powered pipeline to extract structured data from scientific PDFs. 7 iterations to reach 99% accuracy.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-logo">SF</a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="../index.html#blog" class="nav-link" data-i18n="nav.blog">Blog</a>
+                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="article-header">
+                <span class="hero-badge" data-i18n="pdf.badge">AI Pipeline</span>
+                <h1 data-i18n="pdf.title">Building a PDF Data Extraction Pipeline with AI</h1>
+                <p class="hero-subtitle" data-i18n="pdf.subtitle">7 iterations to reach 99% accuracy on scientific papers</p>
+            </header>
+
+            <article class="article-content">
+                <!-- Section 1: Introduction -->
+                <h2 data-i18n="pdf.intro_title">The Problem</h2>
+                <p data-i18n="pdf.intro_text1">
+                    In volcanology, understanding how magma behaves underground requires experimental data: compositions of minerals and melts measured in the lab under controlled temperatures and pressures. Over the years, thousands of these experiments have been published in scientific papers. One researcher on the VAMOS project at the University of Geneva compiled about 3,000 of them manually into a single spreadsheet, reading each PDF, finding the right tables, and copy-pasting values one by one.
+                </p>
+                <p data-i18n="pdf.intro_text2">
+                    But there are thousands more papers out there. Doing this by hand is time-consuming, error-prone, and simply doesn't scale. A single paper can take 15 to 30 minutes to process. Multiply that by a few thousand, and you're looking at years of manual work.
+                </p>
+                <p data-i18n="pdf.intro_text3">
+                    So I set out to automate the entire pipeline: give it a PDF, get clean, structured data back. It sounds simple. It wasn't.
+                </p>
+
+                <!-- Section 2: The Challenge -->
+                <h2 data-i18n="pdf.challenge_title">The Challenge</h2>
+                <p data-i18n="pdf.challenge_text1">
+                    The goal sounds simple: give it a PDF, get a clean spreadsheet with all the oxide compositions, temperatures, and pressures. But PDF tables are a nightmare for computers. Every paper uses a different format, with different column orders, different names for the same oxides, and units that aren't always specified.
+                </p>
+                <p data-i18n="pdf.challenge_text2">
+                    Some tables are rotated 90 degrees, turning columns into rows. Others span two or three pages, with headers only on the first one. And often the data you need is split across multiple tables: experimental conditions in Table 1, mineral compositions in Table 3. You have to match them yourself.
+                </p>
+                <p data-i18n="pdf.challenge_text3">
+                    A human can handle this because they understand the context. A regular script cannot.
+                </p>
+
+                <!-- Section 3: What is Claude? -->
+                <h2 data-i18n="pdf.claude_title">What is Claude?</h2>
+                <img src="../assets/images/claude_logo.png" alt="Claude AI logo" style="display: block; margin: 1.5rem auto; max-width: 400px; width: 100%;">
+                <p data-i18n="pdf.claude_text1">
+                    Claude is an AI model made by Anthropic, similar to ChatGPT. You give it text, it processes it, and it gives you a response. You can give it very specific instructions: here's a table, extract the oxide values into this exact JSON format. And it does it. It can also write code.
+                </p>
+                <p data-i18n="pdf.claude_text2">
+                    It comes in three sizes. Haiku is the smallest: fast and cheap, about $0.001 per page. Sonnet is the middle ground, at roughly $0.01 per page. And Opus is the most powerful, at around $0.1 per page.
+                </p>
+                <p data-i18n="pdf.claude_text3">
+                    There are two ways to use it. The API lets you send text from a script and get data back, paying per use. Claude Code is an AI assistant that runs in your terminal, reads your files, writes code, and runs commands, for a flat monthly subscription ($20/month for Pro, $100/month for Max, or $200/month for Max x20).
+                </p>
+
+                <!-- Section 4: The 7 Attempts -->
+                <h2 data-i18n="pdf.attempts_title">Finding the Right Approach</h2>
+                <p data-i18n="pdf.attempts_intro">
+                    This is where I spent the most time. Each failure taught me something, and the final solution only exists because of everything I learned along the way.
+                </p>
+
+                <div class="timeline">
+                    <!-- Attempt 1 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt1_date">Attempt 1</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt1_title">Brute Force with Claude Code</h3>
+                        <div class="callout callout-error">
+                            <p data-i18n="pdf.attempt1_text">I started with the simplest idea: just ask Claude Code to read the PDFs directly and extract everything. No pre-processing, no pipeline. The problem? It burned through my entire session budget in about 5 minutes, and it hadn't even finished processing a single paper. Sending full PDFs to the most powerful model with no filtering is extremely expensive. Not viable at all.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 2 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt2_date">Attempt 2</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt2_title">Haiku Reads PDFs Directly</h3>
+                        <div class="callout callout-error">
+                            <p data-i18n="pdf.attempt2_text">I tried the cheapest model, Haiku, on the raw PDF content. At $0.001 per page, the cost was right. But Haiku couldn't reliably parse complex table layouts. Too many errors, too many missed values. Cheap but unusable.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 3 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt3_date">Attempt 3</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt3_title">Sonnet Vision + Haiku Review</h3>
+                        <div class="callout callout-warning">
+                            <p data-i18n="pdf.attempt3_text">I used Sonnet in vision mode, sending images of each page. It worked! The model could actually read the tables visually. But it cost $0.50 to $1.00 per PDF. For thousands of papers, that's thousands of dollars. Accurate but way too expensive at scale.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 4 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt4_date">Attempt 4</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt4_title">pymupdf Pre-processing + Haiku</h3>
+                        <div class="callout callout-warning">
+                            <p data-i18n="pdf.attempt4_text">The breakthrough idea was doing more work in Python first. I used pymupdf to extract text with positions, reconstructed the table layout, and filtered out irrelevant content. Then I sent only the relevant blocks to Haiku. Cost dropped to $0.08 per paper, but accuracy was only 77 to 94%. Better, but not reliable enough.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 5 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt5_date">Attempt 5</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt5_title">Custom Python Parsers</h3>
+                        <div class="callout callout-error">
+                            <p data-i18n="pdf.attempt5_text">I tried writing custom Python parsers for each table format. The idea was to bypass AI entirely and just parse the tables programmatically. But every paper is different: different layouts, different column names, different structures. Writing a new parser for each paper is simply not scalable.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 6 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt6_date">Attempt 6</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt6_title">tabula + Haiku</h3>
+                        <div class="callout callout-warning">
+                            <p data-i18n="pdf.attempt6_text">I switched to tabula-py, a Python wrapper around tabula-java, which is much better at detecting table boundaries. Combined with Haiku for interpretation, it reached 81.5% accuracy at $0.09 per PDF. Getting closer, but still not good enough for scientific data where every value matters.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attempt 7 -->
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="pdf.attempt7_date">Attempt 7</span>
+                        <h3 class="timeline-title" data-i18n="pdf.attempt7_title">tabula + Claude Code Agents</h3>
+                        <div class="callout callout-success">
+                            <p data-i18n="pdf.attempt7_text">The winning combination. tabula handles table extraction from the PDF, then Claude Code agents (using Opus, the most powerful model) process and cross-reference the data. Three AI agents work in parallel on different papers simultaneously, maximizing throughput. Result: 99% accuracy at roughly $100 per month for over 1,000 PDFs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Why It Works -->
+                <h2 data-i18n="pdf.why_title">Why This Approach Works</h2>
+                <p data-i18n="pdf.why_text1">
+                    Three things make this solution work where the others failed.
+                </p>
+                <p data-i18n="pdf.why_text2">
+                    First, Claude Code uses Opus, the most powerful model. While Haiku and Sonnet struggled with complex table layouts, Opus reads them like a human would. It understands context, cross-references between tables, and doesn't miss values.
+                </p>
+                <p data-i18n="pdf.why_text3">
+                    Second, the pricing model changes everything. With the API, you pay per token, so you try to send as little as possible. With Claude Code, it's a flat monthly fee. You can process over 1,000 PDFs without worrying about costs.
+                </p>
+                <p data-i18n="pdf.why_text4">
+                    Third, Claude Code only handles the hard part: reading tables and writing structured JSON. Everything else (running tabula, assembling the spreadsheet, validation, flagging) is handled by Python scripts. You use AI where it adds value, and code where it's more reliable.
+                </p>
+
+                <!-- Section 6: Quality Control -->
+                <h2 data-i18n="pdf.quality_title">Quality Control</h2>
+                <div class="callout callout-warning">
+                    <h4 data-i18n="pdf.quality_callout_title">AI is a tool, not a replacement for expertise</h4>
+                    <p data-i18n="pdf.quality_text">Even with 99% accuracy on our test set, there must always be a human reviewing the output. The system flags uncertain values and missing data, but the final check is always done by a domain expert. No amount of automation replaces the eye of a scientist who knows what the numbers should look like.</p>
+                </div>
+
+                <!-- Section 7: Key Takeaways -->
+                <h2 data-i18n="pdf.takeaways_title">Key Takeaways</h2>
+                <ul>
+                    <li data-i18n="pdf.takeaway1">Don't throw AI at a problem without pre-processing. The more you prepare the input, the better the output.</li>
+                    <li data-i18n="pdf.takeaway2">The cheapest model is not always the most cost-effective. A more powerful model that gets it right the first time can save you hours of debugging and re-processing.</li>
+                    <li data-i18n="pdf.takeaway3">Split the work: let Python handle what Python does best (file I/O, formatting, validation), and let AI handle what it does best (understanding messy, unstructured data).</li>
+                    <li data-i18n="pdf.takeaway4">Iterate fast, fail cheap. Each failed attempt took a few hours at most, but the lessons compounded into the final solution.</li>
+                    <li data-i18n="pdf.takeaway5">Always keep a human in the loop. AI is powerful, but domain expertise is irreplaceable.</li>
+                </ul>
+
+                <!-- Technologies -->
+                <h2 data-i18n="pdf.tech_title">Technologies Used</h2>
+                <div class="skills-row" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">tabula-py / tabula-java</span>
+                    <span class="skill-tag">Claude AI</span>
+                    <span class="skill-tag">Claude Code</span>
+                    <span class="skill-tag">pymupdf</span>
+                </div>
+            </article>
+
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link-btn" data-i18n="pdf.back_home">&larr; Back to Home</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/mobile-menu.js"></script>
+</body>
+</html>

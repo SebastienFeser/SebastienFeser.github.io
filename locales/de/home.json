@@ -29,6 +29,11 @@
     }
   },
   "blog": {
+    "pdf": {
+      "badge": "KI-Pipeline",
+      "title": "Aufbau einer KI-gestützten PDF-Datenextraktions-Pipeline",
+      "description": "7 Iterationen zur Extraktion strukturierter Daten aus wissenschaftlichen Artikeln, von Brute Force bis 99% Genauigkeit."
+    },
     "manim": {
       "badge": "Lernen",
       "title": "Meine erste Manim-Animation",

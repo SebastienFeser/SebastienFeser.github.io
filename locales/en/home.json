@@ -29,6 +29,11 @@
     }
   },
   "blog": {
+    "pdf": {
+      "badge": "AI Pipeline",
+      "title": "Building a PDF Data Extraction Pipeline with AI",
+      "description": "7 iterations to extract structured data from scientific papers, from brute force to 99% accuracy."
+    },
     "manim": {
       "badge": "Learning",
       "title": "My First Manim Animation",

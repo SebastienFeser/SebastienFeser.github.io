@@ -29,6 +29,11 @@
     }
   },
   "blog": {
+    "pdf": {
+      "badge": "Pipeline IA",
+      "title": "Construire un pipeline d'extraction de données PDF avec l'IA",
+      "description": "7 itérations pour extraire des données structurées d'articles scientifiques, de la force brute à 99% de précision."
+    },
     "manim": {
       "badge": "Apprentissage",
       "title": "Ma première animation Manim",

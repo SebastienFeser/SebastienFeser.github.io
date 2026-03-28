@@ -7,7 +7,9 @@
     "neko_section": "Neko Engine",
     "neko_description": "Articles about low-level optimization and engine development.",
     "learning_section": "Learning Journey",
-    "learning_description": "Personal experiences learning new tools and technologies."
+    "learning_description": "Personal experiences learning new tools and technologies.",
+    "ai_data_section": "AI & Data",
+    "ai_data_description": "Articles about AI-powered data pipelines and automation."
   },
   "blog": {
     "postmortem": {
@@ -29,6 +31,11 @@
       "badge": "Engine",
       "title": "SIMD Quaternion Optimization",
       "description": "High-performance quaternion operations using Intel Intrinsics for 3D transformations in game engines."
+    },
+    "pdf": {
+      "badge": "AI Pipeline",
+      "title": "Building a PDF Data Extraction Pipeline with AI",
+      "description": "7 iterations to extract structured data from scientific papers, from brute force to 99% accuracy."
     },
     "manim": {
       "badge": "Learning",
