@@ -1294,6 +1294,28 @@ li {
     border-bottom: 1px solid var(--accent-secondary);
 }
 
+/* Scroll reveal: elements fade/slide in as they enter the viewport.
+   The .reveal class is added by JS, so without JS (or with reduced motion)
+   content simply shows normally. */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 /* WebGL plasma background. Stays hidden until the shader script enables it,
    so users without WebGL (or with reduced-motion) just see the normal page.
    Fixed behind all content (z-index: -1) so it stays put while the page
