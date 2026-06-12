@@ -57,6 +57,13 @@
     const SLEEP_V = 8;              // px/s
     const SLEEP_W = 0.08;           // rad/s
     const SLEEP_TIME = 0.6;         // s below thresholds before freezing
+    // mouse dragging
+    const DRAG_STIFF = 0.25;        // fraction of the gap closed per step
+    const MAX_DRAG_SPEED = 3500;    // px/s, caps how hard the grab pulls
+
+    // current drag state: { body, anchorLocal } and the live mouse position
+    let drag = null;
+    const mouseWorld = V(0, 0);
 
     /* =========================================================
        Body factory
@@ -385,6 +392,44 @@
         b.angle += (b.angularVelocity + b.biasW) * DT;
     }
 
+    // Is world point p inside body b?
+    function pointInBody(b, p) {
+        if (b.shape === 'circle') return lenSq(sub(p, b.pos)) <= b.radius * b.radius;
+        const local = rotT(sub(p, b.pos), b.angle);
+        for (let i = 0; i < b.vertices.length; i++) {
+            if (dot(b.normals[i], sub(local, b.vertices[i])) > 0) return false;
+        }
+        return true;
+    }
+
+    // Mouse joint: pull the grabbed anchor point toward the cursor by solving a
+    // 2x2 effective-mass constraint (lets the body swing/rotate naturally).
+    function solveDrag() {
+        if (!drag) return;
+        const b = drag.body;
+        const r = rot(drag.anchorLocal, b.angle);
+        const anchor = add(b.pos, r);
+        let target = mul(sub(mouseWorld, anchor), DRAG_STIFF / DT);
+        const ts = len(target);
+        if (ts > MAX_DRAG_SPEED) target = mul(target, MAX_DRAG_SPEED / ts);
+
+        const pointVel = add(b.velocity, crossSV(b.angularVelocity, r));
+        const cdot = sub(pointVel, target);
+
+        const im = b.invMass, ii = b.invInertia;
+        const k11 = im + ii * r.y * r.y;
+        const k12 = -ii * r.x * r.y;
+        const k22 = im + ii * r.x * r.x;
+        const det = k11 * k22 - k12 * k12;
+        if (Math.abs(det) < 1e-9) return;
+        const invDet = 1 / det;
+        const impulse = V(
+            invDet * (k22 * -cdot.x - k12 * -cdot.y),
+            invDet * (k11 * -cdot.y - k12 * -cdot.x)
+        );
+        applyP(b, impulse, r);
+    }
+
     const pairKey = (a, b) => a.id < b.id ? a.id + '_' + b.id : b.id + '_' + a.id;
 
     function step(bodies, arbiters) {
@@ -423,6 +468,7 @@
         for (const arb of arbiters.values()) preStep(arb, invDt);
         for (let it = 0; it < ITERATIONS; it++) {
             for (const arb of arbiters.values()) applyImpulse(arb);
+            solveDrag();
         }
         bodies.forEach(integrateVelocities);
     }
@@ -598,6 +644,7 @@
         let acc = 0;
         let last = performance.now();
         let settleTimer = 0;
+        let awake = true;
         function loop(now) {
             const frameDt = Math.min((now - last) / 1000, 0.05);
             last = now;
@@ -608,18 +655,68 @@
             }
             for (const b of bodies) render(b);
 
-            // Sleep: once everything is nearly still, freeze the sim (kills the
-            // last micro-jitter and stops burning CPU). Escape still reloads.
-            let moving = false;
-            for (const b of dynamics) {
-                if (len(b.velocity) > SLEEP_V || Math.abs(b.angularVelocity) > SLEEP_W) {
-                    moving = true; break;
+            // Sleep: once everything is nearly still (and not being dragged),
+            // freeze the sim to kill micro-jitter and stop burning CPU.
+            let moving = !!drag;
+            if (!moving) {
+                for (const b of dynamics) {
+                    if (len(b.velocity) > SLEEP_V || Math.abs(b.angularVelocity) > SLEEP_W) {
+                        moving = true; break;
+                    }
                 }
             }
             settleTimer = moving ? 0 : settleTimer + frameDt;
-            if (settleTimer < SLEEP_TIME) requestAnimationFrame(loop);
+            if (settleTimer < SLEEP_TIME) {
+                requestAnimationFrame(loop);
+            } else {
+                awake = false; // park the loop; wake() restarts it on interaction
+            }
+        }
+        function wake() {
+            if (awake) return;
+            awake = true;
+            settleTimer = 0;
+            acc = 0;
+            last = performance.now();
+            requestAnimationFrame(loop);
         }
         requestAnimationFrame(loop);
+
+        // --- mouse / touch dragging ---
+        const pointerPos = (e) => {
+            const t = e.touches ? e.touches[0] : e;
+            return V(t.clientX, t.clientY);
+        };
+        function grab(e) {
+            const p = pointerPos(e);
+            // topmost first: dynamics are in DOM/paint order, later = on top
+            for (let i = dynamics.length - 1; i >= 0; i--) {
+                if (pointInBody(dynamics[i], p)) {
+                    mouseWorld.x = p.x; mouseWorld.y = p.y;
+                    drag = {
+                        body: dynamics[i],
+                        anchorLocal: rotT(sub(p, dynamics[i].pos), dynamics[i].angle),
+                    };
+                    wake();
+                    e.preventDefault();
+                    return;
+                }
+            }
+        }
+        function move(e) {
+            if (!drag) return;
+            const p = pointerPos(e);
+            mouseWorld.x = p.x; mouseWorld.y = p.y;
+            e.preventDefault();
+        }
+        function release() { drag = null; }
+
+        window.addEventListener('mousedown', grab);
+        window.addEventListener('mousemove', move);
+        window.addEventListener('mouseup', release);
+        window.addEventListener('touchstart', grab, { passive: false });
+        window.addEventListener('touchmove', move, { passive: false });
+        window.addEventListener('touchend', release);
     }
 
     /* =========================================================
