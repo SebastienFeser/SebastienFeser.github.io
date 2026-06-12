@@ -23,6 +23,9 @@
     --accent-hover: #ff6b6b;
     --accent-secondary: #0f3460;
 
+    /* Borders */
+    --border-color: rgba(255, 255, 255, 0.12);
+
     /* Status colors */
     --success: #4ade80;
     --warning: #fbbf24;
@@ -75,6 +78,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden; /* prevent the full-bleed (100vw) hero shader from causing horizontal scroll */
 }
 
 body {
@@ -332,7 +336,7 @@ p {
     padding: var(--spacing-xl);
     transition: all var(--transition-normal);
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
 }
 
 .card:hover {
@@ -611,6 +615,7 @@ li {
 .author-box {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-xl);
     margin: var(--spacing-2xl) 0;
     display: flex;
@@ -703,6 +708,7 @@ li {
 .stat-card {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-lg);
     text-align: center;
 }
@@ -724,6 +730,7 @@ li {
 .toc {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-lg) var(--spacing-xl);
     margin: var(--spacing-xl) 0;
 }
@@ -825,6 +832,7 @@ li {
 .quote {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-xl);
     margin: var(--spacing-xl) 0;
     font-style: italic;
@@ -1276,6 +1284,8 @@ li {
    ENHANCED HERO SECTION
    ============================================ */
 .hero-enhanced {
+    position: relative;
+    min-height: calc(100vh - 4.5rem); /* fill the screen below the sticky header */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1284,8 +1294,34 @@ li {
     border-bottom: 1px solid var(--accent-secondary);
 }
 
+/* WebGL plasma background. Stays hidden until the shader script enables it,
+   so users without WebGL (or with reduced-motion) just see the normal page.
+   Fixed behind all content (z-index: -1) so it stays put while the page
+   scrolls over it, acting as a site-wide animated background. */
+#hero-shader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    display: none;
+}
+
+#hero-shader.active {
+    display: block;
+}
+
 .hero-content {
+    position: relative;
+    z-index: 1;
     flex: 1;
+}
+
+.hero-image {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content .hero-badge {
@@ -1637,6 +1673,7 @@ a.card:focus {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
 }
 
 .skills-category-title {
@@ -1710,7 +1747,7 @@ a.card:focus {
     gap: var(--spacing-xl);
     align-items: flex-start;
     transition: all var(--transition-normal);
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
 }
 
 a.education-card {
@@ -1792,6 +1829,7 @@ a.education-card:focus {
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent);
 }
 
@@ -1823,6 +1861,7 @@ a.education-card:focus {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent-secondary);
     transition: all var(--transition-normal);
 }
@@ -1923,7 +1962,7 @@ a.education-card:focus {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    border: 1px solid var(--accent-secondary);
+    border: 1px solid var(--border-color);
     transition: all var(--transition-normal);
     text-decoration: none;
 }
@@ -2074,7 +2113,7 @@ a.education-card:focus {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     text-align: center;
-    border: 1px solid var(--accent-secondary);
+    border: 1px solid var(--border-color);
     transition: all var(--transition-normal);
 }
 
@@ -2115,6 +2154,7 @@ a.education-card:focus {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent);
 }
 
@@ -2146,6 +2186,7 @@ a.education-card:focus {
 .tool-item {
     background: var(--bg-secondary);
     border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
@@ -2185,6 +2226,7 @@ a.education-card:focus {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-color);
     border-left: 3px solid var(--warning);
 }
 
