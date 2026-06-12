@@ -725,15 +725,45 @@
     const SEQ = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
         'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     let pos = 0;
-    document.addEventListener('keydown', (e) => {
-        // TEST trigger: press § to activate immediately (remove before shipping).
-        if (e.key === '§') { activate(); return; }
+    function feed(token) {
+        pos = (token === SEQ[pos]) ? pos + 1 : (token === SEQ[0] ? 1 : 0);
+        if (pos === SEQ.length) { pos = 0; activate(); }
+    }
 
-        const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-        pos = (k === SEQ[pos]) ? pos + 1 : (k === SEQ[0] ? 1 : 0);
-        if (pos === SEQ.length) {
-            pos = 0;
-            activate();
+    // --- keyboard ---
+    document.addEventListener('keydown', (e) => {
+        feed(e.key.length === 1 ? e.key.toLowerCase() : e.key);
+    });
+
+    // --- gamepad (standard mapping): D-pad / sticks for directions, B=1, A=0 ---
+    const GP_BUTTONS = { 12: 'ArrowUp', 13: 'ArrowDown', 14: 'ArrowLeft', 15: 'ArrowRight', 1: 'b', 0: 'a' };
+    const AXIS_TOKENS = { up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight' };
+    const gpPrev = {};
+    let gpPolling = false;
+    function pollGamepads() {
+        const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+        for (const gp of pads) {
+            if (!gp) continue;
+            for (const idx in GP_BUTTONS) {
+                const pressed = !!(gp.buttons[idx] && gp.buttons[idx].pressed);
+                const id = gp.index + ':b' + idx;
+                if (pressed && !gpPrev[id]) feed(GP_BUTTONS[idx]);
+                gpPrev[id] = pressed;
+            }
+            // left stick as a D-pad fallback (edge-triggered)
+            const ax = gp.axes[0] || 0, ay = gp.axes[1] || 0, TH = 0.6;
+            const dirs = { up: ay < -TH, down: ay > TH, left: ax < -TH, right: ax > TH };
+            for (const d in dirs) {
+                const id = gp.index + ':a' + d;
+                if (dirs[d] && !gpPrev[id]) feed(AXIS_TOKENS[d]);
+                gpPrev[id] = dirs[d];
+            }
         }
+        requestAnimationFrame(pollGamepads);
+    }
+    window.addEventListener('gamepadconnected', () => {
+        if (gpPolling) return;
+        gpPolling = true;
+        requestAnimationFrame(pollGamepads);
     });
 })();
