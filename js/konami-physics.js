@@ -46,10 +46,17 @@
        ========================================================= */
     const GRAVITY = V(0, 1600);     // px / s^2
     const DT = 1 / 60;              // fixed timestep
-    const ITERATIONS = 12;          // solver iterations (stacking stability)
-    const PEN_SLOP = 0.05;
-    const PEN_PERCENT = 0.4;
+    const ITERATIONS = 18;          // solver iterations (stacking stability)
+    const K_BIAS = 0.2;             // Baumgarte position-correction factor
+    const K_SLOP = 0.5;             // allowed penetration (px) before correcting
+    const MAX_CORRECTION = 12;      // max penetration (px) corrected per step (anti-pop)
+    const MIN_MASS = 3000;          // mass clamp keeps big/small bodies within
+    const MAX_MASS = 45000;         // ~15x so heavy objects don't crush light ones
     const MAX_BODIES = 140;
+    // sleeping: freeze the whole sim once everything is nearly still
+    const SLEEP_V = 8;              // px/s
+    const SLEEP_W = 0.08;           // rad/s
+    const SLEEP_TIME = 0.6;         // s below thresholds before freezing
 
     /* =========================================================
        Body factory
@@ -63,7 +70,9 @@
             const e = sub(b, a);
             normals.push(norm(V(e.y, -e.x))); // outward (screen y-down winding)
         }
-        const mass = w * h;
+        // Clamp mass so a huge card isn't hundreds of times heavier than a small
+        // badge (large mass ratios make the solver crush/jitter light bodies).
+        const mass = Math.max(MIN_MASS, Math.min(MAX_MASS, w * h));
         const inertia = mass * (w * w + h * h) / 12;
         return baseBody({
             shape: 'poly', vertices, normals,
@@ -72,7 +81,7 @@
     }
 
     function makeCircle(cx, cy, r) {
-        const mass = Math.PI * r * r;
+        const mass = Math.max(MIN_MASS, Math.min(MAX_MASS, Math.PI * r * r));
         const inertia = mass * r * r * 0.5;
         return baseBody({
             shape: 'circle', radius: r,
@@ -80,31 +89,28 @@
         });
     }
 
+    let bodyIdCounter = 0;
     function baseBody(o) {
         return Object.assign({
+            id: bodyIdCounter++,
             velocity: V(0, 0),
             angle: 0,
             angularVelocity: 0,
-            restitution: 0.2,
-            staticFriction: 0.5,
-            dynamicFriction: 0.35,
+            biasVel: V(0, 0),   // split-impulse pseudo-velocity (position only)
+            biasW: 0,
+            friction: 0.4,
             invMass: o.mass ? 1 / o.mass : 0,
             invInertia: o.inertia ? 1 / o.inertia : 0,
             el: null,
             initX: o.pos.x,
             initY: o.pos.y,
-            clipTimer: 0,
-            fading: false,
-            dead: false,
         }, o);
     }
 
     function makeStatic(body) {
         body.invMass = 0;
         body.invInertia = 0;
-        body.staticFriction = 0.6;
-        body.dynamicFriction = 0.5;
-        body.restitution = 0.1;
+        body.friction = 0.6;
         return body;
     }
 
@@ -141,9 +147,9 @@
         const d2 = lenSq(n);
         if (d2 >= r * r) return null;
         const d = Math.sqrt(d2);
-        if (d === 0) return { normal: V(1, 0), penetration: a.radius, contacts: [a.pos] };
+        if (d === 0) return { normal: V(1, 0), contacts: [{ point: a.pos, separation: -a.radius }] };
         const normal = mul(n, 1 / d);
-        return { normal, penetration: r - d, contacts: [add(mul(normal, a.radius), a.pos)] };
+        return { normal, contacts: [{ point: add(mul(normal, a.radius), a.pos), separation: -(r - d) }] };
     }
 
     // p = polygon (A), c = circle (B). Returned normal points from p toward c.
@@ -163,27 +169,27 @@
         // circle center is inside the polygon: push out along the face normal
         if (sep < 1e-6) {
             const normal = rot(p.normals[face], p.angle); // outward = poly -> circle
-            return { normal, penetration: c.radius, contacts: [sub(c.pos, mul(normal, c.radius))] };
+            return { normal, contacts: [{ point: sub(c.pos, mul(normal, c.radius)), separation: -c.radius }] };
         }
 
         const d1 = dot(sub(center, v1), sub(v2, v1));
         const d2 = dot(sub(center, v2), sub(v1, v2));
-        const pen = c.radius - sep;
+        const sepOut = -(c.radius - sep); // negative penetration
         if (d1 <= 0) {
             // nearest to vertex v1
             if (lenSq(sub(center, v1)) > c.radius * c.radius) return null;
             const normal = rot(norm(sub(center, v1)), p.angle); // vertex -> circle = poly -> circle
-            return { normal, penetration: pen, contacts: [add(rot(v1, p.angle), p.pos)] };
+            return { normal, contacts: [{ point: add(rot(v1, p.angle), p.pos), separation: sepOut }] };
         } else if (d2 <= 0) {
             // nearest to vertex v2
             if (lenSq(sub(center, v2)) > c.radius * c.radius) return null;
             const normal = rot(norm(sub(center, v2)), p.angle);
-            return { normal, penetration: pen, contacts: [add(rot(v2, p.angle), p.pos)] };
+            return { normal, contacts: [{ point: add(rot(v2, p.angle), p.pos), separation: sepOut }] };
         } else {
             // nearest to the face
             if (dot(sub(center, v1), p.normals[face]) > c.radius) return null;
             const normal = rot(p.normals[face], p.angle); // outward = poly -> circle
-            return { normal, penetration: pen, contacts: [sub(c.pos, mul(normal, c.radius))] };
+            return { normal, contacts: [{ point: sub(c.pos, mul(normal, c.radius)), separation: sepOut }] };
         }
     }
 
@@ -257,115 +263,168 @@
         const normal = flipNormal ? mul(refNormal, -1) : refNormal;
         const refC = dot(refNormal, rv1);
         const contacts = [];
-        let penSum = 0, cnt = 0;
         for (const p of face) {
             const sep = dot(refNormal, p) - refC;
-            if (sep <= 0) { contacts.push(p); penSum += -sep; cnt++; }
+            if (sep <= 0) contacts.push({ point: p, separation: sep });
         }
-        if (cnt === 0) return null;
-        return { normal, contacts, penetration: penSum / cnt };
+        if (contacts.length === 0) return null;
+        return { normal, contacts };
     }
 
     /* =========================================================
        Impulse resolution
        ========================================================= */
-    function resolve(m, A, B) {
-        const e = Math.min(A.restitution, B.restitution);
-        const sf = Math.sqrt(A.staticFriction * B.staticFriction);
-        const df = Math.sqrt(A.dynamicFriction * B.dynamicFriction);
-        const restThreshold = lenSq(mul(GRAVITY, DT)) + 1e-4;
+    // Apply an impulse P at offset r from a body's center of mass.
+    function applyP(b, P, r) {
+        if (b.invMass === 0) return;
+        b.velocity = add(b.velocity, mul(P, b.invMass));
+        b.angularVelocity += b.invInertia * crossVV(r, P);
+    }
 
-        for (const cp of m.contacts) {
-            const ra = sub(cp, A.pos);
-            const rb = sub(cp, B.pos);
-            let rv = sub(
-                add(B.velocity, crossSV(B.angularVelocity, rb)),
-                add(A.velocity, crossSV(A.angularVelocity, ra))
-            );
-            const contactVel = dot(rv, m.normal);
-            if (contactVel > 0) continue;
+    // Apply a bias (pseudo-velocity) impulse: corrects position without adding
+    // real velocity, so penetration recovery doesn't cause ghost bounces.
+    function applyPbias(b, P, r) {
+        if (b.invMass === 0) return;
+        b.biasVel = add(b.biasVel, mul(P, b.invMass));
+        b.biasW += b.invInertia * crossVV(r, P);
+    }
 
-            const raCrossN = crossVV(ra, m.normal);
-            const rbCrossN = crossVV(rb, m.normal);
-            const invMassSum = A.invMass + B.invMass
-                + raCrossN * raCrossN * A.invInertia
-                + rbCrossN * rbCrossN * B.invInertia;
-            if (invMassSum === 0) continue;
-
-            const bounce = lenSq(rv) < restThreshold ? 0 : e;
-            let j = -(1 + bounce) * contactVel / invMassSum;
-            j /= m.contacts.length;
-            const impulse = mul(m.normal, j);
-            applyImpulse(A, mul(impulse, -1), ra);
-            applyImpulse(B, impulse, rb);
-
-            // friction
-            rv = sub(
-                add(B.velocity, crossSV(B.angularVelocity, rb)),
-                add(A.velocity, crossSV(A.angularVelocity, ra))
-            );
-            let t = sub(rv, mul(m.normal, dot(rv, m.normal)));
-            t = norm(t);
-            let jt = -dot(rv, t) / invMassSum;
-            jt /= m.contacts.length;
-            if (Math.abs(jt) < 1e-6) continue;
-            const frictionImpulse = Math.abs(jt) < j * sf
-                ? mul(t, jt)
-                : mul(t, -j * df);
-            applyImpulse(A, mul(frictionImpulse, -1), ra);
-            applyImpulse(B, frictionImpulse, rb);
+    // Pre-step an arbiter: cache contact data, and warm-start by re-applying the
+    // accumulated impulses carried over from the previous frame.
+    function preStep(arb, invDt) {
+        const { A, B, normal } = arb;
+        const tangent = V(normal.y, -normal.x);
+        for (const c of arb.contacts) {
+            c.r1 = sub(c.point, A.pos);
+            c.r2 = sub(c.point, B.pos);
+            const rn1 = crossVV(c.r1, normal), rn2 = crossVV(c.r2, normal);
+            const kN = A.invMass + B.invMass + A.invInertia * rn1 * rn1 + B.invInertia * rn2 * rn2;
+            c.massNormal = kN > 0 ? 1 / kN : 0;
+            const rt1 = crossVV(c.r1, tangent), rt2 = crossVV(c.r2, tangent);
+            const kT = A.invMass + B.invMass + A.invInertia * rt1 * rt1 + B.invInertia * rt2 * rt2;
+            c.massTangent = kT > 0 ? 1 / kT : 0;
+            // Baumgarte: gently correct only penetration beyond the slop, and
+            // cap how much is corrected per step so deep overlaps ease out
+            // smoothly instead of popping.
+            const corr = Math.max(Math.min(0, c.separation + K_SLOP), -MAX_CORRECTION);
+            c.bias = -K_BIAS * invDt * corr;
+            // warm start
+            const P = add(mul(normal, c.Pn), mul(tangent, c.Pt));
+            applyP(A, mul(P, -1), c.r1);
+            applyP(B, P, c.r2);
         }
     }
 
-    function applyImpulse(b, impulse, r) {
-        if (b.invMass === 0) return;
-        b.velocity = add(b.velocity, mul(impulse, b.invMass));
-        b.angularVelocity += b.invInertia * crossVV(r, impulse);
-    }
+    function applyImpulse(arb) {
+        const { A, B, normal, friction } = arb;
+        const tangent = V(normal.y, -normal.x);
+        for (const c of arb.contacts) {
+            // --- real normal impulse (no position bias here -> no ghost bounce) ---
+            let dv = sub(
+                add(B.velocity, crossSV(B.angularVelocity, c.r2)),
+                add(A.velocity, crossSV(A.angularVelocity, c.r1))
+            );
+            const vn = dot(dv, normal);
+            let dPn = c.massNormal * (-vn);
+            const Pn0 = c.Pn;
+            c.Pn = Math.max(Pn0 + dPn, 0);       // accumulate & clamp >= 0
+            dPn = c.Pn - Pn0;
+            const Pnv = mul(normal, dPn);
+            applyP(A, mul(Pnv, -1), c.r1);
+            applyP(B, Pnv, c.r2);
 
-    function correct(m, A, B) {
-        const sum = A.invMass + B.invMass;
-        if (sum === 0) return;
-        const c = Math.max(m.penetration - PEN_SLOP, 0) / sum * PEN_PERCENT;
-        const corr = mul(m.normal, c);
-        A.pos = sub(A.pos, mul(corr, A.invMass));
-        B.pos = add(B.pos, mul(corr, B.invMass));
+            // --- bias (pseudo-velocity) normal impulse: penetration correction ---
+            const dvb = sub(
+                add(B.biasVel, crossSV(B.biasW, c.r2)),
+                add(A.biasVel, crossSV(A.biasW, c.r1))
+            );
+            const vnb = dot(dvb, normal);
+            let dPnb = c.massNormal * (-vnb + c.bias);
+            const Pnb0 = c.Pnb;
+            c.Pnb = Math.max(Pnb0 + dPnb, 0);
+            dPnb = c.Pnb - Pnb0;
+            const Pnbv = mul(normal, dPnb);
+            applyPbias(A, mul(Pnbv, -1), c.r1);
+            applyPbias(B, Pnbv, c.r2);
+
+            // --- friction impulse (clamped to Coulomb cone of accumulated normal) ---
+            dv = sub(
+                add(B.velocity, crossSV(B.angularVelocity, c.r2)),
+                add(A.velocity, crossSV(A.angularVelocity, c.r1))
+            );
+            const vt = dot(dv, tangent);
+            let dPt = c.massTangent * (-vt);
+            const maxPt = friction * c.Pn;
+            const Pt0 = c.Pt;
+            c.Pt = Math.max(-maxPt, Math.min(maxPt, Pt0 + dPt));
+            dPt = c.Pt - Pt0;
+            const Ptv = mul(tangent, dPt);
+            applyP(A, mul(Ptv, -1), c.r1);
+            applyP(B, Ptv, c.r2);
+        }
     }
 
     /* =========================================================
        Simulation step
        ========================================================= */
+    const MAX_SPEED = 4000; // px/s, guards against tunneling through walls
     function integrateForces(b) {
         if (b.invMass === 0) return;
-        b.velocity = add(b.velocity, mul(GRAVITY, DT / 2));
+        b.velocity = add(b.velocity, mul(GRAVITY, DT));
+        // reset the pseudo-velocity used for split-impulse position correction
+        b.biasVel = V(0, 0);
+        b.biasW = 0;
     }
-    const MAX_SPEED = 4000; // px/s, guards against tunneling through walls
     function integrateVelocities(b) {
         if (b.invMass === 0) return;
         const sp = len(b.velocity);
         if (sp > MAX_SPEED) b.velocity = mul(b.velocity, MAX_SPEED / sp);
-        b.pos = add(b.pos, mul(b.velocity, DT));
-        b.angle += b.angularVelocity * DT;
-        integrateForces(b);
+        // position advances by real velocity + bias velocity; the bias part is
+        // then discarded (reset next frame) so it never feeds back as a bounce.
+        b.pos = add(b.pos, mul(add(b.velocity, b.biasVel), DT));
+        b.angle += (b.angularVelocity + b.biasW) * DT;
     }
 
-    function step(bodies) {
-        // broad + narrow phase
-        const manifolds = [];
+    const pairKey = (a, b) => a.id < b.id ? a.id + '_' + b.id : b.id + '_' + a.id;
+
+    function step(bodies, arbiters) {
+        const invDt = 1 / DT;
+        // broad + narrow phase -> create/update arbiters (with warm starting)
+        const live = new Set();
         for (let i = 0; i < bodies.length; i++) {
             for (let j = i + 1; j < bodies.length; j++) {
                 const A = bodies[i], B = bodies[j];
                 if (A.invMass === 0 && B.invMass === 0) continue;
                 const m = collide(A, B);
-                if (m) manifolds.push({ m, A, B });
+                const key = pairKey(A, B);
+                if (!m) { arbiters.delete(key); continue; }
+                live.add(key);
+                const contacts = m.contacts.map((c) => ({
+                    point: c.point, separation: c.separation, Pn: 0, Pt: 0, Pnb: 0,
+                }));
+                const prev = arbiters.get(key);
+                if (prev) {
+                    // carry accumulated impulses over by contact index (warm start)
+                    for (let k = 0; k < contacts.length && k < prev.contacts.length; k++) {
+                        contacts[k].Pn = prev.contacts[k].Pn;
+                        contacts[k].Pt = prev.contacts[k].Pt;
+                    }
+                }
+                arbiters.set(key, {
+                    A, B, normal: m.normal,
+                    friction: Math.sqrt(A.friction * B.friction),
+                    contacts,
+                });
             }
         }
+        for (const key of arbiters.keys()) if (!live.has(key)) arbiters.delete(key);
+
         bodies.forEach(integrateForces);
+        for (const arb of arbiters.values()) preStep(arb, invDt);
         for (let it = 0; it < ITERATIONS; it++) {
-            for (const { m, A, B } of manifolds) resolve(m, A, B);
+            for (const arb of arbiters.values()) applyImpulse(arb);
         }
         bodies.forEach(integrateVelocities);
-        for (const { m, A, B } of manifolds) correct(m, A, B);
     }
 
     /* =========================================================
@@ -528,7 +587,8 @@
 
         if (!dynamics.length) { running = false; return; }
         const walls = buildWalls();
-        let bodies = dynamics.concat(walls);
+        const bodies = dynamics.concat(walls);
+        const arbiters = new Map(); // persisted across frames for warm starting
 
         // Escape reloads to restore the page
         window.addEventListener('keydown', (e) => {
@@ -537,15 +597,27 @@
 
         let acc = 0;
         let last = performance.now();
+        let settleTimer = 0;
         function loop(now) {
-            acc += Math.min((now - last) / 1000, 0.05);
+            const frameDt = Math.min((now - last) / 1000, 0.05);
             last = now;
+            acc += frameDt;
             while (acc >= DT) {
-                step(bodies);
+                step(bodies, arbiters);
                 acc -= DT;
             }
             for (const b of bodies) render(b);
-            requestAnimationFrame(loop);
+
+            // Sleep: once everything is nearly still, freeze the sim (kills the
+            // last micro-jitter and stops burning CPU). Escape still reloads.
+            let moving = false;
+            for (const b of dynamics) {
+                if (len(b.velocity) > SLEEP_V || Math.abs(b.angularVelocity) > SLEEP_W) {
+                    moving = true; break;
+                }
+            }
+            settleTimer = moving ? 0 : settleTimer + frameDt;
+            if (settleTimer < SLEEP_TIME) requestAnimationFrame(loop);
         }
         requestAnimationFrame(loop);
     }
