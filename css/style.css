@@ -334,9 +334,11 @@ p {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
-    transition: all var(--transition-normal);
+    transition: transform 0.15s ease, box-shadow var(--transition-normal), border-color var(--transition-normal);
     cursor: pointer;
     border: 1px solid var(--border-color);
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .card:hover {
