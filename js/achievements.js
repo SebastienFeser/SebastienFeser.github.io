@@ -128,6 +128,50 @@
                 it: { name: 'Mistero',  desc: 'Certe cose è meglio non spiegarle.' },
             },
         },
+        {
+            id: 'cv',
+            icon: '📄',
+            secret: false,
+            i18n: {
+                en: { name: 'Ready to Work',     desc: 'Open the CV.' },
+                fr: { name: 'Paré à travailler', desc: 'Ouvrir le CV.' },
+                de: { name: 'Bereit zu arbeiten', desc: 'Den Lebenslauf öffnen.' },
+                it: { name: 'Pronto a lavorare', desc: 'Aprire il CV.' },
+            },
+        },
+        {
+            id: 'globe-trotter',
+            icon: '🌍',
+            secret: false,
+            i18n: {
+                en: { name: 'Globe Trotter', desc: 'Visit 10 pages across the site.' },
+                fr: { name: 'Globe Trotter', desc: 'Visiter 10 pages du site.' },
+                de: { name: 'Globetrotter',  desc: 'Besuche 10 Seiten der Website.' },
+                it: { name: 'Globetrotter',  desc: 'Visita 10 pagine del sito.' },
+            },
+        },
+        {
+            id: 'contact',
+            icon: '📬',
+            secret: false,
+            i18n: {
+                en: { name: 'First Contact',   desc: 'Reach out by email.' },
+                fr: { name: 'Premier contact', desc: 'Prendre contact par email.' },
+                de: { name: 'Erster Kontakt',  desc: 'Per E-Mail Kontakt aufnehmen.' },
+                it: { name: 'Primo contatto',  desc: 'Mettersi in contatto via email.' },
+            },
+        },
+        {
+            id: 'language',
+            icon: '🗣️',
+            secret: false,
+            i18n: {
+                en: { name: 'Polyglot',   desc: 'Switch the site language.' },
+                fr: { name: 'Polyglotte', desc: 'Changer la langue du site.' },
+                de: { name: 'Polyglott',  desc: 'Die Seitensprache wechseln.' },
+                it: { name: 'Poliglotta', desc: 'Cambiare la lingua del sito.' },
+            },
+        },
     ];
 
     /* =========================================================
@@ -452,6 +496,8 @@
         count: unlockedCount,
         reset: function () {
             localStorage.removeItem(KEY);
+            localStorage.removeItem(PAGEVIEWS_KEY);
+            try { sessionStorage.removeItem(PENDING_KEY); } catch (e) { /* ignore */ }
             updateFooterLink();
             renderPage();
         },
@@ -493,6 +539,10 @@
 
         setupGameAchievement();
         setupYoutubeAchievement();
+        setupCvAchievement();
+        setupContactAchievement();
+        setupLanguageAchievement();
+        trackPageViews();
 
         // A toast handed over from the previous page (a navigating trigger).
         consumePendingToast();
@@ -519,6 +569,65 @@
                     unlock('youtube', { deferToast: true });
                 });
             }
+        });
+    }
+
+    // Unlock 'language' on a real language change. We wrap I18n.switchLanguage —
+    // the single chokepoint used by the EN/FR/DE/IT buttons AND the console `lang`
+    // command — so any method counts, but only an actual switch (not the auto
+    // detection at page load, which never calls switchLanguage). Falls back to
+    // listening on the language buttons if I18n isn't available.
+    function setupLanguageAchievement() {
+        if (isUnlocked('language')) return;
+        if (typeof I18n !== 'undefined' && typeof I18n.switchLanguage === 'function') {
+            const original = I18n.switchLanguage.bind(I18n);
+            I18n.switchLanguage = function (lang) {
+                const changed = lang !== I18n.currentLang
+                    && I18n.supportedLangs && I18n.supportedLangs.indexOf(lang) !== -1;
+                const result = original(lang);
+                if (changed) unlock('language');
+                return result;
+            };
+        } else {
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const lang = btn.getAttribute('data-lang');
+                    if (lang && lang !== lang_current()) unlock('language');
+                });
+            });
+        }
+    }
+    function lang_current() {
+        return (typeof I18n !== 'undefined' && I18n.currentLang) || lang();
+    }
+
+    // Unlock 'contact' when the visitor clicks an email (mailto:) link — the
+    // contact-section "Send Email" button and the footer "Email" link.
+    function setupContactAchievement() {
+        if (isUnlocked('contact')) return;
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+            link.addEventListener('click', function () { unlock('contact'); });
+        });
+    }
+
+    // Count every page load (one per init) and unlock 'globe-trotter' at 10.
+    // Revisits and the homepage all count, exactly like opening pages.
+    const PAGEVIEWS_KEY = 'achievements-pageviews';
+    function trackPageViews() {
+        if (isUnlocked('globe-trotter')) return;
+        let n = parseInt(localStorage.getItem(PAGEVIEWS_KEY) || '0', 10);
+        if (isNaN(n)) n = 0;
+        n += 1;
+        localStorage.setItem(PAGEVIEWS_KEY, String(n));
+        if (n >= 10) unlock('globe-trotter');
+    }
+
+    // Unlock 'cv' when the visitor opens the CV PDF (linked from the header,
+    // footer and contact section — all open in a new tab).
+    function setupCvAchievement() {
+        if (isUnlocked('cv')) return;
+        document.querySelectorAll('a[href*="documents/CV"]').forEach(function (link) {
+            link.addEventListener('click', function () { unlock('cv'); });
         });
     }
 
