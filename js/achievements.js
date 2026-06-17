@@ -95,6 +95,39 @@
                 it: { name: 'Inserisci gettone', desc: 'Aprire uno dei giochi pubblicati.' },
             },
         },
+        {
+            id: 'education',
+            icon: '🎓',
+            secret: false,
+            i18n: {
+                en: { name: 'Graduate',  desc: 'Open the education page.' },
+                fr: { name: 'Diplômé',   desc: 'Ouvrir la page de formation.' },
+                de: { name: 'Absolvent', desc: 'Die Ausbildungsseite öffnen.' },
+                it: { name: 'Laureato',  desc: 'Aprire la pagina della formazione.' },
+            },
+        },
+        {
+            id: 'experience',
+            icon: '💼',
+            secret: false,
+            i18n: {
+                en: { name: 'On the Job',   desc: 'Open a work experience page.' },
+                fr: { name: 'Au travail',   desc: 'Ouvrir une page d\'expérience professionnelle.' },
+                de: { name: 'An die Arbeit', desc: 'Eine Berufserfahrungsseite öffnen.' },
+                it: { name: 'Al lavoro',    desc: 'Aprire una pagina di esperienza professionale.' },
+            },
+        },
+        {
+            id: 'youtube',
+            icon: '😏',
+            secret: false,
+            i18n: {
+                en: { name: 'Mystery',  desc: 'Some things are better left unexplained.' },
+                fr: { name: 'Mystère',  desc: 'Certaines choses valent mieux rester inexpliquées.' },
+                de: { name: 'Mysterium', desc: 'Manche Dinge bleiben besser unerklärt.' },
+                it: { name: 'Mistero',  desc: 'Certe cose è meglio non spiegarle.' },
+            },
+        },
     ];
 
     /* =========================================================
@@ -179,14 +212,25 @@
     /* =========================================================
        Unlock + toast
        ========================================================= */
-    function unlock(id) {
+    // Key under which a toast is deferred to the NEXT page (used by triggers that
+    // navigate the current page away before the toast could be seen).
+    const PENDING_KEY = 'achievement-pending-toast';
+
+    // unlock(id) — records the achievement and pops its toast.
+    // unlock(id, { deferToast: true }) — records it but hands the toast to the
+    // next page load (the trigger is about to navigate away), via sessionStorage.
+    function unlock(id, opts) {
         const a = def(id);
         if (!a) { console.warn('[achievements] unknown achievement id:', id); return false; }
         const state = load();
         if (state[id]) return false;            // already earned — no-op
         state[id] = new Date().toISOString();
         save(state);
-        showToast(a);
+        if (opts && opts.deferToast) {
+            try { sessionStorage.setItem(PENDING_KEY, id); } catch (e) { /* ignore */ }
+        } else {
+            showToast(a);
+        }
         updateFooterLink();
         renderPage();
         return true;
@@ -441,7 +485,17 @@
         // so this never fires on a non-article page.
         if (document.documentElement.hasAttribute('data-article')) unlock('read-article');
 
+        // Opening the education page (tagged with `data-education` on <html>).
+        if (document.documentElement.hasAttribute('data-education')) unlock('education');
+
+        // Opening a work experience page (tagged with `data-experience` on <html>).
+        if (document.documentElement.hasAttribute('data-experience')) unlock('experience');
+
         setupGameAchievement();
+        setupYoutubeAchievement();
+
+        // A toast handed over from the previous page (a navigating trigger).
+        consumePendingToast();
     }
 
     // Unlock 'play-game' when the visitor opens one of the published games (the
@@ -451,6 +505,31 @@
         document.querySelectorAll('#projects a.card').forEach(function (card) {
             card.addEventListener('click', function () { unlock('play-game'); });
         });
+    }
+
+    // Unlock 'youtube' (the "Mystery" achievement) when the visitor clicks the
+    // "YouTube Channel Manager" experience card. That card navigates away (to the
+    // 404 for now), so the toast is deferred to the page it lands on.
+    function setupYoutubeAchievement() {
+        if (isUnlocked('youtube')) return;
+        const cards = document.querySelectorAll('#experience a.experience-card');
+        cards.forEach(function (card) {
+            if (card.querySelector('[data-i18n="experience.youtube.title"]')) {
+                card.addEventListener('click', function () {
+                    unlock('youtube', { deferToast: true });
+                });
+            }
+        });
+    }
+
+    // Show a toast that a navigating trigger stored for this page, then clear it.
+    function consumePendingToast() {
+        let id;
+        try { id = sessionStorage.getItem(PENDING_KEY); } catch (e) { return; }
+        if (!id) return;
+        try { sessionStorage.removeItem(PENDING_KEY); } catch (e) { /* ignore */ }
+        const a = def(id);
+        if (a) showToast(a);
     }
 
     // Unlock 'reach-bottom' once the visitor scrolls to the bottom of the HOMEPAGE

@@ -127,6 +127,14 @@ locked). Progress is stored in `localStorage` (key `achievements-unlocked`, a ma
    ```
    Unlocking an already-earned achievement is a harmless no-op.
 
+   If the trigger **navigates the page away** (a same-tab link click), the toast
+   wouldn't have time to show. In that case unlock with a deferred toast:
+   ```js
+   window.Achievements.unlock('id', { deferToast: true });
+   ```
+   The toast is stashed in `sessionStorage` and pops on the page it lands on (so
+   that destination must also load `achievements.js` — every page does).
+
 3. `secret: true` hides the name/description as "???" on the page until it's
    unlocked; `secret: false` shows them greyed out as a hint.
 
@@ -137,7 +145,7 @@ achievements page all read from the same `ACHIEVEMENTS` array.
 
 | Member | Role |
 |--------|------|
-| `unlock(id)` | Unlock by id (fires the toast if newly earned). Returns `true` if it was new. |
+| `unlock(id)` | Unlock by id (fires the toast if newly earned). Returns `true` if it was new. Pass `{ deferToast: true }` to hand the toast to the next page (navigating triggers). |
 | `isUnlocked(id)` | Whether an achievement is already earned. |
 | `count()` | Number of unlocked achievements. |
 | `list` | The full `ACHIEVEMENTS` registry. |
