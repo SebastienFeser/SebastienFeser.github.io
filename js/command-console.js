@@ -1,10 +1,11 @@
 /**
  * EU4-style command console.
  *
- * Opens/closes with the physical key to the LEFT OF "1" (event.code ===
- * 'Backquote'), so it works on every keyboard layout regardless of the
- * character printed on that key (² on AZERTY, ` on QWERTY, etc.) - just like
- * EU4.
+ * Opens/closes with the key to the LEFT OF "1", just like EU4. We match both
+ * the physical key codes ('Backquote' / 'IntlBackslash') AND the characters
+ * that key prints across layouts (` on QWERTY, ² on AZERTY, ^/° on QWERTZ,
+ * etc.), because not every keyboard/OS reports 'Backquote' for that key - so
+ * relying on the code alone left some layouts unable to open the console.
  *
  * Design constraints:
  *  - It sits ABOVE everything (max z-index), including the Konami physics
@@ -127,13 +128,41 @@
     /* =========================================================
        Key handling
        ========================================================= */
+    // The console opens with the key to the LEFT OF "1", EU4-style. We can't
+    // rely on `event.code === 'Backquote'` alone: not every keyboard/OS/layout
+    // reports that code for that physical key, so on some setups the console
+    // could not be opened at all. We therefore also match the characters that
+    // key actually prints across the common layouts (` on QWERTY, ² on AZERTY,
+    // ^/° on QWERTZ, § on some Nordic, etc.), plus the alternate physical code
+    // `IntlBackslash` some ISO keyboards emit.
+    const TOGGLE_CODES = ['Backquote', 'IntlBackslash'];
+    const TOGGLE_CHARS = ['`', '~', '²', '^', '°', '§', '½', '|', '\\'];
+
+    function isToggleKey(e) {
+        if (e.ctrlKey || e.altKey || e.metaKey) return false;
+        if (TOGGLE_CODES.includes(e.code)) return true;
+        return TOGGLE_CHARS.includes(e.key);
+    }
+
+    // While the console is closed, don't hijack the toggle character if the user
+    // is typing into another editable field (so e.g. a search box stays usable).
+    // The console's own input is fine: it only sees the key once the console is
+    // already open, handled separately below.
+    function isTypingElsewhere(e) {
+        const t = e.target;
+        if (!t) return false;
+        if (inputEl && t === inputEl) return false;
+        const tag = t.tagName;
+        return tag === 'INPUT' || tag === 'TEXTAREA' || t.isContentEditable;
+    }
+
     // One global CAPTURE listener handles everything. Capture runs before any
     // bubble listener (incl. the Konami code and scroll-lock handlers), so we
     // can reliably intercept the toggle key and swallow keystrokes while open.
     // stopPropagation() blocks other JS listeners but NOT the browser's default
     // text insertion, so normal typing into the input still works.
     document.addEventListener('keydown', function (e) {
-        if (e.code === 'Backquote') {
+        if (isToggleKey(e) && (isOpen || !isTypingElsewhere(e))) {
             e.preventDefault();
             e.stopPropagation();
             toggle();
