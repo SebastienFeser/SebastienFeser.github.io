@@ -1443,6 +1443,25 @@ li {
     display: block;
 }
 
+/* Horror-mode firelight canvas (same fixed full-screen background slot). */
+#horror-fire {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    display: none;
+}
+#horror-fire.active {
+    display: block;
+}
+/* The plasma background gives way to the firelight in horror mode. */
+.theme-horror #hero-shader {
+    display: none !important;
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
@@ -2514,4 +2533,143 @@ a.education-card:focus {
     color: var(--text-primary);
     font: inherit;
     caret-color: var(--accent);
+}
+
+/* ============================================
+   "THE 13TH HOUR" HORROR THEME  (cinematic, restrained)
+   Triggered by the console command `horror` / `13th`. Shifts the site to an
+   elegant near-black palette with discreet blood-red accents, a soft vignette,
+   a light film grain, and a very subtle flicker. Toggle off with the command.
+   ============================================ */
+.theme-horror {
+    --accent: #9a1f1f;
+    --accent-hover: #c0392b;
+    --accent-secondary: #2a1414;
+    --bg-primary: #08080a;
+    --bg-secondary: #100d10;
+    --bg-tertiary: #050405;
+    --text-primary: #d8d0d0;
+    --text-secondary: #968b8b;
+    --text-muted: #6a5f5f;
+}
+
+/* No playful header glitch in horror mode: it breaks the mood. */
+.theme-horror .header-content {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+}
+.theme-horror .site-header::after {
+    animation: none;
+    display: none;
+}
+
+/* Film grain: a faint, static noise texture over everything. */
+.theme-horror::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Vignette: soft dark edges that quietly close in. Above the page but below
+   the physics overlay (999999) and the console. */
+.theme-horror::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(20, 0, 0, 0.30) 80%, rgba(0, 0, 0, 0.70) 100%);
+}
+
+/* Very subtle flicker: two brief, gentle dips per cycle, well under the WCAG
+   flash threshold. It's a visual effect, so it honors the effects toggle and
+   reduced-motion. */
+.theme-horror:not(.fx-off) body {
+    animation: horror-flicker 9s infinite steps(1);
+}
+@keyframes horror-flicker {
+    0%, 46%, 49%, 81%, 84%, 100% { filter: none; }
+    47%, 48%   { filter: brightness(0.82); }
+    82%, 83%   { filter: brightness(0.74); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .theme-horror body { animation: none; }
+}
+
+/* ---- Horror typography (fonts loaded on demand by the console) ---- */
+/* Body: distressed typewriter, like a found-footage report. */
+.theme-horror body,
+.theme-horror p,
+.theme-horror li,
+.theme-horror .hero-subtitle,
+.theme-horror .hero-description,
+.theme-horror .card-description,
+.theme-horror .skill-tag,
+.theme-horror .blog-list-description {
+    font-family: 'Special Elite', 'Cascadia Code', Consolas, monospace;
+    letter-spacing: 0.01em;
+}
+
+/* Headings, buttons: gothic elegant caps. */
+.theme-horror h2,
+.theme-horror h3,
+.theme-horror h4,
+.theme-horror h5,
+.theme-horror h6,
+.theme-horror .btn,
+.theme-horror .section-title,
+.theme-horror .card-title,
+.theme-horror .hero-badge,
+.theme-horror .experience-card h3,
+.theme-horror .skills-category h3 {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* The header is too tight to swap its font without items overlapping, so the
+   nav keeps the site's original compact font/metrics (only recolored by the
+   palette). Just the short "SF" logo gets the gothic treatment. */
+.theme-horror .site-logo {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    letter-spacing: 0.04em;
+}
+.theme-horror .main-nav .nav-link {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+/* Main page title: dripping blood. */
+.theme-horror h1 {
+    font-family: 'Nosifer', 'Cinzel', serif;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    text-shadow: 0 0 18px rgba(154, 31, 31, 0.45);
+}
+
+/* A few structural touches so it doesn't just look like a recolor. */
+.theme-horror .card,
+.theme-horror .featured-project,
+.theme-horror .experience-card,
+.theme-horror .skills-category {
+    border-color: var(--accent-secondary);
+    border-radius: 2px;
+}
+.theme-horror .card:hover,
+.theme-horror .featured-project:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 22px rgba(154, 31, 31, 0.25);
+}
+.theme-horror .btn,
+.theme-horror .hero-badge {
+    border-radius: 2px;
 }

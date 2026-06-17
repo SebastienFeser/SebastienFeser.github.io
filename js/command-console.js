@@ -203,6 +203,25 @@
     const onSubpage = /\/pages\//.test(location.pathname);
     const toRoot = onSubpage ? '../' : '';
 
+    // Load the horror-theme fonts only the first time the mode is switched on,
+    // so normal visitors never pay for them.
+    function ensureHorrorFonts() {
+        if (document.getElementById('horror-fonts')) return;
+        const link = document.createElement('link');
+        link.id = 'horror-fonts';
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Nosifer&family=Special+Elite&display=swap';
+        document.head.appendChild(link);
+    }
+
+    // Horror mode persists across reloads / pages via localStorage. Apply it as
+    // early as this script runs so it carries over the whole site.
+    const HORROR_KEY = 'theme-horror';
+    if (localStorage.getItem(HORROR_KEY) === 'true') {
+        document.documentElement.classList.add('theme-horror');
+        ensureHorrorFonts();
+    }
+
     function gotoSection(id) {
         const el = document.getElementById(id);
         if (el) {
@@ -223,6 +242,9 @@
         exit: 'close',
         '?': 'help',
         konami: 'physics',
+        '13th': 'horror',
+        '13thhour': 'horror',
+        the13thhour: 'horror',
     };
 
     const commands = {
@@ -231,6 +253,7 @@
             run: function () {
                 print('Available commands:', 'is-info');
                 Object.keys(commands).sort().forEach(function (k) {
+                    if (commands[k].hidden) return; // easter eggs stay secret
                     print('  ' + k.padEnd(12) + ' - ' + commands[k].desc);
                 });
             },
@@ -295,6 +318,7 @@
         },
         physics: {
             desc: 'Unleash the physics (the Konami easter egg)',
+            hidden: true,
             run: function () {
                 close();
                 window.dispatchEvent(new CustomEvent('konami-activate'));
@@ -313,6 +337,30 @@
             desc: 'Show contact email',
             run: function () {
                 print('sebastien.feser@gmail.com', 'is-info');
+            },
+        },
+        horror: {
+            desc: 'Plunge the site into "The 13th Hour" horror mode (toggle)',
+            run: function (a) {
+                const v = (a[0] || 'toggle').toLowerCase();
+                const html = document.documentElement;
+                const cur = html.classList.contains('theme-horror');
+                let on = cur;
+                if (v === 'on') on = true;
+                else if (v === 'off') on = false;
+                else on = !cur;
+                if (on) ensureHorrorFonts();
+                html.classList.toggle('theme-horror', on);
+                // Persist across reloads / pages.
+                if (on) localStorage.setItem(HORROR_KEY, 'true');
+                else localStorage.removeItem(HORROR_KEY);
+                // Start/stop the WebGL firelight background live.
+                window.dispatchEvent(new CustomEvent('horrorchange', { detail: { on: on } }));
+                if (on) {
+                    print('The Thirteenth Hour approaches... the ghost stirs.', 'is-err');
+                } else {
+                    print('Dawn breaks. The haunting fades.', 'is-ok');
+                }
             },
         },
     };
