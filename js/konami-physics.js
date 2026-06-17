@@ -501,7 +501,10 @@
     }
 
     function pickElements() {
-        const all = Array.from(document.querySelectorAll(SELECTOR)).filter(isVisibleInViewport);
+        const all = Array.from(document.querySelectorAll(SELECTOR))
+            .filter(isVisibleInViewport)
+            // Never turn the command console (or its contents) into physics bodies.
+            .filter((el) => !el.closest('#command-console'));
         // keep only outermost matches (drop any element contained in another match)
         const set = new Set(all);
         const chosen = all.filter((el) => {
@@ -627,7 +630,8 @@
         // Hide everything left on the original page (unselected containers, text,
         // backgrounds...) so only the overlay and the animated shader remain.
         Array.from(document.body.children).forEach((child) => {
-            if (child === overlay || child.id === 'hero-shader' || child.tagName === 'SCRIPT') return;
+            if (child === overlay || child.id === 'hero-shader'
+                || child.id === 'command-console' || child.tagName === 'SCRIPT') return;
             child.style.display = 'none';
         });
 
@@ -734,6 +738,9 @@
     document.addEventListener('keydown', (e) => {
         feed(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     });
+
+    // --- programmatic trigger (e.g. the "physics" console command) ---
+    window.addEventListener('konami-activate', activate);
 
     // --- gamepad (standard mapping): D-pad / sticks for directions, B=1, A=0 ---
     const GP_BUTTONS = { 12: 'ArrowUp', 13: 'ArrowDown', 14: 'ArrowLeft', 15: 'ArrowRight', 1: 'b', 0: 'a' };
