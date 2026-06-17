@@ -63,6 +63,30 @@ toggle: it's a deliberate, user-triggered surprise, not an ambient effect.
 | `css/style.css` | `.fx-off ...` rules + `.fx-toggle` button styling |
 | `js/hero-shader.js`, `js/animations.js`, `js/card-tilt.js` | Effect scripts that check `fx-off` |
 
+## Debug Mode
+
+A developer-style overlay toggled from the console with the `debug_mode` command
+(`debug_mode on|off`, alias `debug`). When on:
+
+- a small **FPS panel** (frame rate + frame time, color-coded) is shown top-left;
+- while the **Konami physics** easter egg runs, every collider, contact point and
+  velocity vector is drawn on top, and the panel also shows the live body /
+  contact count.
+
+Like the visual-effects toggle, `debug-mode.js` is the single source of truth: it
+sets the `debug-on` class on `<html>` and stores the state in `localStorage`
+(key `debug-mode`). `konami-physics.js` reads that class each frame to draw the
+colliders (same pattern as `fx-off`) and publishes stats on
+`window.KonamiPhysics.stats`. Debug mode is a **TOOL, not an ambient effect**, so
+(like the console) it is intentionally **NOT** gated by the visual-effects toggle.
+
+| File | Role |
+|------|------|
+| `js/debug-mode.js` | `debug-on` class + state, FPS panel, `window.DebugMode` API |
+| `js/konami-physics.js` | Draws colliders/contacts when `debug-on`; publishes stats |
+| `js/command-console.js` | `debug_mode` command |
+| `css/style.css` | `#debug-panel` styling |
+
 ## Achievement System
 
 The site has a small **achievement/trophy system** (`js/achievements.js`).
@@ -517,9 +541,38 @@ Use this template in `pages/`:
     <footer class="site-footer">
         <p>&copy; 2025 Sebastien Feser</p>
     </footer>
+
+    <!-- IMPORTANT: every page MUST load this full script block (see note below).
+         Use `../js/` from pages/, or `js/` from the site root. -->
+    <script src="../js/effects-toggle.js"></script>
+    <script src="../js/achievements.js"></script>
+    <script src="../js/hero-shader.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/card-tilt.js"></script>
+    <script src="../js/easter-egg.js"></script>
+    <script src="../js/konami-physics.js"></script>
+    <script src="../js/command-console.js"></script>
+    <script src="../js/debug-mode.js"></script>
+    <script src="../js/horror-fire.js"></script>
+    <script src="../js/i18n.js"></script>
 </body>
 </html>
 ```
+
+### IMPORTANT: every new page must load the full script block
+
+There is **no build step and no shared layout**, so each page includes its own
+`<script>` tags. When you create a page (or add a new site-wide script), copy the
+block above onto **every** page. Two order rules matter:
+
+- **`effects-toggle.js` loads FIRST** — it sets the `fx-off` class before paint,
+  and every other effect script keys off it.
+- **`achievements.js` loads right after it** — so the toast respects the effects
+  toggle (see the Achievement System section).
+
+The rest (`konami-physics.js`, `command-console.js`, `debug-mode.js`,
+`horror-fire.js`, `i18n.js`, …) just need to be present. If you add a new feature
+script, add its `<script>` tag to all pages and update this block.
 
 ## Creating Blog Posts
 

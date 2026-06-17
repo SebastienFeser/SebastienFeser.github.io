@@ -2898,6 +2898,29 @@ a.education-card:focus {
     50%      { transform: scale(1.12); }
 }
 
+/* Debug mode FPS panel (toggled by the console `debug_mode` command). */
+#debug-panel {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000001;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    background: rgba(15, 15, 26, 0.85);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-primary);
+    pointer-events: none;
+}
+#debug-panel .dbg-row { white-space: nowrap; }
+#debug-panel b { color: var(--accent); font-weight: 700; }
+#debug-panel .dbg-dim { color: var(--text-muted); }
+
 /* It is an ambient effect: hidden when the global toggle is off, and it must
    not pulse for visitors who asked for reduced motion. */
 .fx-off .fx-hint-callout {

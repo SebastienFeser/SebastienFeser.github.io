@@ -273,6 +273,7 @@
         exit: 'close',
         '?': 'help',
         konami: 'physics',
+        debug: 'debug_mode',
         '13th': 'horror',
         '13thhour': 'horror',
         the13thhour: 'horror',
@@ -334,6 +335,25 @@
                 } else {
                     localStorage.setItem('preferred-lang', l);
                     location.reload();
+                }
+            },
+        },
+        debug_mode: {
+            desc: 'Toggle the debug overlay: FPS + physics colliders (on/off)',
+            run: function (a) {
+                if (typeof window.DebugMode === 'undefined') {
+                    print('Debug mode unavailable.', 'is-err');
+                    return;
+                }
+                const v = (a[0] || 'toggle').toLowerCase();
+                let on;
+                if (v === 'on') { window.DebugMode.enable(); on = true; }
+                else if (v === 'off') { window.DebugMode.disable(); on = false; }
+                else { on = window.DebugMode.toggle(); }
+                if (on) {
+                    print('Debug mode ON. FPS shown; colliders draw during physics mode.', 'is-ok');
+                } else {
+                    print('Debug mode OFF.', 'is-ok');
                 }
             },
         },

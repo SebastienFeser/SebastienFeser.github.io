@@ -588,6 +588,97 @@
         b.el.style.transform = `translate(${dx}px, ${dy}px) rotate(${b.angle}rad)`;
     }
 
+    /* =========================================================
+       Debug draw (colliders / contacts), gated by the `debug-on` class set by
+       debug-mode.js — the same single-source-of-truth pattern as `fx-off`.
+       ========================================================= */
+    function debugOn() { return document.documentElement.classList.contains('debug-on'); }
+
+    let dbgCanvas = null, dbgCtx = null;
+    function resizeDbg() {
+        if (!dbgCanvas) return;
+        dbgCanvas.width = innerWidth;
+        dbgCanvas.height = innerHeight;
+    }
+    function ensureDbgCanvas() {
+        if (dbgCanvas) return;
+        dbgCanvas = document.createElement('canvas');
+        dbgCanvas.id = 'konami-debug-canvas';
+        Object.assign(dbgCanvas.style, {
+            position: 'fixed', left: '0', top: '0', width: '100%', height: '100%',
+            pointerEvents: 'none', zIndex: '1000000',
+        });
+        document.body.appendChild(dbgCanvas);
+        dbgCtx = dbgCanvas.getContext('2d');
+        resizeDbg();
+        window.addEventListener('resize', resizeDbg);
+    }
+    function removeDbgCanvas() {
+        if (!dbgCanvas) return;
+        window.removeEventListener('resize', resizeDbg);
+        dbgCanvas.remove();
+        dbgCanvas = null; dbgCtx = null;
+    }
+
+    function drawDebug(bodies, dynamics, arbiters, awake) {
+        if (!debugOn()) { removeDbgCanvas(); return; }
+        ensureDbgCanvas();
+        const ctx = dbgCtx;
+        ctx.clearRect(0, 0, dbgCanvas.width, dbgCanvas.height);
+        ctx.lineWidth = 1.5;
+
+        for (const b of bodies) {
+            // static walls in amber, dynamic bodies in green
+            ctx.strokeStyle = b.invMass === 0 ? 'rgba(251,191,36,0.9)' : 'rgba(74,222,128,0.95)';
+            if (b.shape === 'circle') {
+                ctx.beginPath();
+                ctx.arc(b.pos.x, b.pos.y, b.radius, 0, Math.PI * 2);
+                ctx.stroke();
+                const o = rot(V(b.radius, 0), b.angle); // orientation spoke
+                ctx.beginPath();
+                ctx.moveTo(b.pos.x, b.pos.y);
+                ctx.lineTo(b.pos.x + o.x, b.pos.y + o.y);
+                ctx.stroke();
+            } else {
+                ctx.beginPath();
+                for (let i = 0; i < b.vertices.length; i++) {
+                    const w = worldVert(b, i);
+                    if (i === 0) ctx.moveTo(w.x, w.y); else ctx.lineTo(w.x, w.y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+            }
+            // velocity vector (dynamic bodies only)
+            if (b.invMass !== 0) {
+                ctx.strokeStyle = 'rgba(96,165,250,0.9)';
+                ctx.beginPath();
+                ctx.moveTo(b.pos.x, b.pos.y);
+                ctx.lineTo(b.pos.x + b.velocity.x * 0.08, b.pos.y + b.velocity.y * 0.08);
+                ctx.stroke();
+            }
+        }
+
+        // contact points
+        let contactCount = 0;
+        ctx.fillStyle = 'rgba(233,69,96,0.95)';
+        for (const arb of arbiters.values()) {
+            for (const c of arb.contacts) {
+                contactCount++;
+                ctx.beginPath();
+                ctx.arc(c.point.x, c.point.y, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // publish stats for the debug panel (debug-mode.js reads these)
+        window.KonamiPhysics = window.KonamiPhysics || {};
+        window.KonamiPhysics.stats = {
+            bodies: dynamics.length,
+            contacts: contactCount,
+            awake: awake,
+        };
+    }
+
     function activate() {
         if (running) return;
         running = true;
@@ -636,6 +727,7 @@
         Array.from(document.body.children).forEach((child) => {
             if (child === overlay || child.id === 'hero-shader'
                 || child.id === 'command-console' || child.id === 'achievement-overlay'
+                || child.id === 'debug-panel' || child.id === 'konami-debug-canvas'
                 || child.tagName === 'SCRIPT') return;
             child.style.display = 'none';
         });
@@ -675,7 +767,9 @@
                 }
             }
             settleTimer = moving ? 0 : settleTimer + frameDt;
-            if (settleTimer < SLEEP_TIME) {
+            const stillAwake = settleTimer < SLEEP_TIME;
+            drawDebug(bodies, dynamics, arbiters, stillAwake);
+            if (stillAwake) {
                 requestAnimationFrame(loop);
             } else {
                 awake = false; // park the loop; wake() restarts it on interaction
