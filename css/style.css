@@ -204,6 +204,72 @@ p {
     border-bottom: 1px solid var(--accent-secondary);
 }
 
+/* ===== GLITCH EFFECT ON THE WHOLE TOP BAR ===== */
+/* The header briefly jitters with a red/cyan chromatic aberration and
+   gets sliced by clip-path every few seconds, like a screen glitching. */
+.header-content {
+    animation: header-glitch 8s infinite steps(1);
+    will-change: transform, filter;
+}
+
+/* Glitch frames are spaced ~5% (= ~400ms) apart so the bar flashes
+   fewer than 3 times per second, staying under the WCAG seizure
+   threshold. The content always stays fully visible: only a gentle
+   shake + a red/cyan chromatic-aberration ghost, no clipping. */
+@keyframes header-glitch {
+    /* Calm most of the time */
+    0%, 87%, 100% {
+        transform: translate(0, 0) skewX(0);
+        filter: none;
+    }
+    88% {
+        transform: translate(-6px, 1px) skewX(-4deg);
+        filter: drop-shadow(5px 0 0 rgba(255, 0, 60, 0.85)) drop-shadow(-5px 0 0 rgba(0, 229, 255, 0.8));
+    }
+    93% {
+        transform: translate(6px, -2px) skewX(5deg);
+        filter: drop-shadow(-6px 0 0 rgba(255, 0, 60, 0.85)) drop-shadow(6px 0 0 rgba(0, 229, 255, 0.8));
+    }
+    98% {
+        transform: translate(-3px, 1px) skewX(-2deg);
+        filter: drop-shadow(4px 0 0 rgba(255, 0, 60, 0.8)) drop-shadow(-4px 0 0 rgba(0, 229, 255, 0.75));
+    }
+}
+
+/* Subtle scanline overlay that appears during the glitch (low opacity) */
+.site-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 45%,
+        rgba(0, 229, 255, 0.08) 50%,
+        transparent 55%
+    );
+    background-size: 100% 5px;
+    opacity: 0;
+    animation: header-scanline 8s infinite steps(1);
+}
+
+@keyframes header-scanline {
+    0%, 87%, 100% { opacity: 0; }
+    88%, 93%, 98% { opacity: 0.6; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .header-content {
+        animation: none;
+    }
+    .site-header::after {
+        animation: none;
+        display: none;
+    }
+}
+
 .header-content {
     max-width: var(--container-xl);
     margin: 0 auto;
