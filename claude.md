@@ -141,6 +141,12 @@ locked). Progress is stored in `localStorage` (key `achievements-unlocked`, a ma
 There is nothing else to wire: the toast, the footer counter and the
 achievements page all read from the same `ACHIEVEMENTS` array.
 
+The `completionist` achievement is a **meta-achievement**: it auto-unlocks once
+every *other* achievement is earned, and instead of the normal chime it plays a
+`tada.wav` fanfare and a one-shot confetti burst (vanilla canvas, gated by the
+effects toggle + reduced-motion). Adding a new achievement automatically makes
+the set bigger — `completionist` updates itself, nothing to change.
+
 ### Public API (`window.Achievements`)
 
 | Member | Role |
@@ -157,10 +163,11 @@ achievements page all read from the same `ACHIEVEMENTS` array.
 |------|------|
 | `js/achievements.js` | Registry, storage, toast, chime, footer link, page rendering, API |
 | `assets/audio/achievement.mp3` | Unlock sound effect (played by `achievements.js`) |
+| `assets/audio/tada.wav` | Special fanfare for the `completionist` meta-achievement |
 | `pages/achievements.html` | The achievements page (grid rendered by the script) |
 | `css/style.css` | `#achievement-overlay`, `.achievement-toast`, `.achievement-card` rules |
 | `js/konami-physics.js` | Excludes `#achievement-overlay` from the physics easter egg |
-| `js/command-console.js` | `achievements` command (opens the achievements page) |
+| `js/command-console.js` | `achievements` command + unlocks the secret `console` achievement when opened |
 
 ## Internationalization (i18n) System
 

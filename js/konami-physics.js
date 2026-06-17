@@ -592,6 +592,9 @@
         if (running) return;
         running = true;
 
+        // Entering the Konami code is a secret achievement.
+        window.dispatchEvent(new CustomEvent('achievement-unlock', { detail: { id: 'konami' } }));
+
         const els = pickElements();
         if (!els.length) { running = false; return; }
 

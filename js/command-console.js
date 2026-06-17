@@ -81,6 +81,8 @@
         root.setAttribute('aria-hidden', 'false');
         // focus after the slide starts so the caret lands correctly
         setTimeout(() => inputEl && inputEl.focus(), 0);
+        // Opening the hidden console is a secret achievement.
+        window.dispatchEvent(new CustomEvent('achievement-unlock', { detail: { id: 'console' } }));
     }
     function close() {
         if (!isOpen) return;

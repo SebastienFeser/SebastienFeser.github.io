@@ -172,6 +172,61 @@
                 it: { name: 'Poliglotta', desc: 'Cambiare la lingua del sito.' },
             },
         },
+        {
+            id: 'devtools',
+            icon: '🔎',
+            secret: true,
+            i18n: {
+                en: { name: 'Inspector',  desc: 'Open the browser developer tools.' },
+                fr: { name: 'Inspecteur', desc: 'Ouvrir les outils de développement du navigateur.' },
+                de: { name: 'Inspektor',  desc: 'Die Entwicklertools des Browsers öffnen.' },
+                it: { name: 'Ispettore',  desc: 'Aprire gli strumenti per sviluppatori del browser.' },
+            },
+        },
+        {
+            id: 'console',
+            icon: '⌨️',
+            secret: true,
+            i18n: {
+                en: { name: 'Command Line',     desc: 'Open the hidden console (the key just left of "1").' },
+                fr: { name: 'Ligne de commande', desc: 'Ouvrir la console cachée (la touche juste à gauche du « 1 »).' },
+                de: { name: 'Befehlszeile',     desc: 'Öffne die versteckte Konsole (die Taste links neben der „1").' },
+                it: { name: 'Riga di comando',  desc: 'Apri la console nascosta (il tasto subito a sinistra dell\'« 1 »).' },
+            },
+        },
+        {
+            id: 'horror',
+            icon: '👻',
+            secret: true,
+            i18n: {
+                en: { name: 'The 13th Hour', desc: 'Summon the horror mode.' },
+                fr: { name: 'La 13e heure',  desc: 'Invoquer le mode horreur.' },
+                de: { name: 'Die 13. Stunde', desc: 'Den Horror-Modus heraufbeschwören.' },
+                it: { name: 'La 13ª ora',    desc: 'Evocare la modalità horror.' },
+            },
+        },
+        {
+            id: 'konami',
+            icon: '🕹️',
+            secret: true,
+            i18n: {
+                en: { name: 'Up Up Down Down',    desc: 'Enter the legendary Konami code.' },
+                fr: { name: 'Haut Haut Bas Bas',  desc: 'Saisir le légendaire code Konami.' },
+                de: { name: 'Oben Oben Unten Unten', desc: 'Den legendären Konami-Code eingeben.' },
+                it: { name: 'Su Su Giù Giù',      desc: 'Inserire il leggendario codice Konami.' },
+            },
+        },
+        {
+            id: 'completionist',
+            icon: '🏆',
+            secret: false,
+            i18n: {
+                en: { name: 'Completionist',    desc: 'Unlock every other achievement.' },
+                fr: { name: 'Complétionniste',  desc: 'Débloquer tous les autres succès.' },
+                de: { name: 'Komplettist',      desc: 'Alle anderen Erfolge freischalten.' },
+                it: { name: 'Completista',      desc: 'Sbloccare tutti gli altri obiettivi.' },
+            },
+        },
     ];
 
     /* =========================================================
@@ -277,7 +332,17 @@
         }
         updateFooterLink();
         renderPage();
+        // Unlocking any regular achievement may complete the set -> the meta one.
+        if (id !== 'completionist' && allOthersUnlocked()) unlock('completionist');
         return true;
+    }
+
+    // True once every achievement EXCEPT the meta 'completionist' is unlocked.
+    function allOthersUnlocked() {
+        const state = load();
+        return ACHIEVEMENTS.every(function (a) {
+            return a.id === 'completionist' || !!state[a.id];
+        });
     }
 
     let toastHost = null;
@@ -302,7 +367,13 @@
     }
 
     function buildToast(a) {
-        playSound();
+        // The completionist gets a special fanfare + confetti instead of the chime.
+        if (a.id === 'completionist') {
+            playTada();
+            fireConfetti();
+        } else {
+            playSound();
+        }
 
         const s = strings();
         const t = text(a);
@@ -362,6 +433,84 @@
         } catch (e) { /* ignore */ }
     }
     preloadSound();
+
+    // Special "tada" fanfare for the completionist achievement.
+    const TADA_SRC = (onSubpage ? '../' : '') + 'assets/audio/tada.wav';
+    let tada = null;
+    function preloadTada() {
+        try { tada = new Audio(TADA_SRC); tada.preload = 'auto'; tada.load(); }
+        catch (e) { tada = null; }
+    }
+    function playTada() {
+        if (!tada) preloadTada();
+        if (!tada) return;
+        try {
+            tada.currentTime = 0;
+            tada.volume = 0.6;
+            const p = tada.play();
+            if (p && p.catch) p.catch(function () {});
+        } catch (e) { /* ignore */ }
+    }
+
+    // One-shot confetti burst (vanilla canvas). It's a visual effect, so it honors
+    // the effects toggle and reduced-motion. The canvas is pointer-events:none and
+    // self-removes after the burst.
+    function fireConfetti() {
+        if (document.documentElement.classList.contains('fx-off')) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.id = 'achievement-confetti';
+        Object.assign(canvas.style, {
+            position: 'fixed', left: '0', top: '0', width: '100%', height: '100%',
+            pointerEvents: 'none', zIndex: '9989',
+        });
+        function size() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        size();
+        document.body.appendChild(canvas);
+        window.addEventListener('resize', size);
+
+        const ctx = canvas.getContext('2d');
+        const colors = ['#e94560', '#4ade80', '#fbbf24', '#60a5fa', '#ff6b6b', '#ffffff'];
+        const parts = [];
+        for (let i = 0; i < 160; i++) {
+            parts.push({
+                x: Math.random() * canvas.width,
+                y: -20 - Math.random() * canvas.height * 0.4,
+                w: 5 + Math.random() * 6,
+                h: 3 + Math.random() * 5,
+                color: colors[(Math.random() * colors.length) | 0],
+                vx: (Math.random() - 0.5) * 4,
+                vy: 2 + Math.random() * 4,
+                angle: Math.random() * Math.PI * 2,
+                spin: (Math.random() - 0.5) * 0.3,
+            });
+        }
+
+        const DURATION = 4000;
+        const start = performance.now();
+        function frame(now) {
+            const t = now - start;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = Math.max(0, 1 - t / DURATION);
+            for (const p of parts) {
+                p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.angle += p.spin;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.angle);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+            }
+            if (t < DURATION) {
+                requestAnimationFrame(frame);
+            } else {
+                window.removeEventListener('resize', size);
+                if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+            }
+        }
+        requestAnimationFrame(frame);
+    }
 
     // First-interaction gate. The toast + chime are released together on the very
     // first user interaction. Broad on purpose: click, mouse, keyboard, touch,
@@ -542,7 +691,12 @@
         setupCvAchievement();
         setupContactAchievement();
         setupLanguageAchievement();
+        setupDevtoolsAchievement();
+        setupHorrorAchievement();
         trackPageViews();
+
+        // Catch the case where every other achievement is already unlocked.
+        if (!isUnlocked('completionist') && allOthersUnlocked()) unlock('completionist');
 
         // A toast handed over from the previous page (a navigating trigger).
         consumePendingToast();
@@ -570,6 +724,59 @@
                 });
             }
         });
+    }
+
+    // Unlock 'horror' when the visitor turns on "The 13th Hour" horror mode. The
+    // console `horror` command fires a `horrorchange` event; we also catch the
+    // case where the mode is already active on load (persisted via localStorage,
+    // applied as the `theme-horror` class before this runs).
+    function setupHorrorAchievement() {
+        if (isUnlocked('horror')) return;
+        if (document.documentElement.classList.contains('theme-horror')) unlock('horror');
+        window.addEventListener('horrorchange', function (e) {
+            if (e && e.detail && e.detail.on) unlock('horror');
+        });
+    }
+
+    // Unlock 'devtools' when the visitor opens the browser developer tools.
+    // Detection is best-effort (browsers expose no real signal):
+    //  1) keyboard shortcuts — F12, Ctrl/Cmd+Shift+I/J/C (caught before the
+    //     browser handles them);
+    //  2) a window-size heuristic — when DevTools dock, inner vs outer size jumps
+    //     past a threshold (catches right-click → Inspect and docking). Undocked
+    //     DevTools in a separate window can't be detected this way.
+    function setupDevtoolsAchievement() {
+        if (isUnlocked('devtools')) return;
+
+        window.addEventListener('keydown', function (e) {
+            const k = (e.key || '').toLowerCase();
+            const isF12 = k === 'f12';
+            const isInspect = (e.ctrlKey || e.metaKey) && e.shiftKey
+                && (k === 'i' || k === 'j' || k === 'c');
+            if (isF12 || isInspect) unlock('devtools');
+        }, true);
+
+        const THRESH = 160;
+        let done = false;
+        function check() {
+            if (done || isUnlocked('devtools')) { done = true; cleanup(); return; }
+            const wGap = window.outerWidth - window.innerWidth > THRESH;
+            const hGap = window.outerHeight - window.innerHeight > THRESH;
+            // DevTools docked to a side (wGap) or bottom (hGap), but not both
+            // (a small popup window). The threshold steps over normal chrome.
+            if ((wGap || hGap) && !(wGap && hGap)) {
+                done = true;
+                unlock('devtools');
+                cleanup();
+            }
+        }
+        const timer = setInterval(check, 1000);
+        window.addEventListener('resize', check);
+        function cleanup() {
+            clearInterval(timer);
+            window.removeEventListener('resize', check);
+        }
+        check();
     }
 
     // Unlock 'language' on a real language change. We wrap I18n.switchLanguage —
