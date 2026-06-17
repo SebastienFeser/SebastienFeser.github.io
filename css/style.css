@@ -2548,9 +2548,9 @@ a.education-card:focus {
     --bg-primary: #08080a;
     --bg-secondary: #100d10;
     --bg-tertiary: #050405;
-    --text-primary: #d8d0d0;
-    --text-secondary: #968b8b;
-    --text-muted: #6a5f5f;
+    --text-primary: #f5f3f3;
+    --text-secondary: #c2b8b8;
+    --text-muted: #8a7d7d;
 }
 
 /* No playful header glitch in horror mode: it breaks the mood. */
