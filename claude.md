@@ -88,6 +88,12 @@ locked). Progress is stored in `localStorage` (key `achievements-unlocked`, a ma
   unlock silently but **no toast and no sound** are produced. The toast also
   respects `prefers-reduced-motion` (no slide). Because of this, `achievements.js`
   is loaded **right after `effects-toggle.js`**.
+- On the **2nd achievement unlocked** (once ever, stored under
+  `achievements-fxhint-shown`), a one-time **pulsing callout with an arrow**
+  points at the header effects toggle, telling the visitor they can switch the
+  effects + achievements off. It is itself an ambient effect: shown only when
+  effects are ON, its pulse respects `prefers-reduced-motion`, and it auto-fades
+  after a few seconds (or on click / on toggling the button).
 - A localized "🏆 Achievements N/total" link is **auto-injected into every page
   footer** by the script (you don't add it by hand). The console also has an
   `achievements` command that opens the page.

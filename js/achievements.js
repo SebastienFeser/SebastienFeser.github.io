@@ -337,6 +337,7 @@
             hintCta: 'Reveal a hint',
             revealNameCta: 'Reveal the name',
             hintLabel: 'Hint',
+            fxHint: 'Click here to turn off the effects and achievements',
         },
         fr: {
             unlocked: 'Succès débloqué',
@@ -352,6 +353,7 @@
             hintCta: 'Révéler un indice',
             revealNameCta: 'Révéler le nom',
             hintLabel: 'Indice',
+            fxHint: 'Cliquez ici pour désactiver les effets et les succès',
         },
         de: {
             unlocked: 'Erfolg freigeschaltet',
@@ -367,6 +369,7 @@
             hintCta: 'Hinweis aufdecken',
             revealNameCta: 'Namen aufdecken',
             hintLabel: 'Hinweis',
+            fxHint: 'Hier klicken, um Effekte und Erfolge zu deaktivieren',
         },
         it: {
             unlocked: 'Obiettivo sbloccato',
@@ -382,6 +385,7 @@
             hintCta: 'Rivela un indizio',
             revealNameCta: 'Rivela il nome',
             hintLabel: 'Indizio',
+            fxHint: 'Clicca qui per disattivare effetti e obiettivi',
         },
     };
 
@@ -457,6 +461,9 @@
         }
         updateFooterLink();
         renderPage();
+        // On the 2nd unlock, nudge the visitor toward the effects/achievements
+        // off-switch (once ever). Best-effort, ambient — see maybeShowEffectsHint.
+        maybeShowEffectsHint();
         // Unlocking any regular achievement may complete the set -> the meta one.
         if (id !== 'completionist' && allOthersUnlocked()) unlock('completionist');
         return true;
@@ -529,6 +536,78 @@
         }
         el.addEventListener('click', hide);
         setTimeout(hide, 5000);
+    }
+
+    /* =========================================================
+       "Turn off effects" nudge (shown once, on the 2nd unlock)
+       ========================================================= */
+    // A one-time pulsing callout with an arrow pointing at the header effects
+    // toggle, telling the visitor they can switch the effects (and achievement
+    // toasts) off. It is itself an ambient visual effect, so it is shown ONLY
+    // when effects are on (when they are off there's nothing to advertise), and
+    // its pulse respects prefers-reduced-motion via CSS.
+    const FXHINT_KEY = 'achievements-fxhint-shown';
+    function maybeShowEffectsHint() {
+        if (document.documentElement.classList.contains('fx-off')) return;
+        if (localStorage.getItem(FXHINT_KEY) === 'true') return;
+        if (unlockedCount() < 2) return;
+        localStorage.setItem(FXHINT_KEY, 'true');
+        showEffectsHint(0);
+    }
+
+    function showEffectsHint(attempt) {
+        // The toggle button is injected by effects-toggle.js on DOMContentLoaded;
+        // if it isn't in the DOM yet, retry briefly before giving up.
+        const btn = document.querySelector('.fx-toggle');
+        if (!btn) {
+            if (attempt < 20) setTimeout(function () { showEffectsHint(attempt + 1); }, 150);
+            return;
+        }
+        const host = ensureToastHost();
+        if (host.querySelector('.fx-hint-callout')) return;
+
+        // Outer element only positions (centered under the button); the inner
+        // element does the grow/shrink pulse, so the centering transform and the
+        // pulse transform never fight.
+        const el = document.createElement('div');
+        el.className = 'fx-hint-callout';
+        el.setAttribute('role', 'status');
+        el.innerHTML =
+            '<div class="fx-hint-pulse">' +
+            '<span class="fx-hint-arrow" aria-hidden="true">↑</span>' +
+            '<span class="fx-hint-text"></span>' +
+            '</div>';
+        el.querySelector('.fx-hint-text').textContent = strings().fxHint;
+        host.appendChild(el);
+
+        // Anchor the arrow just under the toggle, centered on the button, but
+        // clamped so the centered text never spills off the right/left edge.
+        function place() {
+            const r = btn.getBoundingClientRect();
+            el.style.top = (r.bottom + 6) + 'px';
+            const half = (el.offsetWidth / 2) || 100;
+            const cx = (r.left + r.right) / 2;
+            const clamped = Math.max(half + 8, Math.min(window.innerWidth - half - 8, cx));
+            el.style.left = clamped + 'px';
+        }
+        place();
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, { passive: true });
+
+        requestAnimationFrame(function () { el.classList.add('show'); });
+
+        let gone = false;
+        function dismiss() {
+            if (gone) return;
+            gone = true;
+            window.removeEventListener('resize', place);
+            window.removeEventListener('scroll', place);
+            el.classList.remove('show');
+            setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+        }
+        el.addEventListener('click', dismiss);
+        btn.addEventListener('click', dismiss, { once: true });
+        setTimeout(dismiss, 7000);   // a short moment, then it fades on its own
     }
 
     /* =========================================================
@@ -804,6 +883,7 @@
             localStorage.removeItem(KEY);
             localStorage.removeItem(PAGEVIEWS_KEY);
             localStorage.removeItem(HINTS_KEY);
+            localStorage.removeItem(FXHINT_KEY);
             try { sessionStorage.removeItem(PENDING_KEY); } catch (e) { /* ignore */ }
             updateFooterLink();
             renderPage();

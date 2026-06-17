@@ -2853,6 +2853,62 @@ a.education-card:focus {
     color: #fff;
 }
 
+/* One-time nudge pointing at the header effects toggle (2nd unlock). No box:
+   just an arrow (outside, on top, pointing up at the button) with the text
+   centered beneath it. The outer element positions/centers; the inner element
+   does the grow/shrink pulse. */
+.fx-hint-callout {
+    position: fixed;
+    z-index: 9991;
+    transform: translateX(-50%);   /* centered on the button */
+    cursor: pointer;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.fx-hint-callout.show {
+    opacity: 1;
+}
+.fx-hint-pulse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15em;
+    max-width: 200px;
+    color: var(--accent);
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transform-origin: top center;
+}
+.fx-hint-callout.show .fx-hint-pulse {
+    animation: fxHintPulse 1s ease-in-out infinite;
+}
+.fx-hint-arrow {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+.fx-hint-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+@keyframes fxHintPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.12); }
+}
+
+/* It is an ambient effect: hidden when the global toggle is off, and it must
+   not pulse for visitors who asked for reduced motion. */
+.fx-off .fx-hint-callout {
+    display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    .fx-hint-callout.show .fx-hint-pulse {
+        animation: none !important;
+    }
+}
+
 @media (max-width: 480px) {
     #achievement-overlay {
         left: var(--spacing-md);
