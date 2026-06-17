@@ -270,6 +270,46 @@ p {
     }
 }
 
+/* When the user turns visual effects off, kill the header glitch entirely. */
+.fx-off .header-content {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+}
+.fx-off .site-header::after {
+    animation: none;
+    display: none;
+}
+
+/* ===== VISUAL-EFFECTS TOGGLE BUTTON (injected into the header) ===== */
+.fx-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-right: var(--spacing-sm);
+    padding: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--accent-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    flex-shrink: 0;
+}
+.fx-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+.fx-toggle.is-off {
+    color: var(--text-muted);
+}
+.fx-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
 .header-content {
     max-width: var(--container-xl);
     margin: 0 auto;

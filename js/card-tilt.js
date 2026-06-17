@@ -6,7 +6,8 @@
  */
 (function () {
     const finePointer = window.matchMedia && matchMedia('(pointer: fine)').matches;
-    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)
+        || document.documentElement.classList.contains('fx-off');
     if (!finePointer || reduce) return;
 
     const MAX = 8; // max tilt in degrees

@@ -11,6 +11,58 @@ Personal portfolio website for Sebastien Feser, a Game Engineer specializing in 
 - **Vanilla JavaScript** - No frameworks, minimal JS
 - **No build process** - Static site, opens directly in browser
 
+## Visual Effects System
+
+The site has a global **visual-effects toggle** in the header (a button injected
+by `js/effects-toggle.js`). It lets visitors turn ALL ambient visual effects on/off,
+and remembers the choice in `localStorage` (key `effects-enabled`).
+
+### IMPORTANT: Every new visual effect MUST be disableable by the toggle
+
+**Whenever you add a new visual effect (CSS animation, JS animation, canvas/WebGL,
+parallax, particles, glitch, tilt, etc.), it MUST be wired into the toggle so it
+turns off with the button.** No exception.
+
+How the toggle works:
+- `effects-toggle.js` loads **first** (before all other effect scripts) and adds
+  the class `fx-off` to `<html>` when effects are disabled. It is the single source
+  of truth.
+
+To make a new effect respect the toggle:
+
+1. **CSS effects** - gate them under `.fx-off`:
+   ```css
+   .fx-off .my-effect {
+       animation: none !important;
+       transform: none !important;
+       filter: none !important;
+   }
+   ```
+
+2. **JS effects** - bail out early when disabled:
+   ```js
+   // Treat the toggle exactly like prefers-reduced-motion.
+   if (document.documentElement.classList.contains('fx-off')) return;
+   ```
+   Load the script AFTER `effects-toggle.js` (it already is, since the toggle is
+   the first `<script>` in the block). If you add a new effect script, place its
+   `<script>` tag after `js/effects-toggle.js` on every page.
+
+3. **Accessibility** - also respect `prefers-reduced-motion: reduce` (disable or
+   tone down the effect), and keep flashing under 3 flashes/second (WCAG seizure
+   threshold). The toggle is an extra opt-out, not a replacement for this.
+
+The Konami-code easter egg (`konami-physics.js`) is intentionally NOT gated by the
+toggle: it's a deliberate, user-triggered surprise, not an ambient effect.
+
+### Files involved
+
+| File | Role |
+|------|------|
+| `js/effects-toggle.js` | Injects the button, stores state, sets `fx-off` class |
+| `css/style.css` | `.fx-off ...` rules + `.fx-toggle` button styling |
+| `js/hero-shader.js`, `js/animations.js`, `js/card-tilt.js` | Effect scripts that check `fx-off` |
+
 ## Internationalization (i18n) System
 
 The site supports 4 languages: English, French, German, and Italian.

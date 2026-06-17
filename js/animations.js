@@ -7,7 +7,10 @@
  * IntersectionObserver, counters show their final value and nothing is hidden.
  */
 (function () {
-    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Treat the site's visual-effects toggle exactly like reduced motion:
+    // counters jump to their final value and nothing fades/slides in.
+    const reduce = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)
+        || document.documentElement.classList.contains('fx-off');
     const hasIO = 'IntersectionObserver' in window;
 
     /* ---- 1. Animated counters ---- */

@@ -15,6 +15,8 @@
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
     }
+    // Respect the site's visual-effects toggle.
+    if (document.documentElement.classList.contains('fx-off')) return;
 
     // Reuse the canvas if the page provides one, otherwise create it.
     let canvas = document.getElementById('hero-shader');
