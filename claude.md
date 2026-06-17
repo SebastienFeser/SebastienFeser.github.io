@@ -523,10 +523,12 @@ Ajouter une carte dans la grille de blog pour afficher un aperçu :
 ### Checklist pour un nouveau blog post
 
 1. Créer la page du blog post dans `pages/`
-2. Ajouter les traductions dans `locales/{lang}/pages/blog.json` (4 langues)
-3. Ajouter le `.blog-list-item` dans `pages/blog.html`
-4. Ajouter le `.blog-card` dans `index.html` section `#blog`
-5. Vérifier les 4 langues
+2. Ajouter `data-article` sur la balise `<html>` (ex. `<html lang="en" data-article ...>`)
+   pour que le succès « Bonne lecture » (`read-article`) se déclenche sur l'article
+3. Ajouter les traductions dans `locales/{lang}/pages/blog.json` (4 langues)
+4. Ajouter le `.blog-list-item` dans `pages/blog.html`
+5. Ajouter le `.blog-card` dans `index.html` section `#blog`
+6. Vérifier les 4 langues
 
 ### Fichiers concernés
 

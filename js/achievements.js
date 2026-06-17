@@ -73,6 +73,28 @@
                 it: { name: 'Fino in fondo',    desc: 'Scorri la home page fino in fondo.' },
             },
         },
+        {
+            id: 'read-article',
+            icon: '📖',
+            secret: false,
+            i18n: {
+                en: { name: 'Good Read',     desc: 'Open one of the articles.' },
+                fr: { name: 'Bonne lecture', desc: 'Ouvrir un des articles.' },
+                de: { name: 'Gute Lektüre',  desc: 'Einen der Artikel öffnen.' },
+                it: { name: 'Buona lettura', desc: 'Aprire uno degli articoli.' },
+            },
+        },
+        {
+            id: 'play-game',
+            icon: '👾',
+            secret: false,
+            i18n: {
+                en: { name: 'Insert Coin',      desc: 'Open one of the published games.' },
+                fr: { name: 'Insert Coin',      desc: 'Ouvrir un des jeux publiés.' },
+                de: { name: 'Münze einwerfen',  desc: 'Eines der veröffentlichten Spiele öffnen.' },
+                it: { name: 'Inserisci gettone', desc: 'Aprire uno dei giochi pubblicati.' },
+            },
+        },
     ];
 
     /* =========================================================
@@ -413,6 +435,22 @@
         unlock('welcome');
 
         setupScrollAchievement();
+
+        // Opening a blog article counts as a read. Article pages are explicitly
+        // tagged with `data-article` on <html> (project/experience pages are not),
+        // so this never fires on a non-article page.
+        if (document.documentElement.hasAttribute('data-article')) unlock('read-article');
+
+        setupGameAchievement();
+    }
+
+    // Unlock 'play-game' when the visitor opens one of the published games (the
+    // itch.io cards in the homepage "Published Games" section, #projects).
+    function setupGameAchievement() {
+        if (isUnlocked('play-game')) return;
+        document.querySelectorAll('#projects a.card').forEach(function (card) {
+            card.addEventListener('click', function () { unlock('play-game'); });
+        });
     }
 
     // Unlock 'reach-bottom' once the visitor scrolls to the bottom of the HOMEPAGE
