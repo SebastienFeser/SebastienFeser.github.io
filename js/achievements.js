@@ -67,10 +67,10 @@
             icon: '🏁',
             secret: false,
             i18n: {
-                en: { name: 'All the Way Down', desc: 'Scroll all the way to the bottom of a page.' },
-                fr: { name: 'Jusqu\'au bout',   desc: 'Faire défiler une page jusqu\'en bas.' },
-                de: { name: 'Bis zum Ende',     desc: 'Eine Seite bis ganz nach unten scrollen.' },
-                it: { name: 'Fino in fondo',    desc: 'Scorri una pagina fino in fondo.' },
+                en: { name: 'All the Way Down', desc: 'Scroll all the way to the bottom of the homepage.' },
+                fr: { name: 'Jusqu\'au bout',   desc: 'Faire défiler la page d\'accueil jusqu\'en bas.' },
+                de: { name: 'Bis zum Ende',     desc: 'Die Startseite bis ganz nach unten scrollen.' },
+                it: { name: 'Fino in fondo',    desc: 'Scorri la home page fino in fondo.' },
             },
         },
     ];
@@ -415,9 +415,15 @@
         setupScrollAchievement();
     }
 
-    // Unlock 'reach-bottom' once the visitor scrolls to the bottom of a page.
-    // Ignores pages too short to scroll (so it can't fire without real scrolling).
+    // Unlock 'reach-bottom' once the visitor scrolls to the bottom of the HOMEPAGE
+    // only. Ignores pages too short to scroll (so it can't fire without real
+    // scrolling).
+    function isHomepage() {
+        const p = location.pathname.toLowerCase();
+        return p === '' || p === '/' || p.endsWith('/index.html');
+    }
     function setupScrollAchievement() {
+        if (!isHomepage()) return;
         if (isUnlocked('reach-bottom')) return;
         function check() {
             const full = document.documentElement.scrollHeight;
