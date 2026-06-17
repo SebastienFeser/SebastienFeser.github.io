@@ -2673,3 +2673,161 @@ a.education-card:focus {
 .theme-horror .hero-badge {
     border-radius: 2px;
 }
+
+/* ============================================
+   ACHIEVEMENTS
+   ============================================ */
+
+/* ---- Toast overlay (bottom-right, above the page) ----
+   Lives in its own fixed layer. It is excluded from the Konami physics easter
+   egg (see konami-physics.js) so it never collapses with the page. The toast is
+   treated as an ambient effect: achievements.js does not create one while the
+   visual-effects toggle is off, and reduced-motion users get no slide. */
+#achievement-overlay {
+    position: fixed;
+    right: var(--spacing-lg);
+    bottom: var(--spacing-lg);
+    z-index: 9990;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.achievement-toast {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    max-width: 360px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xl);
+    color: var(--text-primary);
+    pointer-events: auto;
+    cursor: pointer;
+    /* Start off-screen to the right; .show slides it in. */
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform var(--transition-slow), opacity var(--transition-slow);
+}
+.achievement-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.achievement-toast-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.achievement-toast-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--success);
+    font-weight: 700;
+}
+.achievement-toast-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* When effects are off, never paint the toast layer (belt-and-suspenders: the
+   script already skips toasts while fx-off). */
+.fx-off #achievement-overlay {
+    display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .achievement-toast {
+        transition: opacity var(--transition-slow);
+        transform: none;
+    }
+}
+
+/* ---- Footer link (injected on every page) ---- */
+.achievements-footer-link {
+    white-space: nowrap;
+}
+
+/* ---- Achievements page ---- */
+.achievements-header {
+    margin-bottom: var(--spacing-xl);
+}
+.achievements-progress {
+    margin-top: var(--spacing-md);
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+    font-size: 1.1rem;
+    color: var(--success);
+    letter-spacing: 0.04em;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.achievement-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+.achievement-card.is-unlocked {
+    border-left: 4px solid var(--success);
+}
+.achievement-card.is-locked {
+    opacity: 0.55;
+    border-style: dashed;
+}
+
+.achievement-card-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.achievement-card.is-locked .achievement-card-icon {
+    filter: grayscale(1);
+}
+
+.achievement-card-name {
+    margin: 0 0 var(--spacing-xs);
+    font-size: 1.1rem;
+}
+.achievement-card-desc {
+    margin: 0 0 var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+.achievement-card-meta {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+.achievement-card.is-unlocked .achievement-card-meta {
+    color: var(--success);
+}
+
+@media (max-width: 480px) {
+    #achievement-overlay {
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+        bottom: var(--spacing-md);
+        align-items: stretch;
+    }
+    .achievement-toast {
+        max-width: none;
+    }
+}

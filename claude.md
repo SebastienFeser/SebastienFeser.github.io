@@ -63,6 +63,97 @@ toggle: it's a deliberate, user-triggered surprise, not an ambient effect.
 | `css/style.css` | `.fx-off ...` rules + `.fx-toggle` button styling |
 | `js/hero-shader.js`, `js/animations.js`, `js/card-tilt.js` | Effect scripts that check `fx-off` |
 
+## Achievement System
+
+The site has a small **achievement/trophy system** (`js/achievements.js`).
+Unlocking one slides a toast in from the **bottom-right** of the screen, and a
+dedicated page (`pages/achievements.html`) lists every achievement (unlocked +
+locked). Progress is stored in `localStorage` (key `achievements-unlocked`, a map
+`{ id: ISO-timestamp }`), so it persists across reloads and pages.
+
+### Key behaviours
+
+- The toast lives in its own fixed overlay (`#achievement-overlay`) and is
+  **excluded from the Konami physics easter egg** (it never collapses with the
+  page — see the exclusions in `js/konami-physics.js`).
+- Unlocking pops the toast together with a short chime
+  (`assets/audio/achievement.mp3`, volume 0.5, preloaded). Browsers block sound
+  until the page has had a user interaction, so toast + sound are kept **in sync**:
+  an achievement unlocked at page load (e.g. `welcome`) is **queued and released —
+  toast + chime together — on the first user interaction** (click, mouse, key,
+  touch, wheel or scroll). Achievements unlocked by an action already have that
+  interaction, so they pop instantly with sound.
+- The toast + chime are treated as an **ambient visual effect**: when the
+  visual-effects toggle is OFF (`<html class="fx-off">`), achievements still
+  unlock silently but **no toast and no sound** are produced. The toast also
+  respects `prefers-reduced-motion` (no slide). Because of this, `achievements.js`
+  is loaded **right after `effects-toggle.js`**.
+- A localized "🏆 Achievements N/total" link is **auto-injected into every page
+  footer** by the script (you don't add it by hand). The console also has an
+  `achievements` command that opens the page.
+- Achievement names/descriptions are kept **inline in `achievements.js`** (4
+  languages), not in the `locales/` JSON, so a toast can show on any page without
+  waiting for an i18n module to load. The injected footer link and the page
+  re-localize live when the language changes (watched via the `<html lang>` attr).
+
+### IMPORTANT: How to add a new achievement
+
+1. **Add an entry to the `ACHIEVEMENTS` array** in `js/achievements.js`:
+   ```js
+   {
+       id: 'unique-kebab-id',     // NEVER reuse or rename — it's the storage key
+       icon: '🏆',                // any emoji (or short text)
+       secret: false,             // true = shown as "???" until unlocked
+       i18n: {                    // name + description in ALL 4 languages
+           en: { name: '...', desc: '...' },
+           fr: { name: '...', desc: '...' },
+           de: { name: '...', desc: '...' },
+           it: { name: '...', desc: '...' },
+       },
+   }
+   ```
+   Use proper accents/special characters in the translations (same rule as the
+   i18n section below).
+
+2. **Unlock it** wherever its condition is met, with EITHER:
+   ```js
+   window.Achievements.unlock('unique-kebab-id');
+   ```
+   or, from a script that shouldn't depend on load order (preferred for effect
+   scripts, console commands, etc.):
+   ```js
+   window.dispatchEvent(new CustomEvent('achievement-unlock',
+       { detail: { id: 'unique-kebab-id' } }));
+   ```
+   Unlocking an already-earned achievement is a harmless no-op.
+
+3. `secret: true` hides the name/description as "???" on the page until it's
+   unlocked; `secret: false` shows them greyed out as a hint.
+
+There is nothing else to wire: the toast, the footer counter and the
+achievements page all read from the same `ACHIEVEMENTS` array.
+
+### Public API (`window.Achievements`)
+
+| Member | Role |
+|--------|------|
+| `unlock(id)` | Unlock by id (fires the toast if newly earned). Returns `true` if it was new. |
+| `isUnlocked(id)` | Whether an achievement is already earned. |
+| `count()` | Number of unlocked achievements. |
+| `list` | The full `ACHIEVEMENTS` registry. |
+| `reset()` | Clear all progress (handy for testing). |
+
+### Files involved
+
+| File | Role |
+|------|------|
+| `js/achievements.js` | Registry, storage, toast, chime, footer link, page rendering, API |
+| `assets/audio/achievement.mp3` | Unlock sound effect (played by `achievements.js`) |
+| `pages/achievements.html` | The achievements page (grid rendered by the script) |
+| `css/style.css` | `#achievement-overlay`, `.achievement-toast`, `.achievement-card` rules |
+| `js/konami-physics.js` | Excludes `#achievement-overlay` from the physics easter egg |
+| `js/command-console.js` | `achievements` command (opens the achievements page) |
+
 ## Internationalization (i18n) System
 
 The site supports 4 languages: English, French, German, and Italian.

@@ -503,8 +503,9 @@
     function pickElements() {
         const all = Array.from(document.querySelectorAll(SELECTOR))
             .filter(isVisibleInViewport)
-            // Never turn the command console (or its contents) into physics bodies.
-            .filter((el) => !el.closest('#command-console'));
+            // Never turn the command console or the achievement toast overlay
+            // (or their contents) into physics bodies.
+            .filter((el) => !el.closest('#command-console') && !el.closest('#achievement-overlay'));
         // keep only outermost matches (drop any element contained in another match)
         const set = new Set(all);
         const chosen = all.filter((el) => {
@@ -631,7 +632,8 @@
         // backgrounds...) so only the overlay and the animated shader remain.
         Array.from(document.body.children).forEach((child) => {
             if (child === overlay || child.id === 'hero-shader'
-                || child.id === 'command-console' || child.tagName === 'SCRIPT') return;
+                || child.id === 'command-console' || child.id === 'achievement-overlay'
+                || child.tagName === 'SCRIPT') return;
             child.style.display = 'none';
         });
 

@@ -281,6 +281,10 @@
             desc: 'Go to the homepage',
             run: function () { location.href = toRoot + 'index.html'; },
         },
+        achievements: {
+            desc: 'Open the achievements page',
+            run: function () { location.href = toRoot + 'pages/achievements.html'; },
+        },
         back: {
             desc: 'Go back one page',
             run: function () { window.history.back(); },
