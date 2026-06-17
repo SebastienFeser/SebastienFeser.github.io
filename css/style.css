@@ -2820,6 +2820,39 @@ a.education-card:focus {
     color: var(--success);
 }
 
+/* Progressive hints on locked secret achievements. */
+.achievement-hints {
+    margin: 0 0 var(--spacing-sm);
+    padding-left: 1.2em;
+    list-style: decimal;
+}
+.achievement-hint {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: var(--spacing-xs);
+}
+.achievement-hint-btn {
+    display: block;
+    width: fit-content;
+    margin-bottom: var(--spacing-sm);
+    padding: 0.4em 0.9em;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+    font-size: 0.82rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.achievement-hint-btn:hover,
+.achievement-hint-btn:focus-visible {
+    background: var(--accent);
+    color: #fff;
+}
+
 @media (max-width: 480px) {
     #achievement-overlay {
         left: var(--spacing-md);

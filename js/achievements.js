@@ -182,6 +182,28 @@
                 de: { name: 'Inspektor',  desc: 'Die Entwicklertools des Browsers öffnen.' },
                 it: { name: 'Ispettore',  desc: 'Aprire gli strumenti per sviluppatori del browser.' },
             },
+            hints: {
+                en: [
+                    'A magician never reveals his secrets.',
+                    'Developers spend a lot of time in here.',
+                    'So this is how you inspect the little details of a site?',
+                ],
+                fr: [
+                    'Un magicien ne révèle jamais ses secrets.',
+                    'Les développeurs passent souvent par là.',
+                    'Donc c\'est comme ça qu\'on observe les détails des sites ?',
+                ],
+                de: [
+                    'Ein Zauberer verrät niemals seine Tricks.',
+                    'Entwickler sind hier oft unterwegs.',
+                    'Also so schaut man sich die Details einer Website an?',
+                ],
+                it: [
+                    'Un mago non svela mai i suoi trucchi.',
+                    'Gli sviluppatori ci passano spesso.',
+                    'Quindi è così che si osservano i dettagli di un sito?',
+                ],
+            },
         },
         {
             id: 'console',
@@ -192,6 +214,28 @@
                 fr: { name: 'Ligne de commande', desc: 'Ouvrir la console cachée (la touche juste à gauche du « 1 »).' },
                 de: { name: 'Befehlszeile',     desc: 'Öffne die versteckte Konsole (die Taste links neben der „1").' },
                 it: { name: 'Riga di comando',  desc: 'Apri la console nascosta (il tasto subito a sinistra dell\'« 1 »).' },
+            },
+            hints: {
+                en: [
+                    'Paradox veterans know what turns an ordinary game into a playground.',
+                    'Most people never know what this button is for, but it is right there.',
+                    'So that key is not so useless after all...',
+                ],
+                fr: [
+                    'Les vétérans de Paradox savent ce qui transforme une partie ordinaire en terrain de jeu.',
+                    'Beaucoup de gens ne savent pas à quoi sert ce bouton, mais il est là.',
+                    'Cette touche n\'est donc pas si inutile...',
+                ],
+                de: [
+                    'Paradox-Veteranen wissen, was eine gewöhnliche Partie in einen Spielplatz verwandelt.',
+                    'Viele Leute wissen nicht, wozu diese Taste dient, aber sie ist da.',
+                    'Diese Taste ist also doch nicht so nutzlos...',
+                ],
+                it: [
+                    'I veterani di Paradox sanno cosa trasforma una partita qualunque in un parco giochi.',
+                    'Molti non sanno a cosa serva questo tasto, ma è lì.',
+                    'Quindi questo tasto non è poi così inutile...',
+                ],
             },
         },
         {
@@ -204,6 +248,28 @@
                 de: { name: 'Die 13. Stunde', desc: 'Den Horror-Modus heraufbeschwören.' },
                 it: { name: 'La 13ª ora',    desc: 'Evocare la modalità horror.' },
             },
+            hints: {
+                en: [
+                    'I loved working on this project.',
+                    'The site will never be the same again.',
+                    'What if I typed help? Maybe I would find a clue.',
+                ],
+                fr: [
+                    'J\'ai adoré bosser sur ce projet.',
+                    'Le site ne sera plus jamais le même.',
+                    'Et si je tapais help ? Peut-être que je trouverais un indice.',
+                ],
+                de: [
+                    'Ich habe es geliebt, an diesem Projekt zu arbeiten.',
+                    'Die Seite wird nie mehr dieselbe sein.',
+                    'Was, wenn ich help eingebe? Vielleicht finde ich einen Hinweis.',
+                ],
+                it: [
+                    'Ho adorato lavorare a questo progetto.',
+                    'Il sito non sarà più lo stesso.',
+                    'E se digitassi help? Forse troverei un indizio.',
+                ],
+            },
         },
         {
             id: 'konami',
@@ -214,6 +280,28 @@
                 fr: { name: 'Haut Haut Bas Bas',  desc: 'Saisir le légendaire code Konami.' },
                 de: { name: 'Oben Oben Unten Unten', desc: 'Den legendären Konami-Code eingeben.' },
                 it: { name: 'Su Su Giù Giù',      desc: 'Inserire il leggendario codice Konami.' },
+            },
+            hints: {
+                en: [
+                    'Those who know it have never forgotten it.',
+                    'Plug in a controller and it works too.',
+                    'It is the kind of detail that gives away a Konami game.',
+                ],
+                fr: [
+                    'Ceux qui le connaissent ne l\'ont jamais oublié.',
+                    'Si on branche une manette, ça fonctionne aussi.',
+                    'C\'est à ce genre de détails qu\'on reconnaît un jeu Konami.',
+                ],
+                de: [
+                    'Wer ihn kennt, hat ihn nie vergessen.',
+                    'Schließt man einen Controller an, funktioniert es auch.',
+                    'An solchen Details erkennt man ein Konami-Spiel.',
+                ],
+                it: [
+                    'Chi lo conosce non l\'ha mai dimenticato.',
+                    'Se colleghi un controller, funziona anche così.',
+                    'È da questi dettagli che si riconosce un gioco Konami.',
+                ],
             },
         },
         {
@@ -246,6 +334,9 @@
             secretDesc: 'Hidden achievement — keep exploring to reveal it.',
             unlockedOn: 'Unlocked on',
             back: '← Back to home',
+            hintCta: 'Reveal a hint',
+            revealNameCta: 'Reveal the name',
+            hintLabel: 'Hint',
         },
         fr: {
             unlocked: 'Succès débloqué',
@@ -258,6 +349,9 @@
             secretDesc: 'Succès caché : continuez à explorer pour le révéler.',
             unlockedOn: 'Débloqué le',
             back: '← Retour à l\'accueil',
+            hintCta: 'Révéler un indice',
+            revealNameCta: 'Révéler le nom',
+            hintLabel: 'Indice',
         },
         de: {
             unlocked: 'Erfolg freigeschaltet',
@@ -270,6 +364,9 @@
             secretDesc: 'Versteckter Erfolg — erkunde weiter, um ihn zu enthüllen.',
             unlockedOn: 'Freigeschaltet am',
             back: '← Zurück zur Startseite',
+            hintCta: 'Hinweis aufdecken',
+            revealNameCta: 'Namen aufdecken',
+            hintLabel: 'Hinweis',
         },
         it: {
             unlocked: 'Obiettivo sbloccato',
@@ -282,6 +379,9 @@
             secretDesc: 'Obiettivo nascosto: continua a esplorare per rivelarlo.',
             unlockedOn: 'Sbloccato il',
             back: '← Torna alla home',
+            hintCta: 'Rivela un indizio',
+            revealNameCta: 'Rivela il nome',
+            hintLabel: 'Indizio',
         },
     };
 
@@ -307,6 +407,31 @@
     function save(state) { localStorage.setItem(KEY, JSON.stringify(state)); }
     function isUnlocked(id) { return !!load()[id]; }
     function unlockedCount() { return Object.keys(load()).length; }
+
+    // Hint progress for secret achievements. Stored as a map { id: level }, where
+    // `level` counts how far the visitor has dug: 1..N reveal that many hints, and
+    // N+1 (N = number of hints) reveals the real name + description. Persisted so
+    // the progress survives reloads, separate from the unlocked map.
+    const HINTS_KEY = 'achievements-hints';
+    function loadHints() {
+        try { return JSON.parse(localStorage.getItem(HINTS_KEY)) || {}; }
+        catch (e) { return {}; }
+    }
+    function saveHints(map) { localStorage.setItem(HINTS_KEY, JSON.stringify(map)); }
+    function hintLevel(id) {
+        const n = loadHints()[id];
+        return typeof n === 'number' && n > 0 ? n : 0;
+    }
+    function bumpHint(id) {
+        const a = def(id);
+        if (!a || !a.hints) return;
+        const max = (a.hints.en || []).length + 1;   // hints + the final name reveal
+        const map = loadHints();
+        const next = Math.min(max, (map[id] || 0) + 1);
+        map[id] = next;
+        saveHints(map);
+        renderPage();
+    }
 
     /* =========================================================
        Unlock + toast
@@ -592,27 +717,59 @@
             const hidden = a.secret && !got;
             const t = text(a);
 
+            // Hint progression (only for hidden secret achievements that define hints).
+            const hintList = a.hints ? (a.hints[lang()] || a.hints.en) : null;
+            const hasHints = hidden && Array.isArray(hintList) && hintList.length > 0;
+            const level = hasHints ? hintLevel(a.id) : 0;
+            const nHints = hasHints ? hintList.length : 0;
+            const nameRevealed = hasHints && level > nHints;   // the final step shows name + desc
+
             const card = document.createElement('article');
             card.className = 'achievement-card ' + (got ? 'is-unlocked' : 'is-locked')
                 + (hidden ? ' is-secret' : '');
 
             const icon = document.createElement('div');
             icon.className = 'achievement-card-icon';
-            icon.textContent = hidden ? '🔒' : a.icon;
+            icon.textContent = (hidden && !nameRevealed) ? '🔒' : a.icon;
 
             const body = document.createElement('div');
             body.className = 'achievement-card-body';
 
             const name = document.createElement('h3');
             name.className = 'achievement-card-name';
-            name.textContent = hidden ? s.secretName : t.name;
+            name.textContent = (hidden && !nameRevealed) ? s.secretName : t.name;
 
             const desc = document.createElement('p');
             desc.className = 'achievement-card-desc';
-            desc.textContent = hidden ? s.secretDesc : t.desc;
+            desc.textContent = (hidden && !nameRevealed) ? s.secretDesc : t.desc;
 
             body.appendChild(name);
             body.appendChild(desc);
+
+            // Revealed hints + the button to dig further (3 hints, then the name).
+            if (hasHints) {
+                if (level > 0) {
+                    const list = document.createElement('ol');
+                    list.className = 'achievement-hints';
+                    for (let i = 0; i < Math.min(level, nHints); i++) {
+                        const li = document.createElement('li');
+                        li.className = 'achievement-hint';
+                        li.textContent = hintList[i];
+                        list.appendChild(li);
+                    }
+                    body.appendChild(list);
+                }
+                if (level <= nHints) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'achievement-hint-btn';
+                    btn.textContent = (level < nHints)
+                        ? s.hintCta + ' (' + level + '/' + nHints + ')'
+                        : s.revealNameCta;
+                    btn.addEventListener('click', function () { bumpHint(a.id); });
+                    body.appendChild(btn);
+                }
+            }
 
             const meta = document.createElement('span');
             meta.className = 'achievement-card-meta';
@@ -646,6 +803,7 @@
         reset: function () {
             localStorage.removeItem(KEY);
             localStorage.removeItem(PAGEVIEWS_KEY);
+            localStorage.removeItem(HINTS_KEY);
             try { sessionStorage.removeItem(PENDING_KEY); } catch (e) { /* ignore */ }
             updateFooterLink();
             renderPage();

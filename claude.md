@@ -138,6 +138,24 @@ locked). Progress is stored in `localStorage` (key `achievements-unlocked`, a ma
 3. `secret: true` hides the name/description as "???" on the page until it's
    unlocked; `secret: false` shows them greyed out as a hint.
 
+4. **(Optional) Add progressive hints** for a secret achievement so visitors can
+   dig toward it on the achievements page. Add a `hints` object (3 hints per
+   language, all 4 languages) next to `i18n`:
+   ```js
+   hints: {
+       en: ['Hint 1...', 'Hint 2...', 'Hint 3...'],
+       fr: ['Indice 1...', 'Indice 2...', 'Indice 3...'],
+       de: ['Hinweis 1...', 'Hinweis 2...', 'Hinweis 3...'],
+       it: ['Indizio 1...', 'Indizio 2...', 'Indizio 3...'],
+   }
+   ```
+   On the achievements page, a locked secret achievement with `hints` shows a
+   button that reveals the hints one at a time; after the last hint the button
+   reveals the real name + description (the card stays locked until truly
+   earned). Progress is stored in `localStorage` (key `achievements-hints`, a
+   map `{ id: level }`) and cleared by `reset()`. Achievements without a `hints`
+   object keep the plain "???" behaviour.
+
 There is nothing else to wire: the toast, the footer counter and the
 achievements page all read from the same `ACHIEVEMENTS` array.
 
