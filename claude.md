@@ -93,6 +93,62 @@ colliders (same pattern as `fx-off`) and publishes stats on
 | `js/command-console.js` | `debug_mode` command |
 | `css/style.css` | `#debug-panel` styling |
 
+## Theme System
+
+The site has swappable full-page **themes** ("skins") unlocked from the console:
+`horror` ("The 13th Hour") and `matrix` (retro hacker / CRT terminal). Only one
+theme is active at a time; the choice persists in `localStorage` (key
+`site-theme`) and carries across pages.
+
+`js/themes.js` is the **single source of truth** (`window.SiteTheme`). It owns the
+theme registry, the persistence, the on-demand web-font loading, and applies the
+active theme's `theme-<id>` class on `<html>` as early as it loads (right after
+`layout.js`, before paint). Every switch fires a `themechange` event
+(`{ detail: { id, on } }`) that the background-effect scripts and achievements
+listen to.
+
+Like the console and debug mode, a theme is a deliberate, user-triggered **TOOL**,
+so the theme itself is **NOT** gated by the visual-effects toggle. But each
+theme's *ambient* bits (CRT flicker, digital rain, blinking caret, firelight)
+ARE gated by `fx-off` and `prefers-reduced-motion`, like any other effect.
+
+Turning on **any** theme unlocks the single shared secret achievement (stored id
+`horror`, now generically "Change of Scenery"). There is no per-theme achievement.
+
+### IMPORTANT: How to add a new theme
+
+1. **Add an entry to the `THEMES` registry** in `js/themes.js`:
+   ```js
+   mytheme: {
+       className: 'theme-mytheme',                 // CSS hook
+       fonts: 'https://fonts.googleapis.com/...',  // optional web fonts
+   }
+   ```
+2. **Add a `.theme-mytheme { ... }` block** in `css/style.css` (palette via the
+   `--bg-*`/`--text-*`/`--accent*` custom properties + the look). Gate every
+   ambient animation under `.theme-mytheme:not(.fx-off)` AND
+   `@media (prefers-reduced-motion: reduce)` (copy the matrix/horror blocks).
+3. **(Optional) a background canvas script** (like `js/matrix-rain.js` /
+   `js/horror-fire.js`): listen for `themechange`, check your `.theme-mytheme`
+   class, and bail to a static frame when `fx-off`/reduced-motion. Add its
+   `<script>` tag to every page AFTER `themes.js`, and add a
+   `.theme-mytheme #hero-shader { display: none !important; }` rule if it owns the
+   background.
+4. **Add a console command** to toggle it (mirror the `horror` / `matrix`
+   commands in `js/command-console.js`; they all call `runThemeCommand(id, ...)`).
+
+Nothing else is wired by hand: persistence, the shared achievement, and mutual
+exclusivity between themes are all handled by `themes.js`.
+
+| File | Role |
+|------|------|
+| `js/themes.js` | Theme registry, persistence, font loading, `themechange` event, `window.SiteTheme` API |
+| `js/horror-fire.js` | WebGL firelight background for `theme-horror` (reacts to `themechange`) |
+| `js/matrix-rain.js` | 2D digital-rain background for `theme-matrix` (reacts to `themechange`) |
+| `js/command-console.js` | `horror` + `matrix` commands (thin front-end over `SiteTheme`) |
+| `css/style.css` | `.theme-horror` / `.theme-matrix` blocks + `#horror-fire` / `#matrix-rain` |
+| `js/achievements.js` | Unlocks the shared "tried a style" achievement on any `themechange` |
+
 ## Achievement System
 
 The site has a small **achievement/trophy system** (`js/achievements.js`).
@@ -543,6 +599,7 @@ Use this template in `pages/`:
          scripts (effects-toggle injects its button into the header, achievements
          injects a link into the footer, i18n translates both). -->
     <script src="../js/layout.js"></script>
+    <script src="../js/themes.js"></script>
     <script src="../js/effects-toggle.js"></script>
     <script src="../js/achievements.js"></script>
     <script src="../js/hero-shader.js"></script>
@@ -553,6 +610,7 @@ Use this template in `pages/`:
     <script src="../js/command-console.js"></script>
     <script src="../js/debug-mode.js"></script>
     <script src="../js/horror-fire.js"></script>
+    <script src="../js/matrix-rain.js"></script>
     <script src="../js/i18n.js"></script>
 </body>
 </html>
@@ -566,6 +624,9 @@ you create a page (or add a new site-wide script), copy the block above onto
 
 - **`layout.js` loads FIRST** — it injects the shared header + footer (see the
   Shared Layout section) so they exist before any other script runs.
+- **`themes.js` loads right after** — it applies the persisted site theme class
+  (`theme-horror`, `theme-matrix`, …) as early as possible, before paint (see the
+  Theme System section).
 - **`effects-toggle.js` loads next** — it sets the `fx-off` class before paint,
   and every other effect script keys off it. It also injects its button into the
   header layout.js created.
@@ -573,7 +634,8 @@ you create a page (or add a new site-wide script), copy the block above onto
   toggle (see the Achievement System section). It injects a link into the footer.
 
 The rest (`konami-physics.js`, `command-console.js`, `debug-mode.js`,
-`horror-fire.js`, `i18n.js`, …) just need to be present. If you add a new feature
+`horror-fire.js`, `matrix-rain.js`, `i18n.js`, …) just need to be present (the
+theme background effects must load AFTER `themes.js`). If you add a new feature
 script, add its `<script>` tag to all pages and update this block.
 
 ## Shared Layout (header + footer)

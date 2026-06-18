@@ -6,8 +6,8 @@
  * strongest near the bottom (the fire is low/in front) and fades upward.
  *
  * Only runs while the site is in horror mode (<html class="theme-horror">). It
- * starts/stops live via the `horrorchange` event dispatched by the console's
- * `horror` command, and also turns on at load if horror mode is persisted.
+ * starts/stops live via the `themechange` event dispatched by themes.js (the
+ * console `horror` command), and also turns on at load if horror mode is persisted.
  *
  * Degrades gracefully:
  *  - No WebGL          -> nothing shown, normal dark background.
@@ -179,9 +179,10 @@
 
     window.addEventListener('resize', function () { if (canvas && canvas.classList.contains('active')) resize(); });
 
-    // Live toggle from the console `horror` command.
-    window.addEventListener('horrorchange', function (e) {
-        if (e.detail && e.detail.on) start(); else stop();
+    // Live toggle. themes.js fires `themechange` for every theme switch; we only
+    // care whether the horror theme is the one now active.
+    window.addEventListener('themechange', function () {
+        if (horrorOn()) start(); else stop();
     });
 
     // Pause/resume with tab visibility (saves CPU), only while horror is active.

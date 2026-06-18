@@ -239,35 +239,40 @@
             },
         },
         {
+            // NOTE: the storage id stays 'horror' (ids must never be renamed),
+            // but this is now a GENERIC achievement: it unlocks the first time the
+            // visitor tries ANY site theme (horror, matrix, future ones). It is
+            // wired to the `themechange` event in setupThemeAchievement().
+            // TODO: hints to be designed together.
             id: 'horror',
-            icon: '👻',
+            icon: '🎨',
             secret: true,
             i18n: {
-                en: { name: 'The 13th Hour', desc: 'Summon the horror mode.' },
-                fr: { name: 'La 13e heure',  desc: 'Invoquer le mode horreur.' },
-                de: { name: 'Die 13. Stunde', desc: 'Den Horror-Modus heraufbeschwören.' },
-                it: { name: 'La 13ª ora',    desc: 'Evocare la modalità horror.' },
+                en: { name: 'Change of Scenery', desc: 'Try out one of the hidden site styles.' },
+                fr: { name: 'Changement de décor', desc: 'Essayer un des styles cachés du site.' },
+                de: { name: 'Tapetenwechsel',      desc: 'Einen der versteckten Seiten-Styles ausprobieren.' },
+                it: { name: 'Cambio di scenario',  desc: 'Provare uno degli stili nascosti del sito.' },
             },
             hints: {
                 en: [
-                    'I loved working on this project.',
-                    'The site will never be the same again.',
-                    'What if I typed help? Maybe I would find a clue.',
+                    'You can see this place in a whole different light.',
+                    'Those who like to poke under the hood eventually find the switch.',
+                    'Type help, try the commands.',
                 ],
                 fr: [
-                    'J\'ai adoré bosser sur ce projet.',
-                    'Le site ne sera plus jamais le même.',
-                    'Et si je tapais help ? Peut-être que je trouverais un indice.',
+                    'On peut voir cet endroit sous un tout autre jour.',
+                    'Ceux qui aiment fouiller sous le capot finissent par trouver l\'interrupteur.',
+                    'Écrire help, tester les commandes.',
                 ],
                 de: [
-                    'Ich habe es geliebt, an diesem Projekt zu arbeiten.',
-                    'Die Seite wird nie mehr dieselbe sein.',
-                    'Was, wenn ich help eingebe? Vielleicht finde ich einen Hinweis.',
+                    'Diesen Ort kann man in einem ganz anderen Licht sehen.',
+                    'Wer gern unter die Haube schaut, findet irgendwann den Schalter.',
+                    'help eingeben, die Befehle ausprobieren.',
                 ],
                 it: [
-                    'Ho adorato lavorare a questo progetto.',
-                    'Il sito non sarà più lo stesso.',
-                    'E se digitassi help? Forse troverei un indizio.',
+                    'Questo posto si può vedere sotto una luce completamente diversa.',
+                    'Chi ama mettere il naso sotto il cofano, prima o poi trova l\'interruttore.',
+                    'Scrivere help, provare i comandi.',
                 ],
             },
         },
@@ -930,7 +935,7 @@
         setupContactAchievement();
         setupLanguageAchievement();
         setupDevtoolsAchievement();
-        setupHorrorAchievement();
+        setupThemeAchievement();
         trackPageViews();
 
         // Catch the case where every other achievement is already unlocked.
@@ -964,14 +969,15 @@
         });
     }
 
-    // Unlock 'horror' when the visitor turns on "The 13th Hour" horror mode. The
-    // console `horror` command fires a `horrorchange` event; we also catch the
-    // case where the mode is already active on load (persisted via localStorage,
-    // applied as the `theme-horror` class before this runs).
-    function setupHorrorAchievement() {
+    // Unlock the generic "tried a style" achievement (stored id 'horror') the
+    // first time ANY site theme is turned on. themes.js fires `themechange` on
+    // every switch, and applies the persisted theme's class before this runs, so
+    // we also catch a theme that is already active on load.
+    function setupThemeAchievement() {
         if (isUnlocked('horror')) return;
-        if (document.documentElement.classList.contains('theme-horror')) unlock('horror');
-        window.addEventListener('horrorchange', function (e) {
+        const active = window.SiteTheme && window.SiteTheme.current && window.SiteTheme.current();
+        if (active) unlock('horror');
+        window.addEventListener('themechange', function (e) {
             if (e && e.detail && e.detail.on) unlock('horror');
         });
     }

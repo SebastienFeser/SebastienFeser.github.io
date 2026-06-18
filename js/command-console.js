@@ -234,23 +234,23 @@
     const onSubpage = /\/pages\//.test(location.pathname);
     const toRoot = onSubpage ? '../' : '';
 
-    // Load the horror-theme fonts only the first time the mode is switched on,
-    // so normal visitors never pay for them.
-    function ensureHorrorFonts() {
-        if (document.getElementById('horror-fonts')) return;
-        const link = document.createElement('link');
-        link.id = 'horror-fonts';
-        link.rel = 'stylesheet';
-        link.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Nosifer&family=Special+Elite&display=swap';
-        document.head.appendChild(link);
-    }
+    // Theme switching (horror, matrix, ...) lives in themes.js (window.SiteTheme):
+    // it owns the persistence, font loading and the `themechange` event. The
+    // console commands below are just a thin front-end over that API. `arg` is
+    // on|off|toggle (default toggle); we report the resulting state with the
+    // matching flavour text.
+    function runThemeCommand(id, arg, msgOn, msgOff, onCls) {
+        if (typeof window.SiteTheme === 'undefined') {
+            print('Themes unavailable.', 'is-err');
+            return;
+        }
+        const v = (arg || 'toggle').toLowerCase();
+        if (v === 'on') window.SiteTheme.set(id);
+        else if (v === 'off') { if (window.SiteTheme.isActive(id)) window.SiteTheme.clear(); }
+        else window.SiteTheme.toggle(id);
 
-    // Horror mode persists across reloads / pages via localStorage. Apply it as
-    // early as this script runs so it carries over the whole site.
-    const HORROR_KEY = 'theme-horror';
-    if (localStorage.getItem(HORROR_KEY) === 'true') {
-        document.documentElement.classList.add('theme-horror');
-        ensureHorrorFonts();
+        if (window.SiteTheme.isActive(id)) print(msgOn, onCls || 'is-info');
+        else print(msgOff, 'is-ok');
     }
 
     function gotoSection(id) {
@@ -415,25 +415,23 @@
         horror: {
             desc: 'Plunge the site into "The 13th Hour" horror mode (toggle)',
             run: function (a) {
-                const v = (a[0] || 'toggle').toLowerCase();
-                const html = document.documentElement;
-                const cur = html.classList.contains('theme-horror');
-                let on = cur;
-                if (v === 'on') on = true;
-                else if (v === 'off') on = false;
-                else on = !cur;
-                if (on) ensureHorrorFonts();
-                html.classList.toggle('theme-horror', on);
-                // Persist across reloads / pages.
-                if (on) localStorage.setItem(HORROR_KEY, 'true');
-                else localStorage.removeItem(HORROR_KEY);
-                // Start/stop the WebGL firelight background live.
-                window.dispatchEvent(new CustomEvent('horrorchange', { detail: { on: on } }));
-                if (on) {
-                    print('The Thirteenth Hour approaches... the ghost stirs.', 'is-err');
-                } else {
-                    print('Dawn breaks. The haunting fades.', 'is-ok');
-                }
+                runThemeCommand(
+                    'horror', a[0],
+                    'The Thirteenth Hour approaches... the ghost stirs.',
+                    'Dawn breaks. The haunting fades.',
+                    'is-err'
+                );
+            },
+        },
+        matrix: {
+            desc: 'Enter the Matrix: retro hacker / CRT terminal mode (toggle)',
+            run: function (a) {
+                runThemeCommand(
+                    'matrix', a[0],
+                    'Wake up... You are in the Matrix now. Follow the white rabbit.',
+                    'You unplug from the Matrix. Welcome back to the real world.',
+                    'is-ok'
+                );
             },
         },
     };
