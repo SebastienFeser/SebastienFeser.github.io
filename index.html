@@ -29,39 +29,6 @@
 </head>
 <body>
     <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-content">
-            <a href="index.html" class="site-logo">SF</a>
-            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="main-nav">
-                <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
-                <a href="#blog" class="nav-link" data-i18n="nav.blog">Blog</a>
-                <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
-                <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
-                <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
-                <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-            </nav>
-            <div class="social-links">
-                <a href="https://github.com/SebastienFeser" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
-                    <img src="assets/images/GithubLogoWhite.svg" alt="GitHub">
-                </a>
-                <a href="https://www.linkedin.com/in/s%C3%A9bastien-feser-a89727191/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-                    <img src="assets/images/LinkedInLogoWhite.svg" alt="LinkedIn">
-                </a>
-                <a href="assets/documents/CV_EN.pdf" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">CV</a>
-                <div class="lang-selector">
-                    <button class="lang-btn" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="fr">FR</button>
-                    <button class="lang-btn" data-lang="de">DE</button>
-                    <button class="lang-btn" data-lang="it">IT</button>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <main>
         <div class="container">
@@ -482,16 +449,8 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-links">
-            <a href="https://github.com/SebastienFeser" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/s%C3%A9bastien-feser-a89727191/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="assets/documents/CV_EN.pdf" target="_blank">CV</a>
-            <a href="mailto:sebastien.feser@gmail.com">Email</a>
-        </div>
-        <p class="mt-2">&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
-    </footer>
 
+    <script src="js/layout.js"></script>
     <script src="js/effects-toggle.js"></script>
     <script src="js/achievements.js"></script>
     <script src="js/hero-shader.js"></script>
@@ -504,25 +463,6 @@
     <script src="js/horror-fire.js"></script>
     <script src="js/i18n.js"></script>
     <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                const isOpen = mainNav.classList.toggle('mobile-open');
-                menuToggle.setAttribute('aria-expanded', isOpen);
-            });
-
-            // Close menu when clicking a link
-            mainNav.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mainNav.classList.remove('mobile-open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-        }
-
         // WIP Carousel
         const carousel = document.querySelector('.wip-carousel');
         if (carousel) {

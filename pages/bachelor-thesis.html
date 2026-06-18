@@ -8,27 +8,6 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <a href="../index.html" class="site-logo">SF</a>
-            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="main-nav">
-                <a href="../index.html" class="nav-link" data-i18n="nav.about">About</a>
-                <a href="../index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
-                <a href="../index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-            </nav>
-            <div class="lang-selector">
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="fr">FR</button>
-                <button class="lang-btn" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="it">IT</button>
-            </div>
-        </div>
-    </header>
 
     <main>
         <div class="container">
@@ -96,10 +75,8 @@
         </div>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>
-    </footer>
 
+    <script src="../js/layout.js"></script>
     <script src="../js/effects-toggle.js"></script>
     <script src="../js/achievements.js"></script>
     <script src="../js/hero-shader.js"></script>
@@ -111,21 +88,5 @@
     <script src="../js/debug-mode.js"></script>
     <script src="../js/horror-fire.js"></script>
     <script src="../js/i18n.js"></script>
-    <script>
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const mainNav = document.querySelector('.main-nav');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                const isOpen = mainNav.classList.toggle('mobile-open');
-                menuToggle.setAttribute('aria-expanded', isOpen);
-            });
-            mainNav.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mainNav.classList.remove('mobile-open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-        }
-    </script>
 </body>
 </html>

@@ -4,6 +4,12 @@
 
 Personal portfolio website for Sebastien Feser, a Game Engineer specializing in gameplay programming, team leadership, and AI-augmented development.
 
+## IMPORTANT: Never commit
+
+**Do NOT run `git commit` (or `git push`).** The owner handles all commits
+himself. Make the file changes and stop, even if the work looks finished, unless
+he explicitly asks you to commit.
+
 ## Tech Stack
 
 - **HTML5** - Semantic markup with accessibility in mind
@@ -504,16 +510,9 @@ Use this template in `pages/`:
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <a href="../index.html" class="site-logo">SF</a>
-            <nav class="main-nav">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../index.html#projects" class="nav-link">Projects</a>
-                <a href="../index.html#contact" class="nav-link">Contact</a>
-            </nav>
-        </div>
-    </header>
+    <!-- NO hardcoded <header> / <footer> here. The shared site header AND footer
+         are injected by js/layout.js (the single source of truth). Just write the
+         <main>; layout.js inserts the header before it and the footer after it. -->
 
     <main>
         <div class="container">
@@ -538,12 +537,12 @@ Use this template in `pages/`:
         </div>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; 2025 Sebastien Feser</p>
-    </footer>
-
     <!-- IMPORTANT: every page MUST load this full script block (see note below).
-         Use `../js/` from pages/, or `js/` from the site root. -->
+         Use `../js/` from pages/, or `js/` from the site root.
+         layout.js loads FIRST so the shared header/footer exist before the other
+         scripts (effects-toggle injects its button into the header, achievements
+         injects a link into the footer, i18n translates both). -->
+    <script src="../js/layout.js"></script>
     <script src="../js/effects-toggle.js"></script>
     <script src="../js/achievements.js"></script>
     <script src="../js/hero-shader.js"></script>
@@ -561,18 +560,52 @@ Use this template in `pages/`:
 
 ### IMPORTANT: every new page must load the full script block
 
-There is **no build step and no shared layout**, so each page includes its own
-`<script>` tags. When you create a page (or add a new site-wide script), copy the
-block above onto **every** page. Two order rules matter:
+There is **no build step**, so each page includes its own `<script>` tags. When
+you create a page (or add a new site-wide script), copy the block above onto
+**every** page. Order rules that matter:
 
-- **`effects-toggle.js` loads FIRST** — it sets the `fx-off` class before paint,
-  and every other effect script keys off it.
+- **`layout.js` loads FIRST** — it injects the shared header + footer (see the
+  Shared Layout section) so they exist before any other script runs.
+- **`effects-toggle.js` loads next** — it sets the `fx-off` class before paint,
+  and every other effect script keys off it. It also injects its button into the
+  header layout.js created.
 - **`achievements.js` loads right after it** — so the toast respects the effects
-  toggle (see the Achievement System section).
+  toggle (see the Achievement System section). It injects a link into the footer.
 
 The rest (`konami-physics.js`, `command-console.js`, `debug-mode.js`,
 `horror-fire.js`, `i18n.js`, …) just need to be present. If you add a new feature
 script, add its `<script>` tag to all pages and update this block.
+
+## Shared Layout (header + footer)
+
+There is **no server-side templating**, but the header and footer are NOT copied
+into each page anymore. They live in a single file, `js/layout.js`, which injects
+them into every page at load. **To change the header or footer site-wide, edit
+ONLY `js/layout.js`.** No copy-paste across pages.
+
+How it works:
+
+- `layout.js` defines the `<header class="site-header">` and
+  `<footer class="site-footer">` markup once, removes any existing ones, then
+  inserts the header as the first child of `<body>` and the footer right after
+  `<main>`. It runs synchronously (it sits at the top of the end-of-body script
+  block), so the header/footer exist before `effects-toggle.js`,
+  `achievements.js` and `i18n.js` run their DOMContentLoaded handlers.
+- **Relative paths are computed automatically** from the page's depth (root vs
+  `pages/`), so the same markup works everywhere. Nav anchors are same-page
+  (`#about`) on the homepage and jump back to the homepage (`../index.html#about`)
+  elsewhere.
+- The injected markup keeps its `data-i18n` attributes, so i18n still translates
+  the header/footer in all 4 languages, and the mobile-menu hamburger JS lives in
+  `layout.js` too (works on every page).
+
+So: **a new page only contains its `<main>`** — never a hardcoded `<header>` /
+`<footer class="site-footer">`. (An in-`<main>` `<header class="article-header">`
+for the article title is fine, that's different.)
+
+| File | Role |
+|------|------|
+| `js/layout.js` | Single source of truth for the shared header + footer (markup, path resolution, mobile menu) |
 
 ## Creating Blog Posts
 
