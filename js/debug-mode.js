@@ -14,7 +14,7 @@
  * Like the console, debug mode is a TOOL, not an ambient visual effect, so it is
  * NOT gated by the visual-effects toggle.
  *
- * Built by Sebastien Feser.
+ * Built by Sébastien Feser.
  */
 (function () {
     'use strict';

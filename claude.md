@@ -1,8 +1,8 @@
-# Sebastien Feser - Portfolio Website
+# Sébastien Feser - Portfolio Website
 
 ## Project Overview
 
-Personal portfolio website for Sebastien Feser, a Game Engineer specializing in gameplay programming, team leadership, and AI-augmented development.
+Personal portfolio website for Sébastien Feser, a Game Engineer specializing in gameplay programming, team leadership, and AI-augmented development.
 
 ## IMPORTANT: Never commit
 
@@ -520,7 +520,7 @@ MyNewWebsite/
 1. **Hero Avatar** - Replace `<div class="hero-avatar">SF</div>` with:
    ```html
    <div class="hero-avatar">
-       <img src="assets/images/profile.jpg" alt="Sebastien Feser">
+       <img src="assets/images/profile.jpg" alt="Sébastien Feser">
    </div>
    ```
 
@@ -562,7 +562,7 @@ Use this template in `pages/`:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name | Sebastien Feser</title>
+    <title>Project Name | Sébastien Feser</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>

@@ -10,7 +10,7 @@
  *
  * 100% vanilla, no dependencies. Press Escape (or re-enter the code) to reload.
  *
- * Built by Sebastien Feser.
+ * Built by Sébastien Feser.
  */
 (function () {
     'use strict';

@@ -39,7 +39,7 @@
  *           { detail: { id: 'unique-kebab-id' } }));
  *     Calling unlock again after it's already earned is a harmless no-op.
  *
- *  Built by Sebastien Feser.
+ *  Built by Sébastien Feser.
  */
 (function () {
     'use strict';

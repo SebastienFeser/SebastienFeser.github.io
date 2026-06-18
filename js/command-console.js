@@ -55,7 +55,7 @@
         root.querySelector('.cmd-close-btn').addEventListener('click', close);
         makeDraggable(root.querySelector('.cmd-titlebar'));
 
-        print('Sebastien Feser console. Type "help" for commands. Close with the same key or Esc.', 'is-muted');
+        print('Sébastien Feser console. Type "help" for commands. Close with the same key or Esc.', 'is-muted');
     }
 
     /* =========================================================
@@ -398,10 +398,10 @@
             },
         },
         whoami: {
-            desc: 'About Sebastien',
+            desc: 'About Sébastien',
             run: function () {
                 printLines([
-                    'Sebastien Feser - Game Engineer & Project Lead',
+                    'Sébastien Feser - Game Engineer & Project Lead',
                     'Gameplay programming, team leadership, AI-augmented dev.',
                 ], 'is-info');
             },

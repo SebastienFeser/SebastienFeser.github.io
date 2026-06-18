@@ -81,7 +81,7 @@
                 '<a href="' + prefix + 'assets/documents/CV_EN.pdf" target="_blank">CV</a>' +
                 '<a href="mailto:sebastien.feser@gmail.com">Email</a>' +
             '</div>' +
-            '<p class="mt-2">&copy; <span data-i18n="footer.copyright">2026 Sebastien Feser. Built with passion.</span></p>' +
+            '<p class="mt-2">&copy; <span data-i18n="footer.copyright">2026 Sébastien Feser. Built with passion.</span></p>' +
         '</footer>';
 
     function el(html) {
