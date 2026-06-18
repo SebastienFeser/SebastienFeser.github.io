@@ -294,6 +294,24 @@
             desc: 'Clear the console output',
             run: function () { outputEl.innerHTML = ''; },
         },
+        clear_cache: {
+            desc: 'Wipe all saved site data (effects, language, achievements...) and reload',
+            run: function () {
+                // Wipe everything the site persists: visual-effects toggle, debug
+                // mode, language, achievements, horror theme, pending toast, etc.
+                // A static site has no service worker / Cache API, so localStorage
+                // + sessionStorage IS the site's cache.
+                try {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                } catch (e) {
+                    print('Could not clear storage: ' + (e && e.message ? e.message : e), 'is-err');
+                    return;
+                }
+                print('Cache cleared. Reloading with default settings...', 'is-ok');
+                setTimeout(function () { close(); location.reload(); }, 400);
+            },
+        },
         close: {
             desc: 'Close the console',
             run: function () { close(); },
